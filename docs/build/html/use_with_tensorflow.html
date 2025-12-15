@@ -1,0 +1,812 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Using Datasets with TensorFlow &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'use_with_tensorflow';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use with NumPy" href="use_with_numpy.html" />
+    <link rel="prev" title="Use with PyTorch" href="use_with_pytorch.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stream.html">Stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pytorch.html">Use with PyTorch</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Using Datasets with TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_numpy.html">Use with NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_jax.html">Use with JAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pandas.html">Use with Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_polars.html">Use with Polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pyarrow.html">Use with PyArrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_spark.html">Use with Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cache.html">Cache management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystems.html">Cloud storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faiss_es.html">Search index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_load.html">Load audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_process.html">Process audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_dataset.html">Create an audio dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_load.html">Load image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_process.html">Process image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_dataset.html">Create an image dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="depth_estimation.html">Depth estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html">Image classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_segmentation.html">Semantic segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_detection.html">Object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_load.html">Load video data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_dataset.html">Create a video dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_load.html">Load pdf data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_dataset.html">Create a document dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nifti_dataset.html">Create a NIfTI dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_load.html">Load text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_process.html">Process text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_load.html">Load tabular data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="share.html">Share a dataset using the CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset_card.html">Create a dataset card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repository_structure.html">Structure your repository</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="howto.html" class="nav-link">How-to Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Using Datasets with TensorFlow</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="using-datasets-with-tensorflow">
+<h1>Using Datasets with TensorFlow<a class="headerlink" href="#using-datasets-with-tensorflow" title="Link to this heading">#</a></h1>
+<p>This document is a quick introduction to using <code class="docutils literal notranslate"><span class="pre">datasets</span></code> with TensorFlow, with a particular focus on how to get
+<code class="docutils literal notranslate"><span class="pre">tf.Tensor</span></code> objects out of our datasets, and how to stream data from Hugging Face <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> objects to Keras methods
+like <code class="docutils literal notranslate"><span class="pre">model.fit()</span></code>.</p>
+<section id="dataset-format">
+<h2>Dataset format<a class="headerlink" href="#dataset-format" title="Link to this heading">#</a></h2>
+<p>By default, datasets return regular Python objects: integers, floats, strings, lists, etc.</p>
+<p>To get TensorFlow tensors instead, you can set the format of the dataset to <code class="docutils literal notranslate"><span class="pre">tf</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2,), dtype=int64, numpy=array([1, 2])&gt;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2, 2), dtype=int64, numpy=</span>
+<span class="go">array([[1, 2],</span>
+<span class="go">       [3, 4]])&gt;}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+A [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] object is a wrapper of an Arrow table, which allows fast reads from arrays in the dataset to TensorFlow tensors.</p>
+</div></blockquote>
+<p>This can be useful for converting your dataset to a dict of <code class="docutils literal notranslate"><span class="pre">Tensor</span></code> objects, or for writing a generator to load TF
+samples from it. If you wish to convert the entire dataset to <code class="docutils literal notranslate"><span class="pre">Tensor</span></code>, simply query the full dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2, 2), dtype=int64, numpy=</span>
+<span class="go">array([[1, 2],</span>
+<span class="go">       [3, 4]])&gt;}</span>
+</pre></div>
+</div>
+<section id="n-dimensional-arrays">
+<h3>N-dimensional arrays<a class="headerlink" href="#n-dimensional-arrays" title="Link to this heading">#</a></h3>
+<p>If your dataset consists of N-dimensional arrays, you will see that by default they are considered as the same tensor if the shape is fixed:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]]</span>  <span class="c1"># fixed shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2, 2), dtype=int64, numpy=</span>
+<span class="go"> array([[1, 2],</span>
+<span class="go">        [3, 4]])&gt;}</span>
+</pre></div>
+</div>
+<p>Otherwise, a TensorFlow formatted dataset outputs a <code class="docutils literal notranslate"><span class="pre">RaggedTensor</span></code> instead of a single tensor:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">]],[[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]]</span>  <span class="c1"># varying shape</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.RaggedTensor [[1, 2], [3]]&gt;}</span>
+</pre></div>
+</div>
+<p>However this logic often requires slow shape comparisons and data copies.
+To avoid this, you must explicitly use the [<code class="docutils literal notranslate"><span class="pre">Array</span></code>] feature type and specify the shape of your tensors:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Features</span><span class="p">,</span> <span class="n">Array2D</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">Array2D</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">},</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2, 2), dtype=int64, numpy=</span>
+<span class="go"> array([[1, 2],</span>
+<span class="go">        [3, 4]])&gt;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2, 2, 2), dtype=int64, numpy=</span>
+<span class="go"> array([[[1, 2],</span>
+<span class="go">         [3, 4]],</span>
+<span class="go"> </span>
+<span class="go">        [[5, 6],</span>
+<span class="go">         [7, 8]]])&gt;}</span>
+</pre></div>
+</div>
+</section>
+<section id="other-feature-types">
+<h3>Other feature types<a class="headerlink" href="#other-feature-types" title="Link to this heading">#</a></h3>
+<p>[<code class="docutils literal notranslate"><span class="pre">ClassLabel</span></code>] data are properly converted to tensors:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Features</span><span class="p">,</span> <span class="n">ClassLabel</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">ClassLabel</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;positive&quot;</span><span class="p">])})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">labels</span><span class="p">},</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">{&#39;label&#39;: &lt;tf.Tensor: shape=(3,), dtype=int64, numpy=array([0, 0, 1])&gt;}</span>
+</pre></div>
+</div>
+<p>Strings and binary objects are also supported:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Features</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">text</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">})</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">{&#39;text&#39;: &lt;tf.Tensor: shape=(2,), dtype=string, numpy=array([b&#39;foo&#39;, b&#39;bar&#39;], dtype=object)&gt;,</span>
+<span class="go"> &#39;data&#39;: &lt;tf.Tensor: shape=(2,), dtype=int64, numpy=array([0, 1])&gt;}</span>
+</pre></div>
+</div>
+<p>You can also explicitly format certain columns and leave the other columns unformatted:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">],</span> <span class="n">output_all_columns</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">{&#39;data&#39;: &lt;tf.Tensor: shape=(2,), dtype=int64, numpy=array([0, 1])&gt;,</span>
+<span class="go"> &#39;text&#39;: [&#39;foo&#39;, &#39;bar&#39;]}</span>
+</pre></div>
+</div>
+<p>String and binary objects are unchanged, since PyTorch only supports numbers.</p>
+<p>The [<code class="docutils literal notranslate"><span class="pre">Image</span></code>] and [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] feature types are also supported.</p>
+<blockquote>
+<div><p>[!TIP]
+To use the [<code class="docutils literal notranslate"><span class="pre">Image</span></code>] feature type, you’ll need to install the <code class="docutils literal notranslate"><span class="pre">vision</span></code> extra as
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">datasets[vision]</span></code>.</p>
+</div></blockquote>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Features</span><span class="p">,</span> <span class="n">Audio</span><span class="p">,</span> <span class="n">Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">images</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;path/to/image.png&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">Image</span><span class="p">()})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">images</span><span class="p">},</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;image&#39;: &lt;tf.Tensor: shape=(512, 512, 4), dtype=uint8, numpy=</span>
+<span class="go"> array([[[255, 215, 106, 255],</span>
+<span class="go">         [255, 215, 106, 255],</span>
+<span class="go">         ...,</span>
+<span class="go">         [255, 255, 255, 255],</span>
+<span class="go">         [255, 255, 255, 255]]], dtype=uint8)&gt;}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">{&#39;image&#39;: &lt;tf.Tensor: shape=(2, 512, 512, 4), dtype=uint8, numpy=</span>
+<span class="go"> array([[[[255, 215, 106, 255],</span>
+<span class="go">          [255, 215, 106, 255],</span>
+<span class="go">          ...,</span>
+<span class="go">          [255, 255, 255, 255],</span>
+<span class="go">          [255, 255, 255, 255]]]], dtype=uint8)&gt;}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+To use the [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] feature type, you’ll need to install the <code class="docutils literal notranslate"><span class="pre">audio</span></code> extra as
+<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">datasets[audio]</span></code>.</p>
+</div></blockquote>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Features</span><span class="p">,</span> <span class="n">Audio</span><span class="p">,</span> <span class="n">Image</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;path/to/audio.wav&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="n">Audio</span><span class="p">()})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="n">audio</span><span class="p">},</span> <span class="n">features</span><span class="o">=</span><span class="n">features</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>  
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;audio&quot;</span><span class="p">][</span><span class="s2">&quot;array&quot;</span><span class="p">]</span>
+<span class="go">&lt;tf.Tensor: shape=(202311,), dtype=float32, numpy=</span>
+<span class="go">array([ 6.1035156e-05,  1.5258789e-05,  1.6784668e-04, ...,</span>
+<span class="go">       -1.5258789e-05, -1.5258789e-05,  1.5258789e-05], dtype=float32)&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;audio&quot;</span><span class="p">][</span><span class="s2">&quot;sampling_rate&quot;</span><span class="p">]</span>
+<span class="go">&lt;tf.Tensor: shape=(), dtype=int32, numpy=44100&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-loading">
+<h2>Data loading<a class="headerlink" href="#data-loading" title="Link to this heading">#</a></h2>
+<p>Although you can load individual samples and batches just by indexing into your dataset, this won’t work if you want
+to use Keras methods like <code class="docutils literal notranslate"><span class="pre">fit()</span></code> and <code class="docutils literal notranslate"><span class="pre">predict()</span></code>. You could write a generator function that shuffles and loads batches
+from your dataset and <code class="docutils literal notranslate"><span class="pre">fit()</span></code> on that, but that sounds like a lot of unnecessary work. Instead, if you want to stream
+data from your dataset on-the-fly, we recommend converting your dataset to a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> using the
+<code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code> method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> class covers a wide range of use-cases - it is often created from Tensors in memory, or using a load function to read files on disc
+or external storage. The dataset can be transformed arbitrarily with the <code class="docutils literal notranslate"><span class="pre">map()</span></code> method, or methods like <code class="docutils literal notranslate"><span class="pre">batch()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">shuffle()</span></code> can be used to create a dataset that’s ready for training. These methods do not modify the stored data
+in any way - instead, the methods build a data pipeline graph that will be executed when the dataset is iterated over,
+usually during model training or inference. This is different from the <code class="docutils literal notranslate"><span class="pre">map()</span></code> method of Hugging Face <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> objects,
+which runs the map function immediately and saves the new or changed columns.</p>
+<p>Since the entire data preprocessing pipeline can be compiled in a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code>, this approach allows for massively
+parallel, asynchronous data loading and training. However, the requirement for graph compilation can be a limitation,
+particularly for Hugging Face tokenizers, which are usually not (yet!) compilable as part of a TF graph. As a result,
+we usually advise pre-processing the dataset as a Hugging Face dataset, where arbitrary Python functions can be
+used, and then converting to <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> afterwards using <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code> to get a batched dataset ready for
+training. To see examples of this approach, please see the <a class="reference external" href="https://github.com/huggingface/transformers/tree/main/examples">examples</a> or <a class="reference external" href="https://huggingface.co/docs/transformers/notebooks">notebooks</a> for <code class="docutils literal notranslate"><span class="pre">transformers</span></code>.</p>
+<section id="using-to-tf-dataset">
+<h3>Using <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code><a class="headerlink" href="#using-to-tf-dataset" title="Link to this heading">#</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code> is straightforward. Once your dataset is preprocessed and ready, simply call it like so:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]],</span> <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf_ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">to_tf_dataset</span><span class="p">(</span>
+<span class="go">            columns=[&quot;inputs&quot;],</span>
+<span class="go">            label_cols=[&quot;labels&quot;],</span>
+<span class="go">            batch_size=2,</span>
+<span class="go">            shuffle=True</span>
+<span class="go">            )</span>
+</pre></div>
+</div>
+<p>The returned <code class="docutils literal notranslate"><span class="pre">tf_ds</span></code> object here is now fully ready to train on, and can be passed directly to <code class="docutils literal notranslate"><span class="pre">model.fit()</span></code>. Note
+that you set the batch size when creating the dataset, and so you don’t need to specify it when calling <code class="docutils literal notranslate"><span class="pre">fit()</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">tf_ds</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For a full description of the arguments, please see the [<code class="docutils literal notranslate"><span class="pre">~Dataset.to_tf_dataset</span></code>] documentation. In many cases,
+you will also need to add a <code class="docutils literal notranslate"><span class="pre">collate_fn</span></code> to your call. This is a function that takes multiple elements of the dataset
+and combines them into a single batch. When all elements have the same length, the built-in default collator will
+suffice, but for more complex tasks a custom collator may be necessary. In particular, many tasks have samples
+with varying sequence lengths which will require a <a class="reference external" href="https://huggingface.co/docs/transformers/main/en/main_classes/data_collator">data collator</a> that can pad batches correctly. You can see examples
+of this in the <code class="docutils literal notranslate"><span class="pre">transformers</span></code> NLP <a class="reference external" href="https://github.com/huggingface/transformers/tree/main/examples">examples</a> and
+<a class="reference external" href="https://huggingface.co/docs/transformers/notebooks">notebooks</a>, where variable sequence lengths are very common.</p>
+<p>If you find that loading with <code class="docutils literal notranslate"><span class="pre">to_tf_dataset</span></code> is slow, you can also use the <code class="docutils literal notranslate"><span class="pre">num_workers</span></code> argument. This spins
+up multiple subprocesses to load data in parallel. This feature is recent and still somewhat experimental - please file
+an issue if you encounter any bugs while using it!</p>
+</section>
+<section id="when-to-use-to-tf-dataset">
+<h3>When to use to_tf_dataset<a class="headerlink" href="#when-to-use-to-tf-dataset" title="Link to this heading">#</a></h3>
+<p>The astute reader may have noticed at this point that we have offered two approaches to achieve the same goal - if you
+want to pass your dataset to a TensorFlow model, you can either convert the dataset to a <code class="docutils literal notranslate"><span class="pre">Tensor</span></code> or <code class="docutils literal notranslate"><span class="pre">dict</span></code> of <code class="docutils literal notranslate"><span class="pre">Tensors</span></code>
+using <code class="docutils literal notranslate"><span class="pre">.with_format('tf')</span></code>, or you can convert the dataset to a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> with <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code>. Either of these
+can be passed to <code class="docutils literal notranslate"><span class="pre">model.fit()</span></code>, so which should you choose?</p>
+<p>The key thing to recognize is that when you convert the whole dataset to <code class="docutils literal notranslate"><span class="pre">Tensor</span></code>s, it is static and fully loaded into
+RAM. This is simple and convenient, but if any of the following apply, you should probably use <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code>
+instead:</p>
+<ul class="simple">
+<li><p>Your dataset is too large to fit in RAM. <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code> streams only one batch at a time, so even very large
+datasets can be handled with this method.</p></li>
+<li><p>You want to apply random transformations using <code class="docutils literal notranslate"><span class="pre">dataset.with_transform()</span></code> or the <code class="docutils literal notranslate"><span class="pre">collate_fn</span></code>. This is
+common in several modalities, such as image augmentations when training vision models, or random masking when training
+masked language models. Using <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code> will apply those transformations
+at the moment when a batch is loaded, which means the same samples will get different augmentations each time
+they are loaded. This is usually what you want.</p></li>
+<li><p>Your data has a variable dimension, such as input texts in NLP that consist of varying
+numbers of tokens. When you create a batch with samples with a variable dimension, the standard solution is to
+pad the shorter samples to the length of the longest one. When you stream samples from a dataset with <code class="docutils literal notranslate"><span class="pre">to_tf_dataset</span></code>,
+you can apply this padding to each batch via your <code class="docutils literal notranslate"><span class="pre">collate_fn</span></code>. However, if you want to convert
+such a dataset to dense <code class="docutils literal notranslate"><span class="pre">Tensor</span></code>s, then you will have to pad samples to the length of the longest sample in <em>the
+entire dataset!</em> This can result in huge amounts of padding, which wastes memory and reduces your model’s speed.</p></li>
+</ul>
+</section>
+<section id="caveats-and-limitations">
+<h3>Caveats and limitations<a class="headerlink" href="#caveats-and-limitations" title="Link to this heading">#</a></h3>
+<p>Right now, <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code> always returns a batched dataset - we will add support for unbatched datasets soon!</p>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="use_with_pytorch.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Use with PyTorch</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="use_with_numpy.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Use with NumPy</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset-format">Dataset format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#n-dimensional-arrays">N-dimensional arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-feature-types">Other feature types</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading">Data loading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-to-tf-dataset">Using <code class="docutils literal notranslate"><span class="pre">to_tf_dataset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-to-tf-dataset">When to use to_tf_dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caveats-and-limitations">Caveats and limitations</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/use_with_tensorflow.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

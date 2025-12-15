@@ -1,0 +1,948 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Load &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'loading';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Process" href="process.html" />
+    <link rel="prev" title="Overview" href="how_to.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">Overview</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stream.html">Stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pytorch.html">Use with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_tensorflow.html">Using Datasets with TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_numpy.html">Use with NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_jax.html">Use with JAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pandas.html">Use with Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_polars.html">Use with Polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pyarrow.html">Use with PyArrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_spark.html">Use with Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cache.html">Cache management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystems.html">Cloud storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faiss_es.html">Search index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_load.html">Load audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_process.html">Process audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_dataset.html">Create an audio dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_load.html">Load image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_process.html">Process image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_dataset.html">Create an image dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="depth_estimation.html">Depth estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html">Image classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_segmentation.html">Semantic segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_detection.html">Object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_load.html">Load video data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_dataset.html">Create a video dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_load.html">Load pdf data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_dataset.html">Create a document dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nifti_dataset.html">Create a NIfTI dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_load.html">Load text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_process.html">Process text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_load.html">Load tabular data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="share.html">Share a dataset using the CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset_card.html">Create a dataset card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repository_structure.html">Structure your repository</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="howto.html" class="nav-link">How-to Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Load</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="load">
+<h1>Load<a class="headerlink" href="#load" title="Link to this heading">#</a></h1>
+<p>Your data can be stored in various places; they can be on your local machine’s disk, in a Github repository, and in in-memory data structures like Python dictionaries and Pandas DataFrames. Wherever a dataset is stored, 🤗 Datasets can help you load it.</p>
+<p>This guide will show you how to load a dataset from:</p>
+<ul class="simple">
+<li><p>The Hugging Face Hub</p></li>
+<li><p>Local files</p></li>
+<li><p>In-memory data</p></li>
+<li><p>Offline</p></li>
+<li><p>A specific slice of a split</p></li>
+</ul>
+<p>For more details specific to loading other dataset modalities, take a look at the <a class="underline decoration-pink-400 decoration-2 font-semibold" href="./audio_load">load audio dataset guide</a>, the <a class="underline decoration-yellow-400 decoration-2 font-semibold" href="./image_load">load image dataset guide</a>, the <a class="underline decoration-blue-400 decoration-2 font-semibold" href="./video_load">load video dataset guide</a>, or the <a class="underline decoration-green-400 decoration-2 font-semibold" href="./nlp_load">load text dataset guide</a>.</p>
+<p><a id='load-from-the-hub'></a></p>
+<section id="hugging-face-hub">
+<h2>Hugging Face Hub<a class="headerlink" href="#hugging-face-hub" title="Link to this heading">#</a></h2>
+<p>You can also load a dataset from any dataset repository on the Hub! Begin by <a class="reference internal" href="#share#create-the-repository"><span class="xref myst">creating a dataset repository</span></a> and upload your data files. Now you can use the [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] function to load the dataset.</p>
+<p>For example, try loading the files from this <a class="reference external" href="https://huggingface.co/datasets/lhoestq/demo1">demo repository</a> by providing the repository namespace and dataset name. This dataset repository contains CSV files, and the code below loads the dataset from the CSV files:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;lhoestq/demo1&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Some datasets may have more than one version based on Git tags, branches, or commits. Use the <code class="docutils literal notranslate"><span class="pre">revision</span></code> parameter to specify the dataset version you want to load:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span>
+<span class="gp">... </span>  <span class="s2">&quot;lhoestq/custom_squad&quot;</span><span class="p">,</span>
+<span class="gp">... </span>  <span class="n">revision</span><span class="o">=</span><span class="s2">&quot;main&quot;</span>  <span class="c1"># tag name, or branch name, or commit hash</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+Refer to the <a class="reference internal" href="upload_dataset.html"><span class="doc std std-doc">Upload a dataset to the Hub</span></a> tutorial for more details on how to create a dataset repository on the Hub, and how to upload your data files.</p>
+</div></blockquote>
+<p>A dataset loads by default all the data into the <code class="docutils literal notranslate"><span class="pre">train</span></code> split, or checks for mentions or split names in the data files names (e.g. “train”, “test” and “validation”). Use the <code class="docutils literal notranslate"><span class="pre">data_files</span></code> parameter to map data files to splits like <code class="docutils literal notranslate"><span class="pre">train</span></code>, <code class="docutils literal notranslate"><span class="pre">validation</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="s2">&quot;train.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">:</span> <span class="s2">&quot;test.csv&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;namespace/your_dataset_name&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!WARNING]
+If you don’t specify which data files to use, [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] will return all the data files. This can take a long time if you load a large dataset like C4, which is approximately 13TB of data.</p>
+</div></blockquote>
+<p>You can also load a specific subset of the files with the <code class="docutils literal notranslate"><span class="pre">data_files</span></code> or <code class="docutils literal notranslate"><span class="pre">data_dir</span></code> parameter. These parameters can accept a relative path which resolves to the base path corresponding to where the dataset is loaded from.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="go"># load files that match the grep pattern</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c4_subset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;allenai/c4&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;en/c4-train.0000*-of-01024.json.gz&quot;</span><span class="p">)</span>
+
+<span class="go"># load dataset from the en directory on the Hub</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c4_subset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;allenai/c4&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;en&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">split</span></code> parameter can also map a data file to a specific split:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;validation&quot;</span><span class="p">:</span> <span class="s2">&quot;en/c4-validation.*.json.gz&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c4_validation</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;allenai/c4&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;validation&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="local-and-remote-files">
+<h2>Local and remote files<a class="headerlink" href="#local-and-remote-files" title="Link to this heading">#</a></h2>
+<p>Datasets can be loaded from local files stored on your computer and from remote files. The datasets are most likely stored as a <code class="docutils literal notranslate"><span class="pre">csv</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">txt</span></code> or <code class="docutils literal notranslate"><span class="pre">parquet</span></code> file. The [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] function can load each of these file types.</p>
+<section id="csv">
+<h3>CSV<a class="headerlink" href="#csv" title="Link to this heading">#</a></h3>
+<p>🤗 Datasets can read a dataset made up of one or several CSV files (in this case, pass your CSV files as a list):</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;my_file.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+For more details, check out the <a class="reference internal" href="#tabular_load#csv-files"><span class="xref myst">how to load tabular datasets from CSV files</span></a> guide.</p>
+</div></blockquote>
+</section>
+<section id="json">
+<h3>JSON<a class="headerlink" href="#json" title="Link to this heading">#</a></h3>
+<p>JSON files are loaded directly with [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] as shown below:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;my_file.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>JSON files have diverse formats, but we think the most efficient format is to have multiple JSON objects; each line represents an individual row of data. For example:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;a&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;c&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;d&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">}</span>
+<span class="p">{</span><span class="nt">&quot;a&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;b&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">-5.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;c&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;d&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Another JSON format you may encounter is a nested field, in which case you’ll need to specify the <code class="docutils literal notranslate"><span class="pre">field</span></code> argument as shown in the following:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">},</span>
+          <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">5.5</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span> <span class="s2">&quot;d&quot;</span><span class="p">:</span> <span class="n">true</span><span class="p">}]</span>
+<span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;my_file.json&quot;</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To load remote JSON files via HTTP, pass the URLs instead:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://rajpurkar.github.io/SQuAD-explorer/dataset/&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;train-v1.1.json&quot;</span><span class="p">,</span> <span class="s2">&quot;validation&quot;</span><span class="p">:</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;dev-v1.1.json&quot;</span><span class="p">},</span> <span class="n">field</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>While these are the most common JSON formats, you’ll see other datasets that are formatted differently. 🤗 Datasets recognizes these other formats and will fallback accordingly on the Python JSON loading methods to handle them.</p>
+</section>
+<section id="parquet">
+<h3>Parquet<a class="headerlink" href="#parquet" title="Link to this heading">#</a></h3>
+<p>Parquet files are stored in a columnar format, unlike row-based files like a CSV. Large datasets may be stored in a Parquet file because it is more efficient and faster at returning your query.</p>
+<p>To load a Parquet file:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;parquet&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="s1">&#39;train.parquet&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="s1">&#39;test.parquet&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>To load remote Parquet files via HTTP, pass the URLs instead:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://huggingface.co/datasets/wikimedia/wikipedia/resolve/main/20231101.ab/&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;train-00000-of-00001.parquet&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wiki</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;parquet&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="arrow">
+<h3>Arrow<a class="headerlink" href="#arrow" title="Link to this heading">#</a></h3>
+<p>Arrow files are stored in an in-memory columnar format, unlike row-based formats like CSV and uncompressed formats like Parquet.</p>
+<p>To load an Arrow file:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;arrow&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;train&#39;</span><span class="p">:</span> <span class="s1">&#39;train.arrow&#39;</span><span class="p">,</span> <span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="s1">&#39;test.arrow&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>To load remote Arrow files via HTTP, pass the URLs instead:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://huggingface.co/datasets/croissantllm/croissant_dataset/resolve/main/english_660B_11/&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">base_url</span> <span class="o">+</span> <span class="s2">&quot;train/data-00000-of-00080.arrow&quot;</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wiki</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;arrow&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Arrow is the file format used by 🤗 Datasets under the hood, therefore you can load a local Arrow file using [<code class="docutils literal notranslate"><span class="pre">Dataset.from_file</span></code>] directly:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;data.arrow&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Unlike [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>], [<code class="docutils literal notranslate"><span class="pre">Dataset.from_file</span></code>] memory maps the Arrow file without preparing the dataset in the cache, saving you disk space.
+The cache directory to store intermediate processing results will be the Arrow file directory in that case.</p>
+<p>For now only the Arrow streaming format is supported. The Arrow IPC file format (also known as Feather V2) is not supported.</p>
+</section>
+</section>
+<section id="hdf5-files">
+<h2>HDF5 files<a class="headerlink" href="#hdf5-files" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> files are commonly used for storing large amounts of numerical data in scientific computing and machine learning. Loading HDF5 files with 🤗 Datasets is similar to loading CSV files:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;hdf5&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;data.h5&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that the HDF5 loader assumes that the file has “tabular” structure, i.e. that all datasets in the file have (the same number of) rows on their first dimension.</p>
+<section id="sql">
+<h3>SQL<a class="headerlink" href="#sql" title="Link to this heading">#</a></h3>
+<p>Read database contents with [<code class="docutils literal notranslate"><span class="pre">~datasets.Dataset.from_sql</span></code>] by specifying the URI to connect to your database. You can read both table names and queries:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="go"># load entire table</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_sql</span><span class="p">(</span><span class="s2">&quot;data_table_name&quot;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="s2">&quot;sqlite:///sqlite_file.db&quot;</span><span class="p">)</span>
+<span class="go"># load from query</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_sql</span><span class="p">(</span><span class="s2">&quot;SELECT text FROM table WHERE length(text) &gt; 100 LIMIT 10&quot;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="s2">&quot;sqlite:///sqlite_file.db&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+For more details, check out the <a class="reference internal" href="#tabular_load#databases"><span class="xref myst">how to load tabular datasets from SQL databases</span></a> guide.</p>
+</div></blockquote>
+</section>
+<section id="webdataset">
+<h3>WebDataset<a class="headerlink" href="#webdataset" title="Link to this heading">#</a></h3>
+<p>The <a class="reference external" href="https://github.com/webdataset/webdataset">WebDataset</a> format is based on TAR archives and is suitable for big image datasets.
+Because of their size, WebDatasets are generally loaded in streaming mode (using <code class="docutils literal notranslate"><span class="pre">streaming=True</span></code>).</p>
+<p>You can load a WebDataset like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;path/to/train/*.tar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;webdataset&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">},</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To load remote WebDatasets via HTTP, pass the URLs instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://huggingface.co/datasets/lhoestq/small-publaynet-wds/resolve/main/publaynet-train-</span><span class="si">{i:06d}</span><span class="s2">.tar&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">base_url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;webdataset&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="n">urls</span><span class="p">},</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multiprocessing">
+<h2>Multiprocessing<a class="headerlink" href="#multiprocessing" title="Link to this heading">#</a></h2>
+<p>When a dataset is made of several files (that we call “shards”), it is possible to significantly speed up the dataset downloading and preparation step.</p>
+<p>You can choose how many processes you’d like to use to prepare a dataset in parallel using <code class="docutils literal notranslate"><span class="pre">num_proc</span></code>.
+In this case, each process is given a subset of shards to prepare:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">imagenet</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;timm/imagenet-1k-wds&quot;</span><span class="p">,</span> <span class="n">num_proc</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ml_librispeech_spanish</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;facebook/multilingual_librispeech&quot;</span><span class="p">,</span> <span class="s2">&quot;spanish&quot;</span><span class="p">,</span> <span class="n">num_proc</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="in-memory-data">
+<h2>In-memory data<a class="headerlink" href="#in-memory-data" title="Link to this heading">#</a></h2>
+<p>🤗 Datasets will also allow you to create a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] directly from in-memory data structures like Python dictionaries and Pandas DataFrames.</p>
+<section id="python-dictionary">
+<h3>Python dictionary<a class="headerlink" href="#python-dictionary" title="Link to this heading">#</a></h3>
+<p>Load Python dictionaries with [<code class="docutils literal notranslate"><span class="pre">~Dataset.from_dict</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">my_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="python-list-of-dictionaries">
+<h3>Python list of dictionaries<a class="headerlink" href="#python-list-of-dictionaries" title="Link to this heading">#</a></h3>
+<p>Load a list of Python dictionaries with [<code class="docutils literal notranslate"><span class="pre">~Dataset.from_list</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_list</span><span class="p">(</span><span class="n">my_list</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="python-generator">
+<h3>Python generator<a class="headerlink" href="#python-generator" title="Link to this heading">#</a></h3>
+<p>Create a dataset from a Python generator with [<code class="docutils literal notranslate"><span class="pre">~Dataset.from_generator</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">my_gen</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_generator</span><span class="p">(</span><span class="n">my_gen</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This approach supports loading data larger than available memory.</p>
+<p>You can also define a sharded dataset by passing lists to <code class="docutils literal notranslate"><span class="pre">gen_kwargs</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">gen</span><span class="p">(</span><span class="n">shards</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">shard</span> <span class="ow">in</span> <span class="n">shards</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">shard</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+<span class="gp">... </span>                <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;line&quot;</span><span class="p">:</span> <span class="n">line</span><span class="p">}</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shards</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;data</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.txt&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">IterableDataset</span><span class="o">.</span><span class="n">from_generator</span><span class="p">(</span><span class="n">gen</span><span class="p">,</span> <span class="n">gen_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;shards&quot;</span><span class="p">:</span> <span class="n">shards</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">buffer_size</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>  <span class="c1"># shuffles the shards order + uses a shuffle buffer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">),</span> <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>  <span class="c1"># give each worker a subset of 32/4=8 shards</span>
+</pre></div>
+</div>
+</section>
+<section id="pandas-dataframe">
+<h3>Pandas DataFrame<a class="headerlink" href="#pandas-dataframe" title="Link to this heading">#</a></h3>
+<p>Load Pandas DataFrames with [<code class="docutils literal notranslate"><span class="pre">~Dataset.from_pandas</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+For more details, check out the <a class="reference internal" href="#tabular_load#pandas-dataframes"><span class="xref myst">how to load tabular datasets from Pandas DataFrames</span></a> guide.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="offline">
+<h2>Offline<a class="headerlink" href="#offline" title="Link to this heading">#</a></h2>
+<p>Even if you don’t have an internet connection, it is still possible to load a dataset. As long as you’ve downloaded a dataset from the Hub repository before, it should be cached. This means you can reload the dataset from the cache and use it offline.</p>
+<p>If you know you won’t have internet access, you can run 🤗 Datasets in full offline mode. This saves time because instead of waiting for the Dataset builder download to time out, 🤗 Datasets will look directly in the cache. Set the environment variable <code class="docutils literal notranslate"><span class="pre">HF_HUB_OFFLINE</span></code> to <code class="docutils literal notranslate"><span class="pre">1</span></code> to enable full offline mode.</p>
+</section>
+<section id="slice-splits">
+<h2>Slice splits<a class="headerlink" href="#slice-splits" title="Link to this heading">#</a></h2>
+<p>You can also choose only to load specific slices of a split. There are two options for slicing a split: using strings or the [<code class="docutils literal notranslate"><span class="pre">ReadInstruction</span></code>] API. Strings are more compact and readable for simple cases, while [<code class="docutils literal notranslate"><span class="pre">ReadInstruction</span></code>] is easier to use with variable slicing parameters.</p>
+<p>Concatenate a <code class="docutils literal notranslate"><span class="pre">train</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> split by:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">train_test_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train+test&quot;</span><span class="p">)</span>
+<span class="go">===STRINGAPI-READINSTRUCTION-SPLIT===</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ri</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train_test_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Select specific rows of the <code class="docutils literal notranslate"><span class="pre">train</span></code> split:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">train_10_20_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[10:20]&quot;</span><span class="p">)</span>
+<span class="go">===STRINGAPI-READINSTRUCTION-SPLIT===</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train_10_20_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;rojagtap/bookcorpus&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;abs&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Or select a percentage of a split with:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">train_10pct_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:10%]&quot;</span><span class="p">)</span>
+<span class="go">===STRINGAPI-READINSTRUCTION-SPLIT===</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train_10_20_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Select a combination of percentages from each split:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">train_10_80pct_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:10%]+train[-80%:]&quot;</span><span class="p">)</span>
+<span class="go">===STRINGAPI-READINSTRUCTION-SPLIT===</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ri</span> <span class="o">=</span> <span class="p">(</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=-</span><span class="mi">80</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train_10_80pct_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">ri</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, you can even create cross-validated splits. The example below creates 10-fold cross-validated splits. Each validation dataset is a 10% chunk, and the training dataset makes up the remaining complementary 90% chunk:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">val_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;train[</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">%:</span><span class="si">{</span><span class="n">k</span><span class="o">+</span><span class="mi">10</span><span class="si">}</span><span class="s2">%]&quot;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;train[:</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">%]+train[</span><span class="si">{</span><span class="n">k</span><span class="o">+</span><span class="mi">10</span><span class="si">}</span><span class="s2">%:]&quot;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+<span class="go">===STRINGAPI-READINSTRUCTION-SPLIT===</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">val_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">train_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="n">k</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="n">k</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">)])</span>
+</pre></div>
+</div>
+<section id="percent-slicing-and-rounding">
+<h3>Percent slicing and rounding<a class="headerlink" href="#percent-slicing-and-rounding" title="Link to this heading">#</a></h3>
+<p>The default behavior is to round the boundaries to the nearest integer for datasets where the requested slice boundaries do not divide evenly by 100. As shown below, some slices may contain more examples than others. For instance, if the following train split includes 999 records, then:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># 19 records, from 500 (included) to 519 (excluded).</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">train_50_52_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[50%:52%]&quot;</span><span class="p">)</span>
+<span class="c1"># 20 records, from 519 (included) to 539 (excluded).</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">train_52_54_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[52%:54%]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you want equal sized splits, use <code class="docutils literal notranslate"><span class="pre">pct1_dropremainder</span></code> rounding instead. This treats the specified percentage boundaries as multiples of 1%.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># 18 records, from 450 (included) to 468 (excluded).</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">train_50_52pct1_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="s2">&quot;pct1_dropremainder&quot;</span><span class="p">))</span>
+<span class="c1"># 18 records, from 468 (included) to 486 (excluded).</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">train_52_54pct1_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="n">datasets</span><span class="o">.</span><span class="n">ReadInstruction</span><span class="p">(</span><span class="s2">&quot;train&quot;</span><span class="p">,</span><span class="n">from_</span><span class="o">=</span><span class="mi">52</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">54</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;%&quot;</span><span class="p">,</span> <span class="n">rounding</span><span class="o">=</span><span class="s2">&quot;pct1_dropremainder&quot;</span><span class="p">))</span>
+<span class="c1"># Or equivalently:</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">train_50_52pct1_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[50%:52%](pct1_dropremainder)&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">train_52_54pct1_ds</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[52%:54%](pct1_dropremainder)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!WARNING]
+<code class="docutils literal notranslate"><span class="pre">pct1_dropremainder</span></code> rounding may truncate the last examples in a dataset if the number of examples in your dataset don’t divide evenly by 100.</p>
+</div></blockquote>
+<p><a id='troubleshoot'></a></p>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<p>Sometimes, you may get unexpected results when you load a dataset. Two of the most common issues you may encounter are manually downloading a dataset and specifying features of a dataset.</p>
+<section id="specify-features">
+<h3>Specify features<a class="headerlink" href="#specify-features" title="Link to this heading">#</a></h3>
+<p>When you create a dataset from local files, the [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] are automatically inferred by <a class="reference external" href="https://arrow.apache.org/docs/">Apache Arrow</a>. However, the dataset’s features may not always align with your expectations, or you may want to define the features yourself. The following example shows how you can add custom labels with the [<code class="docutils literal notranslate"><span class="pre">ClassLabel</span></code>] feature.</p>
+<p>Start by defining your own labels with the [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] class:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sadness&quot;</span><span class="p">,</span> <span class="s2">&quot;joy&quot;</span><span class="p">,</span> <span class="s2">&quot;love&quot;</span><span class="p">,</span> <span class="s2">&quot;anger&quot;</span><span class="p">,</span> <span class="s2">&quot;fear&quot;</span><span class="p">,</span> <span class="s2">&quot;surprise&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">emotion_features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span> <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="n">ClassLabel</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="n">class_names</span><span class="p">)})</span>
+</pre></div>
+</div>
+<p>Next, specify the <code class="docutils literal notranslate"><span class="pre">features</span></code> parameter in [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] with the features you just created:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;csv&#39;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">file_dict</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">,</span> <span class="n">column_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="n">emotion_features</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now when you look at your dataset features, you can see it uses the custom labels you defined:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;text&#39;: Value(&#39;string&#39;),</span>
+<span class="go">&#39;label&#39;: ClassLabel(names=[&#39;sadness&#39;, &#39;joy&#39;, &#39;love&#39;, &#39;anger&#39;, &#39;fear&#39;, &#39;surprise&#39;])}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="how_to.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Overview</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="process.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Process</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-hub">Hugging Face Hub</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-and-remote-files">Local and remote files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#csv">CSV</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#json">JSON</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parquet">Parquet</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#arrow">Arrow</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hdf5-files">HDF5 files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sql">SQL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#webdataset">WebDataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multiprocessing">Multiprocessing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#in-memory-data">In-memory data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-dictionary">Python dictionary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-list-of-dictionaries">Python list of dictionaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-generator">Python generator</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pandas-dataframe">Pandas DataFrame</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#offline">Offline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slice-splits">Slice splits</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#percent-slicing-and-rounding">Percent slicing and rounding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specify-features">Specify features</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/loading.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

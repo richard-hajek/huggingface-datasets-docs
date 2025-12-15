@@ -1,0 +1,729 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Create an audio dataset &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'audio_dataset';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Load image data" href="image_load.html" />
+    <link rel="prev" title="Process audio data" href="audio_process.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stream.html">Stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pytorch.html">Use with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_tensorflow.html">Using Datasets with TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_numpy.html">Use with NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_jax.html">Use with JAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pandas.html">Use with Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_polars.html">Use with Polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pyarrow.html">Use with PyArrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_spark.html">Use with Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cache.html">Cache management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystems.html">Cloud storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faiss_es.html">Search index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_load.html">Load audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_process.html">Process audio data</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Create an audio dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_load.html">Load image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_process.html">Process image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_dataset.html">Create an image dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="depth_estimation.html">Depth estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html">Image classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_segmentation.html">Semantic segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_detection.html">Object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_load.html">Load video data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_dataset.html">Create a video dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_load.html">Load pdf data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_dataset.html">Create a document dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nifti_dataset.html">Create a NIfTI dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_load.html">Load text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_process.html">Process text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_load.html">Load tabular data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="share.html">Share a dataset using the CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset_card.html">Create a dataset card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repository_structure.html">Structure your repository</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="howto.html" class="nav-link">How-to Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Create an audio dataset</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="create-an-audio-dataset">
+<h1>Create an audio dataset<a class="headerlink" href="#create-an-audio-dataset" title="Link to this heading">#</a></h1>
+<p>You can share a dataset with your team or with anyone in the community by creating a dataset repository on the Hugging Face Hub:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;&lt;username&gt;/my_dataset&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are several methods for creating and sharing an audio dataset:</p>
+<ul class="simple">
+<li><p>Create an audio dataset from local files in python with [<code class="docutils literal notranslate"><span class="pre">Dataset.push_to_hub</span></code>]. This is an easy way that requires only a few steps in python.</p></li>
+<li><p>Create an audio dataset repository with the <code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code> builder. This is a no-code solution for quickly creating an audio dataset with several thousand audio files.</p></li>
+</ul>
+<blockquote>
+<div><p>[!TIP]
+You can control access to your dataset by requiring users to share their contact information first. Check out the <a class="reference external" href="https://huggingface.co/docs/hub/datasets-gated">Gated datasets</a> guide for more information about how to enable this feature on the Hub.</p>
+</div></blockquote>
+<section id="local-files">
+<h2>Local files<a class="headerlink" href="#local-files" title="Link to this heading">#</a></h2>
+<p>You can load your own dataset using the paths to your audio files. Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.cast_column</span></code>] function to take a column of audio file paths, and cast it to the [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] feature:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">audio_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;path/to/audio_1&quot;</span><span class="p">,</span> <span class="s2">&quot;path/to/audio_2&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;path/to/audio_n&quot;</span><span class="p">]})</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="n">Audio</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;audio&quot;</span><span class="p">]</span>
+<span class="go">&lt;datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0&gt;</span>
+</pre></div>
+</div>
+<p>Then upload the dataset to the Hugging Face Hub using [<code class="docutils literal notranslate"><span class="pre">Dataset.push_to_hub</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">audio_dataset</span><span class="o">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s2">&quot;&lt;username&gt;/my_dataset&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will create a dataset repository containing your audio dataset:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_dataset/
+├── README.md
+└── data/
+    └── train-00000-of-00001.parquet
+</pre></div>
+</div>
+</section>
+<section id="audiofolder">
+<h2>AudioFolder<a class="headerlink" href="#audiofolder" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code> is a dataset builder designed to quickly load an audio dataset with several thousand audio files without requiring you to write any code.</p>
+<blockquote>
+<div><p>[!TIP]
+💡 Take a look at the <a class="reference internal" href="#repository_structure#split-pattern-hierarchy"><span class="xref myst">Split pattern hierarchy</span></a> to learn more about how <code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code> creates dataset splits based on your dataset repository structure.</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code> automatically infers the class labels of your dataset based on the directory name. Store your dataset in a directory structure like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">dog</span><span class="o">/</span><span class="n">golden_retriever</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">dog</span><span class="o">/</span><span class="n">german_shepherd</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">dog</span><span class="o">/</span><span class="n">chihuahua</span><span class="o">.</span><span class="n">mp3</span>
+
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">cat</span><span class="o">/</span><span class="n">maine_coon</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">cat</span><span class="o">/</span><span class="n">bengal</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">cat</span><span class="o">/</span><span class="n">birman</span><span class="o">.</span><span class="n">mp3</span>
+</pre></div>
+</div>
+<p>If the dataset follows the <code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code> structure, then you can load it directly with [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;username/dataset_name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is equivalent to passing <code class="docutils literal notranslate"><span class="pre">audiofolder</span></code> manually in [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] and the directory in <code class="docutils literal notranslate"><span class="pre">data_dir</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;audiofolder&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/folder&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">audiofolder</span></code> to load datasets involving multiple splits. To do so, your dataset directory should have the following structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">dog</span><span class="o">/</span><span class="n">golden_retriever</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">cat</span><span class="o">/</span><span class="n">maine_coon</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">dog</span><span class="o">/</span><span class="n">german_shepherd</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">cat</span><span class="o">/</span><span class="n">bengal</span><span class="o">.</span><span class="n">mp3</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!WARNING]
+If all audio files are contained in a single directory or if they are not on the same level of directory structure, <code class="docutils literal notranslate"><span class="pre">label</span></code> column won’t be added automatically. If you need it, set <code class="docutils literal notranslate"><span class="pre">drop_labels=False</span></code> explicitly.</p>
+</div></blockquote>
+<p>If there is additional information you’d like to include about your dataset, like text captions or bounding boxes, add it as a <code class="docutils literal notranslate"><span class="pre">metadata.csv</span></code> file in your folder. This lets you quickly create datasets for different computer vision tasks like text captioning or object detection. You can also use a JSONL file <code class="docutils literal notranslate"><span class="pre">metadata.jsonl</span></code> or a Parquet file <code class="docutils literal notranslate"><span class="pre">metadata.parquet</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">metadata</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="mf">0001.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="mf">0002.</span><span class="n">mp3</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="mf">0003.</span><span class="n">mp3</span>
+</pre></div>
+</div>
+<p>You can also zip your audio files, and in this case each zip should contain both the audio files and the metadata</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">test</span><span class="o">.</span><span class="n">zip</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">validation</span><span class="o">.</span><span class="n">zip</span>
+</pre></div>
+</div>
+<p>Your <code class="docutils literal notranslate"><span class="pre">metadata.csv</span></code> file must have a <code class="docutils literal notranslate"><span class="pre">file_name</span></code> or <code class="docutils literal notranslate"><span class="pre">*_file_name</span></code> field which links audio files with their metadata:</p>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>file_name,additional_feature
+0001.mp3,This is a first value of a text feature you added to your audio files
+0002.mp3,This is a second value of a text feature you added to your audio files
+0003.mp3,This is a third value of a text feature you added to your audio files
+</pre></div>
+</div>
+<p>or using <code class="docutils literal notranslate"><span class="pre">metadata.jsonl</span></code>:</p>
+<div class="highlight-jsonl notranslate"><div class="highlight"><pre><span></span>{&quot;file_name&quot;: &quot;0001.mp3&quot;, &quot;additional_feature&quot;: &quot;This is a first value of a text feature you added to your audio files&quot;}
+{&quot;file_name&quot;: &quot;0002.mp3&quot;, &quot;additional_feature&quot;: &quot;This is a second value of a text feature you added to your audio files&quot;}
+{&quot;file_name&quot;: &quot;0003.mp3&quot;, &quot;additional_feature&quot;: &quot;This is a third value of a text feature you added to your audio files&quot;}
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">file_name</span></code> must be the name of the audio file next to the metadata file. More generally, it must be the relative path from the directory containing the metadata to the audio file.</p>
+<p>It’s possible to point to more than one audio in each row in your dataset, for example if both your input and output are audio files:</p>
+<div class="highlight-jsonl notranslate"><div class="highlight"><pre><span></span>{&quot;input_file_name&quot;: &quot;0001.mp3&quot;, &quot;output_file_name&quot;: &quot;0001_output.mp3&quot;}
+{&quot;input_file_name&quot;: &quot;0002.mp3&quot;, &quot;output_file_name&quot;: &quot;0002_output.mp3&quot;}
+{&quot;input_file_name&quot;: &quot;0003.mp3&quot;, &quot;output_file_name&quot;: &quot;0003_output.mp3&quot;}
+</pre></div>
+</div>
+<p>You can also define lists of audio files. In that case you need to name the field <code class="docutils literal notranslate"><span class="pre">file_names</span></code> or <code class="docutils literal notranslate"><span class="pre">*_file_names</span></code>. Here is an example:</p>
+<div class="highlight-jsonl notranslate"><div class="highlight"><pre><span></span>{&quot;recordings_file_names&quot;: [&quot;0001_r0.mp3&quot;, &quot;0001_r1.mp3&quot;], label: &quot;same_person&quot;}
+{&quot;recordings_file_names&quot;: [&quot;0002_r0.mp3&quot;, &quot;0002_r1.mp3&quot;], label: &quot;same_person&quot;}
+{&quot;recordings_file_names&quot;: [&quot;0003_r0.mp3&quot;, &quot;0003_r1.mp3&quot;], label: &quot;different_person&quot;}
+</pre></div>
+</div>
+</section>
+<section id="webdataset">
+<h2>WebDataset<a class="headerlink" href="#webdataset" title="Link to this heading">#</a></h2>
+<p>The <a class="reference external" href="https://github.com/webdataset/webdataset">WebDataset</a> format is based on TAR archives and is suitable for big audio datasets.
+Indeed you can group your audio files in TAR archives (e.g. 1GB of audio files per TAR archive) and have thousands of TAR archives:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="mf">00000.</span><span class="n">tar</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="mf">00001.</span><span class="n">tar</span>
+<span class="n">folder</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="mf">00002.</span><span class="n">tar</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>In the archives, each example is made of files sharing the same prefix:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e39871fd9fd74f55</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">e39871fd9fd74f55</span><span class="o">.</span><span class="n">json</span>
+<span class="n">f18b91585c4d3f3e</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">f18b91585c4d3f3e</span><span class="o">.</span><span class="n">json</span>
+<span class="n">ede6e66b2fb59aab</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">ede6e66b2fb59aab</span><span class="o">.</span><span class="n">json</span>
+<span class="n">ed600d57fcee4f94</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">ed600d57fcee4f94</span><span class="o">.</span><span class="n">json</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>You can put your audio files labels/captions/bounding boxes using JSON or text files for example.</p>
+<p>Load your WebDataset and it will create on column per file suffix (here “mp3” and “json”):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;webdataset&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/folder&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;json&quot;</span><span class="p">]</span>
+<span class="go">{&quot;transcript&quot;: &quot;Hello there !&quot;, &quot;speaker&quot;: &quot;Obi-Wan Kenobi&quot;}</span>
+</pre></div>
+</div>
+<p>It’s also possible to have several audio files per example like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e39871fd9fd74f55</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">e39871fd9fd74f55</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">e39871fd9fd74f55</span><span class="o">.</span><span class="n">json</span>
+<span class="n">f18b91585c4d3f3e</span><span class="o">.</span><span class="n">input</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">f18b91585c4d3f3e</span><span class="o">.</span><span class="n">output</span><span class="o">.</span><span class="n">mp3</span>
+<span class="n">f18b91585c4d3f3e</span><span class="o">.</span><span class="n">json</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>For more details on the WebDataset format and the python library, please check the <a class="reference external" href="https://webdataset.github.io/webdataset">WebDataset documentation</a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="audio_process.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Process audio data</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="image_load.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Load image data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-files">Local files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audiofolder">AudioFolder</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#webdataset">WebDataset</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/audio_dataset.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

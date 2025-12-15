@@ -1,0 +1,732 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preprocess &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'use_dataset';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Create a dataset" href="create_dataset.html" />
+    <link rel="prev" title="Know your dataset" href="access.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_hub.html">Load a dataset from the Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="access.html">Know your dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Preprocess</a></li>
+<li class="toctree-l1"><a class="reference internal" href="create_dataset.html">Create a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload_dataset.html">Share a dataset to the Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Preprocess</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="preprocess">
+<h1>Preprocess<a class="headerlink" href="#preprocess" title="Link to this heading">#</a></h1>
+<p>In addition to loading datasets, 🤗 Datasets other main goal is to offer a diverse set of preprocessing functions to get a dataset into an appropriate format for training with your machine learning framework.</p>
+<p>There are many possible ways to preprocess a dataset, and it all depends on your specific dataset. Sometimes you may need to rename a column, and other times you might need to unflatten nested fields. 🤗 Datasets provides a way to do most of these things. But in nearly all preprocessing cases, depending on your dataset modality, you’ll need to:</p>
+<ul class="simple">
+<li><p>Tokenize a text dataset.</p></li>
+<li><p>Resample an audio dataset.</p></li>
+<li><p>Apply transforms to an image dataset.</p></li>
+</ul>
+<p>The last preprocessing step is usually setting your dataset format to be compatible with your machine learning framework’s expected input format.</p>
+<p>In this tutorial, you’ll also need to install the 🤗 Transformers library:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>transformers
+</pre></div>
+</div>
+<p>Grab a dataset of your choice and follow along!</p>
+<section id="tokenize-text">
+<h2>Tokenize text<a class="headerlink" href="#tokenize-text" title="Link to this heading">#</a></h2>
+<p>Models cannot process raw text, so you’ll need to convert the text into numbers. Tokenization provides a way to do this by dividing text into individual words called <em>tokens</em>. Tokens are finally converted to numbers.</p>
+<blockquote>
+<div><p>[!TIP]
+Check out the <a class="reference external" href="https://huggingface.co/course/chapter2/4?fw=pt">Tokenizers</a> section in Chapter 2 of the Hugging Face course to learn more about tokenization and different tokenization algorithms.</p>
+</div></blockquote>
+<p><strong>1</strong>. Start by loading the <a class="reference external" href="https://huggingface.co/datasets/rotten_tomatoes">rotten_tomatoes</a> dataset and the tokenizer corresponding to a pretrained <a class="reference external" href="https://huggingface.co/bert-base-uncased">BERT</a> model. Using the same tokenizer as the pretrained model is important because you want to make sure the text is split in the same way.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;cornell-movie-review-data/rotten_tomatoes&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>2</strong>. Call your tokenizer on the first row of <code class="docutils literal notranslate"><span class="pre">text</span></code> in the dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+<span class="go">{&#39;input_ids&#39;: [101, 1103, 2067, 1110, 17348, 1106, 1129, 1103, 6880, 1432, 112, 188, 1207, 107, 14255, 1389, 107, 1105, 1115, 1119, 112, 188, 1280, 1106, 1294, 170, 24194, 1256, 3407, 1190, 170, 11791, 5253, 188, 1732, 7200, 10947, 12606, 2895, 117, 179, 7766, 118, 172, 15554, 1181, 3498, 6961, 3263, 1137, 188, 1566, 7912, 14516, 6997, 119, 102],</span>
+<span class="go"> &#39;token_type_ids&#39;: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],</span>
+<span class="go"> &#39;attention_mask&#39;: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]}</span>
+</pre></div>
+</div>
+<p>The tokenizer returns a dictionary with three items:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">input_ids</span></code>: the numbers representing the tokens in the text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">token_type_ids</span></code>: indicates which sequence a token belongs to if there is more than one sequence.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attention_mask</span></code>: indicates whether a token should be masked or not.</p></li>
+</ul>
+<p>These values are actually the model inputs.</p>
+<p><strong>3</strong>. The fastest way to tokenize your entire dataset is to use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] function. This function speeds up tokenization by applying the tokenizer to batches of examples instead of individual examples. Set the <code class="docutils literal notranslate"><span class="pre">batched</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">tokenization</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">example</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">])</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">tokenization</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>4</strong>. Set the format of your dataset to be compatible with your machine learning framework:</p>
+<frameworkcontent>
+<pt>
+Use the [`~Dataset.set_format`] function to set the dataset format to be compatible with PyTorch:
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;torch&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;token_type_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">format</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+<span class="go">&#39;torch&#39;</span>
+</pre></div>
+</div>
+</pt>
+<tf>
+Use the [`~Dataset.to_tf_dataset`] function to set the dataset format to be compatible with TensorFlow. You'll also need to import a [data collator](https://huggingface.co/docs/transformers/main_classes/data_collator#transformers.DataCollatorWithPadding) from 🤗 Transformers to combine the varying sequence lengths into a single batch of equal lengths:
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataCollatorWithPadding</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data_collator</span> <span class="o">=</span> <span class="n">DataCollatorWithPadding</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;tf&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tf_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_tf_dataset</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;token_type_ids&quot;</span><span class="p">,</span> <span class="s2">&quot;attention_mask&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">label_cols</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">collate_fn</span><span class="o">=</span><span class="n">data_collator</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</tf>
+</frameworkcontent>
+<p><strong>5</strong>. The dataset is now ready for training with your machine learning framework!</p>
+</section>
+<section id="resample-audio-signals">
+<h2>Resample audio signals<a class="headerlink" href="#resample-audio-signals" title="Link to this heading">#</a></h2>
+<p>Audio inputs like text datasets need to be divided into discrete data points. This is known as <em>sampling</em>; the sampling rate tells you how much of the speech signal is captured per second. It is important to make sure the sampling rate of your dataset matches the sampling rate of the data used to pretrain the model you’re using. If the sampling rates are different, the pretrained model may perform poorly on your dataset because it doesn’t recognize the differences in the sampling rate.</p>
+<p><strong>1</strong>. Start by loading the <a class="reference external" href="https://huggingface.co/datasets/PolyAI/minds14">MInDS-14</a> dataset, the [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] feature, and the feature extractor corresponding to a pretrained <a class="reference external" href="https://huggingface.co/facebook/wav2vec2-base-960h">Wav2Vec2</a> model:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoFeatureExtractor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Audio</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">AutoFeatureExtractor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;facebook/wav2vec2-base-960h&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PolyAI/minds14&quot;</span><span class="p">,</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>2</strong>. Index into the first row of the dataset. When you call the <code class="docutils literal notranslate"><span class="pre">audio</span></code> column of the dataset, it is automatically decoded and resampled:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;audio&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+<span class="go">&lt;datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span><span class="o">.</span><span class="n">sample_rate</span>
+<span class="go">8000</span>
+</pre></div>
+</div>
+<p><strong>3</strong>. Reading a dataset card is incredibly useful and can give you a lot of information about the dataset. A quick look at the MInDS-14 dataset card tells you the sampling rate is 8kHz. Likewise, you can get many details about a model from its model card. The Wav2Vec2 model card says it was sampled on 16kHz speech audio. This means you’ll need to upsample the MInDS-14 dataset to match the sampling rate of the model.</p>
+<p>Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.cast_column</span></code>] function and set the <code class="docutils literal notranslate"><span class="pre">sampling_rate</span></code> parameter in the [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] feature to upsample the audio signal. When you call the <code class="docutils literal notranslate"><span class="pre">audio</span></code> column now, it is decoded and resampled to 16kHz:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="n">Audio</span><span class="p">(</span><span class="n">sampling_rate</span><span class="o">=</span><span class="mi">16_000</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;audio&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">audio</span><span class="p">)</span>
+<span class="go">&lt;datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span><span class="o">.</span><span class="n">sample_rate</span>
+<span class="go">16000</span>
+</pre></div>
+</div>
+<p><strong>4</strong>. Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] function to resample the entire dataset to 16kHz. This function speeds up resampling by applying the feature extractor to batches of examples instead of individual examples. Set the <code class="docutils literal notranslate"><span class="pre">batched</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">True</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">preprocess_function</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">audio_arrays</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">get_all_samples</span><span class="p">()</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;audio&quot;</span><span class="p">]]</span>
+<span class="gp">... </span>    <span class="n">inputs</span> <span class="o">=</span> <span class="n">feature_extractor</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">audio_arrays</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="n">feature_extractor</span><span class="o">.</span><span class="n">sampling_rate</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">16000</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span>    <span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">inputs</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">preprocess_function</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>5</strong>. The dataset is now ready for training with your machine learning framework!</p>
+</section>
+<section id="apply-data-augmentations">
+<h2>Apply data augmentations<a class="headerlink" href="#apply-data-augmentations" title="Link to this heading">#</a></h2>
+<p>The most common preprocessing you’ll do with image datasets is <em>data augmentation</em>, a process that introduces random variations to an image without changing the meaning of the data. This can mean changing the color properties of an image or randomly cropping an image. You are free to use any data augmentation library you like, and 🤗 Datasets will help you apply your data augmentations to your dataset.</p>
+<p><strong>1</strong>. Start by loading the <a class="reference external" href="https://huggingface.co/datasets/AI-Lab-Makerere/beans">Beans</a> dataset, the <code class="docutils literal notranslate"><span class="pre">Image</span></code> feature, and the feature extractor corresponding to a pretrained <a class="reference external" href="https://huggingface.co/google/vit-base-patch16-224-in21k">ViT</a> model:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoFeatureExtractor</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Image</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">feature_extractor</span> <span class="o">=</span> <span class="n">AutoFeatureExtractor</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;google/vit-base-patch16-224-in21k&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;AI-Lab-Makerere/beans&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>2</strong>. Index into the first row of the dataset. When you call the <code class="docutils literal notranslate"><span class="pre">image</span></code> column of the dataset, the underlying PIL object is automatically decoded into an image.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+<span class="go">&lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=500x500 at 0x7FE5A047CC70&gt;</span>
+</pre></div>
+</div>
+<p>Most image models expect the image to be in the RGB mode. The Beans images are already in the RGB mode, but if your dataset contains images in a different mode, you can use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.cast_column</span></code>] function to set the mode to RGB:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">Image</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s2">&quot;RGB&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><strong>3</strong>. Now let’s apply data augmentations to your images. 🤗 Datasets works with any augmentation library, and in this example we’ll use Albumentations.</p>
+<p><a class="reference external" href="https://albumentations.ai">Albumentations</a> is a popular image augmentation library that provides a <a class="reference external" href="https://albumentations.ai/docs/reference/supported-targets-by-transform/">rich set of transforms</a> including spatial-level transforms, pixel-level transforms, and mixing-level transforms.</p>
+<p>Install Albumentations:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>albumentations
+</pre></div>
+</div>
+<p><strong>4</strong>. Create a typical augmentation pipeline with Albumentations:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">albumentations</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">A</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">transform</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+<span class="gp">... </span>    <span class="n">A</span><span class="o">.</span><span class="n">RandomCrop</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">pad_if_needed</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">A</span><span class="o">.</span><span class="n">HorizontalFlip</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">),</span>
+<span class="gp">... </span>    <span class="n">A</span><span class="o">.</span><span class="n">ColorJitter</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">])</span>
+</pre></div>
+</div>
+<p><strong>5</strong>. Since 🤗 Datasets uses PIL images but Albumentations expects NumPy arrays, you need to convert between formats:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">albumentations_transforms</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c1"># Apply Albumentations transforms</span>
+<span class="gp">... </span>    <span class="n">transformed_images</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;image&quot;</span><span class="p">]:</span>
+<span class="gp">... </span>        <span class="c1"># Convert PIL to numpy array (OpenCV format)</span>
+<span class="gp">... </span>        <span class="n">image_np</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s2">&quot;RGB&quot;</span><span class="p">))</span>
+<span class="gp">... </span>        
+<span class="gp">... </span>        <span class="c1"># Apply Albumentations transforms</span>
+<span class="gp">... </span>        <span class="n">transformed_image</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">image_np</span><span class="p">)[</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+<span class="gp">... </span>        
+<span class="gp">... </span>        <span class="c1"># Convert back to PIL Image</span>
+<span class="gp">... </span>        <span class="n">pil_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">transformed_image</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">transformed_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pil_image</span><span class="p">)</span>
+<span class="gp">... </span>    
+<span class="gp">... </span>    <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">transformed_images</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">examples</span>
+</pre></div>
+</div>
+<p><strong>6</strong>. Apply the transform using [<code class="docutils literal notranslate"><span class="pre">~Dataset.with_transform</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">with_transform</span><span class="p">(</span><span class="n">albumentations_transforms</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;pixel_values&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Key points when using Albumentations with 🤗 Datasets:</strong></p>
+<ul class="simple">
+<li><p>Convert PIL images to NumPy arrays before applying transforms</p></li>
+<li><p>Albumentations returns a dictionary with the transformed image under the “image” key</p></li>
+<li><p>Convert the result back to PIL format after transformation</p></li>
+</ul>
+<p><strong>7</strong>. The dataset is now ready for training with your machine learning framework!</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="access.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Know your dataset</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="create_dataset.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Create a dataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenize-text">Tokenize text</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resample-audio-signals">Resample audio signals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-data-augmentations">Apply data augmentations</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/use_dataset.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

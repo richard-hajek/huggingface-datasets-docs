@@ -1,0 +1,654 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Build and load &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'about_dataset_load';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Batch mapping" href="about_map_batch.html" />
+    <link rel="prev" title="Dataset features" href="about_dataset_features.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about_arrow.html">Datasets 🤝 Arrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_cache.html">The cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_mapstyle_vs_iterable.html">Differences between Dataset and IterableDataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_dataset_features.html">Dataset features</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Build and load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_map_batch.html">Batch mapping</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="concepts.html" class="nav-link">Conceptual Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Build and load</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="build-and-load">
+<h1>Build and load<a class="headerlink" href="#build-and-load" title="Link to this heading">#</a></h1>
+<p>Nearly every deep learning workflow begins with loading a dataset, which makes it one of the most important steps. With 🤗 Datasets, there are more than 900 datasets available to help you get started with your NLP task. All you have to do is call: [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] to take your first step. This function is a true workhorse in every sense because it builds and loads every dataset you use.</p>
+<section id="eli5-load-dataset">
+<h2>ELI5: <code class="docutils literal notranslate"><span class="pre">load_dataset</span></code><a class="headerlink" href="#eli5-load-dataset" title="Link to this heading">#</a></h2>
+<p>Let’s begin with a basic Explain Like I’m Five.</p>
+<p>A dataset is a directory that contains:</p>
+<ul class="simple">
+<li><p>Some data files in generic formats (JSON, CSV, Parquet, text, etc.)</p></li>
+<li><p>A dataset card named <code class="docutils literal notranslate"><span class="pre">README.md</span></code> that contains documentation about the dataset as well as a YAML header to define the datasets tags and configurations</p></li>
+</ul>
+<p>The [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] function fetches the requested dataset locally or from the Hugging Face Hub.
+The Hub is a central repository where all the Hugging Face datasets and models are stored.</p>
+<p>If the dataset only contains data files, then [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] automatically infers how to load the data files from their extensions (json, csv, parquet, txt, etc.).
+Under the hood, 🤗 Datasets will use an appropriate [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder</span></code>] based on the data files format. There exist one builder per data file format in 🤗 Datasets:</p>
+<ul class="simple">
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.text.Text</span></code>] for text</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.csv.Csv</span></code>] for CSV and TSV</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.json.Json</span></code>] for JSON and JSONL</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.parquet.Parquet</span></code>] for Parquet</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.arrow.Arrow</span></code>] for Arrow (streaming file format)</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.sql.Sql</span></code>] for SQL databases</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.imagefolder.ImageFolder</span></code>] for image folders</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">datasets.packaged_modules.audiofolder.AudioFolder</span></code>] for audio folders</p></li>
+</ul>
+<blockquote>
+<div><p>[!TIP]
+Read the <a class="reference internal" href="upload_dataset.html"><span class="doc std std-doc">Share</span></a> section to learn more about how to share a dataset.</p>
+</div></blockquote>
+<p>🤗 Datasets downloads the dataset files from the original URL, generates the dataset and caches it in an Arrow table on your drive.
+If you’ve downloaded the dataset before, then 🤗 Datasets will reload it from the cache to save you the trouble of downloading it again.</p>
+<p>Now that you have a high-level understanding about how datasets are built, let’s take a closer look at the nuts and bolts of how all this works.</p>
+</section>
+<section id="building-a-dataset">
+<h2>Building a dataset<a class="headerlink" href="#building-a-dataset" title="Link to this heading">#</a></h2>
+<p>When you load a dataset for the first time, 🤗 Datasets takes the raw data file and builds it into a table of rows and typed columns. There are two main classes responsible for building a dataset: [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] and [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder</span></code>].</p>
+<div class="flex justify-center">
+   <img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets/builderconfig.png"/>
+</div>
+<section id="builderconfig-datasets-builderconfig">
+<h3>BuilderConfig[[datasets-builderconfig]]<a class="headerlink" href="#builderconfig-datasets-builderconfig" title="Link to this heading">#</a></h3>
+<p>[<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] is the configuration class of [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder</span></code>]. The [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] contains the following basic attributes about a dataset:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name</span></code></p></td>
+<td><p>Short name of the dataset.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">version</span></code></p></td>
+<td><p>Dataset version identifier.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">data_dir</span></code></p></td>
+<td><p>Stores the path to a local folder containing the data files.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">data_files</span></code></p></td>
+<td><p>Stores paths to local data files.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">description</span></code></p></td>
+<td><p>Description of the dataset.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>If you want to add additional attributes to your dataset such as the class labels, you can subclass the base [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] class. There are two ways to populate the attributes of a [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] class or subclass:</p>
+<ul class="simple">
+<li><p>Provide a list of predefined [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] class (or subclass) instances in the datasets [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder.BUILDER_CONFIGS</span></code>] attribute.</p></li>
+<li><p>When you call [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>], any keyword arguments that are not specific to the method will be used to set the associated attributes of the [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] class. This will override the predefined attributes if a specific configuration was selected.</p></li>
+</ul>
+<p>You can also set the [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder.BUILDER_CONFIG_CLASS</span></code>] to any custom subclass of [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>].</p>
+</section>
+<section id="datasetbuilder-datasets-datasetbuilder">
+<h3>DatasetBuilder[[datasets-datasetbuilder]]<a class="headerlink" href="#datasetbuilder-datasets-datasetbuilder" title="Link to this heading">#</a></h3>
+<p>[<code class="docutils literal notranslate"><span class="pre">DatasetBuilder</span></code>] accesses all the attributes inside [<code class="docutils literal notranslate"><span class="pre">BuilderConfig</span></code>] to build the actual dataset.</p>
+<div class="flex justify-center">
+   <img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets/datasetbuilder.png"/>
+</div>
+<p>There are three main methods in [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder</span></code>]:</p>
+<ol class="arabic">
+<li><p>[<code class="docutils literal notranslate"><span class="pre">DatasetBuilder._info</span></code>] is in charge of defining the dataset attributes. When you call <code class="docutils literal notranslate"><span class="pre">dataset.info</span></code>, 🤗 Datasets returns the information stored here. Likewise, the [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] are also specified here. Remember, the [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] are like the skeleton of the dataset. It provides the names and types of each column.</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">DatasetBuilder._split_generator</span></code>] downloads or retrieves the requested data files, organizes them into splits, and defines specific arguments for the generation process. This method has a [<code class="docutils literal notranslate"><span class="pre">DownloadManager</span></code>] that downloads files or fetches them from your local filesystem. Within the [<code class="docutils literal notranslate"><span class="pre">DownloadManager</span></code>], there is a [<code class="docutils literal notranslate"><span class="pre">DownloadManager.download_and_extract</span></code>] method that accepts a dictionary of URLs to the original data files, and downloads the requested files. Accepted inputs include: a single URL or path, or a list/dictionary of URLs or paths. Any compressed file types like TAR, GZIP and ZIP archives will be automatically extracted.</p>
+<p>Once the files are downloaded, [<code class="docutils literal notranslate"><span class="pre">SplitGenerator</span></code>] organizes them into splits. The [<code class="docutils literal notranslate"><span class="pre">SplitGenerator</span></code>] contains the name of the split, and any keyword arguments that are provided to the [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder._generate_examples</span></code>] method. The keyword arguments can be specific to each split, and typically comprise at least the local path to the data files for each split.</p>
+</li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">DatasetBuilder._generate_examples</span></code>] reads and parses the data files for a split. Then it yields dataset examples according to the format specified in the <code class="docutils literal notranslate"><span class="pre">features</span></code> from [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder._info</span></code>]. The input of [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder._generate_examples</span></code>] is actually the <code class="docutils literal notranslate"><span class="pre">filepath</span></code> provided in the keyword arguments of the last method.</p>
+<p>The dataset is generated with a Python generator, which doesn’t load all the data in memory. As a result, the generator can handle large datasets. However, before the generated samples are flushed to the dataset file on disk, they are stored in an <code class="docutils literal notranslate"><span class="pre">ArrowWriter</span></code> buffer. This means the generated samples are written by batch. If your dataset samples consumes a lot of memory (images or videos), then make sure to specify a low value for the <code class="docutils literal notranslate"><span class="pre">DEFAULT_WRITER_BATCH_SIZE</span></code> attribute in [<code class="docutils literal notranslate"><span class="pre">DatasetBuilder</span></code>]. We recommend not exceeding a size of 200 MB.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="maintaining-integrity">
+<h2>Maintaining integrity<a class="headerlink" href="#maintaining-integrity" title="Link to this heading">#</a></h2>
+<p>To ensure a dataset is complete, [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] will perform a series of tests on the downloaded files to make sure everything is there. This way, you don’t encounter any surprises when your requested dataset doesn’t get generated as expected. [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] verifies:</p>
+<ul class="simple">
+<li><p>The number of splits in the generated <code class="docutils literal notranslate"><span class="pre">DatasetDict</span></code>.</p></li>
+<li><p>The number of samples in each split of the generated <code class="docutils literal notranslate"><span class="pre">DatasetDict</span></code>.</p></li>
+<li><p>The list of downloaded files.</p></li>
+<li><p>The SHA256 checksums of the downloaded files (disabled by default).</p></li>
+</ul>
+<p>If the dataset doesn’t pass the verifications, it is likely that the dataset author made some changes in the data files.</p>
+<p>In this case, an error is raised to alert that the dataset has changed.
+To ignore the error, one needs to specify <code class="docutils literal notranslate"><span class="pre">verification_mode=&quot;no_checks&quot;</span></code> in [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>].
+Anytime you see a verification error, feel free to open a discussion or pull request in the corresponding dataset “Community” tab, so that the integrity checks for that dataset are updated.</p>
+</section>
+<section id="security">
+<h2>Security<a class="headerlink" href="#security" title="Link to this heading">#</a></h2>
+<p>The dataset repositories on the Hub are scanned for malware, see more information <a class="reference external" href="https://huggingface.co/docs/hub/security#malware-scanning">here</a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="about_dataset_features.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Dataset features</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="about_map_batch.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Batch mapping</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eli5-load-dataset">ELI5: <code class="docutils literal notranslate"><span class="pre">load_dataset</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#building-a-dataset">Building a dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#builderconfig-datasets-builderconfig">BuilderConfig[[datasets-builderconfig]]</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#datasetbuilder-datasets-datasetbuilder">DatasetBuilder[[datasets-datasetbuilder]]</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#maintaining-integrity">Maintaining integrity</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#security">Security</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/about_dataset_load.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

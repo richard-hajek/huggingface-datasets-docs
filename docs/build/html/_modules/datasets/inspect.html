@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>datasets.inspect &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=62d5458c"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/datasets/inspect';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">datasets.inspect</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for datasets.inspect</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2020 The HuggingFace Datasets Authors.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="c1"># Lint as: python3</span>
+<span class="sd">&quot;&quot;&quot;List and inspect datasets.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mapping</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.download.download_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DownloadConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.download.download_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">DownloadMode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.download.streaming_download_manager</span><span class="w"> </span><span class="kn">import</span> <span class="n">StreamingDownloadManager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.info</span><span class="w"> </span><span class="kn">import</span> <span class="n">DatasetInfo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.load</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">dataset_module_factory</span><span class="p">,</span>
+    <span class="n">get_dataset_builder_class</span><span class="p">,</span>
+    <span class="n">load_dataset_builder</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils.version</span><span class="w"> </span><span class="kn">import</span> <span class="n">Version</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SplitsNotFoundError</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="get_dataset_infos">
+<a class="viewcode-back" href="../../api/generated/datasets.get_dataset_infos.html#datasets.get_dataset_infos">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dataset_infos</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">data_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DownloadConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">DownloadMode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">revision</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Version</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">config_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the meta information about a dataset, returned as a dict mapping config name to DatasetInfoDict.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (`str`): path to the dataset repository. Can be either:</span>
+
+<span class="sd">            - a local path to the dataset directory containing the data files,</span>
+<span class="sd">                e.g. `&#39;./dataset/squad&#39;`</span>
+<span class="sd">            - a dataset identifier on the Hugging Face Hub (list all available datasets and ids with [`huggingface_hub.list_datasets`]),</span>
+<span class="sd">                e.g. `&#39;rajpurkar/squad&#39;`, `&#39;nyu-mll/glue&#39;` or``&#39;openai/webtext&#39;`</span>
+<span class="sd">        revision (`Union[str, datasets.Version]`, *optional*):</span>
+<span class="sd">            If specified, the dataset module will be loaded from the datasets repository at this version.</span>
+<span class="sd">            By default:</span>
+<span class="sd">            - it is set to the local version of the lib.</span>
+<span class="sd">            - it will also try to load it from the main branch if it&#39;s not available at the local version of the lib.</span>
+<span class="sd">            Specifying a version that is different from your local version of the lib might cause compatibility issues.</span>
+<span class="sd">        download_config ([`DownloadConfig`], *optional*):</span>
+<span class="sd">            Specific download configuration parameters.</span>
+<span class="sd">        download_mode ([`DownloadMode`] or `str`, defaults to `REUSE_DATASET_IF_EXISTS`):</span>
+<span class="sd">            Download/generate mode.</span>
+<span class="sd">        data_files (`Union[Dict, List, str]`, *optional*):</span>
+<span class="sd">            Defining the data_files of the dataset configuration.</span>
+<span class="sd">        token (`str` or `bool`, *optional*):</span>
+<span class="sd">            Optional string or boolean to use as Bearer token for remote files on the Datasets Hub.</span>
+<span class="sd">            If `True`, or not specified, will get token from `&quot;~/.huggingface&quot;`.</span>
+<span class="sd">        **config_kwargs (additional keyword arguments):</span>
+<span class="sd">            Optional attributes for builder class which will override the attributes if supplied.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```py</span>
+<span class="sd">    &gt;&gt;&gt; from datasets import get_dataset_infos</span>
+<span class="sd">    &gt;&gt;&gt; get_dataset_infos(&#39;cornell-movie-review-data/rotten_tomatoes&#39;)</span>
+<span class="sd">    {&#39;default&#39;: DatasetInfo(description=&quot;Movie Review Dataset.\nThis is a dataset of containing 5,331 positive and 5,331 negative processed\nsentences from Rotten Tomatoes movie reviews...), ...}</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">config_names</span> <span class="o">=</span> <span class="n">get_dataset_config_names</span><span class="p">(</span>
+        <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+        <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+        <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">,</span>
+        <span class="n">download_mode</span><span class="o">=</span><span class="n">download_mode</span><span class="p">,</span>
+        <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span>
+        <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="n">config_name</span><span class="p">:</span> <span class="n">get_dataset_config_info</span><span class="p">(</span>
+            <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+            <span class="n">config_name</span><span class="o">=</span><span class="n">config_name</span><span class="p">,</span>
+            <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span>
+            <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">,</span>
+            <span class="n">download_mode</span><span class="o">=</span><span class="n">download_mode</span><span class="p">,</span>
+            <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+            <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">config_kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">config_name</span> <span class="ow">in</span> <span class="n">config_names</span>
+    <span class="p">}</span></div>
+
+
+
+<div class="viewcode-block" id="get_dataset_config_names">
+<a class="viewcode-back" href="../../api/generated/datasets.get_dataset_config_names.html#datasets.get_dataset_config_names">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dataset_config_names</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">revision</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Version</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DownloadConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">DownloadMode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">download_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the list of available config names for a particular dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (`str`): path to the dataset repository. Can be either:</span>
+
+<span class="sd">            - a local path to the dataset directory containing the data files,</span>
+<span class="sd">                e.g. `&#39;./dataset/squad&#39;`</span>
+<span class="sd">            - a dataset identifier on the Hugging Face Hub (list all available datasets and ids with [`huggingface_hub.list_datasets`]),</span>
+<span class="sd">                e.g. `&#39;rajpurkar/squad&#39;`, `&#39;nyu-mll/glue&#39;` or``&#39;openai/webtext&#39;`</span>
+<span class="sd">        revision (`Union[str, datasets.Version]`, *optional*):</span>
+<span class="sd">            If specified, the dataset module will be loaded from the datasets repository at this version.</span>
+<span class="sd">            By default:</span>
+<span class="sd">            - it is set to the local version of the lib.</span>
+<span class="sd">            - it will also try to load it from the main branch if it&#39;s not available at the local version of the lib.</span>
+<span class="sd">            Specifying a version that is different from your local version of the lib might cause compatibility issues.</span>
+<span class="sd">        download_config ([`DownloadConfig`], *optional*):</span>
+<span class="sd">            Specific download configuration parameters.</span>
+<span class="sd">        download_mode ([`DownloadMode`] or `str`, defaults to `REUSE_DATASET_IF_EXISTS`):</span>
+<span class="sd">            Download/generate mode.</span>
+<span class="sd">        data_files (`Union[Dict, List, str]`, *optional*):</span>
+<span class="sd">            Defining the data_files of the dataset configuration.</span>
+<span class="sd">        **download_kwargs (additional keyword arguments):</span>
+<span class="sd">            Optional attributes for [`DownloadConfig`] which will override the attributes in `download_config` if supplied,</span>
+<span class="sd">            for example `token`.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```py</span>
+<span class="sd">    &gt;&gt;&gt; from datasets import get_dataset_config_names</span>
+<span class="sd">    &gt;&gt;&gt; get_dataset_config_names(&quot;nyu-mll/glue&quot;)</span>
+<span class="sd">    [&#39;cola&#39;,</span>
+<span class="sd">     &#39;sst2&#39;,</span>
+<span class="sd">     &#39;mrpc&#39;,</span>
+<span class="sd">     &#39;qqp&#39;,</span>
+<span class="sd">     &#39;stsb&#39;,</span>
+<span class="sd">     &#39;mnli&#39;,</span>
+<span class="sd">     &#39;mnli_mismatched&#39;,</span>
+<span class="sd">     &#39;mnli_matched&#39;,</span>
+<span class="sd">     &#39;qnli&#39;,</span>
+<span class="sd">     &#39;rte&#39;,</span>
+<span class="sd">     &#39;wnli&#39;,</span>
+<span class="sd">     &#39;ax&#39;]</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset_module</span> <span class="o">=</span> <span class="n">dataset_module_factory</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">,</span>
+        <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+        <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">,</span>
+        <span class="n">download_mode</span><span class="o">=</span><span class="n">download_mode</span><span class="p">,</span>
+        <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">download_kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">builder_cls</span> <span class="o">=</span> <span class="n">get_dataset_builder_class</span><span class="p">(</span><span class="n">dataset_module</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">builder_cls</span><span class="o">.</span><span class="n">builder_configs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="ow">or</span> <span class="p">[</span>
+        <span class="n">dataset_module</span><span class="o">.</span><span class="n">builder_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;config_name&quot;</span><span class="p">,</span> <span class="n">builder_cls</span><span class="o">.</span><span class="n">DEFAULT_CONFIG_NAME</span> <span class="ow">or</span> <span class="s2">&quot;default&quot;</span><span class="p">)</span>
+    <span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="get_dataset_default_config_name">
+<a class="viewcode-back" href="../../api/generated/datasets.get_dataset_default_config_name.html#datasets.get_dataset_default_config_name">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dataset_default_config_name</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">revision</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Version</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DownloadConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">DownloadMode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">download_kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the default config name for a particular dataset.</span>
+<span class="sd">    Can return None only if the dataset has multiple configurations and no default configuration.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (`str`): path to the dataset repository. Can be either:</span>
+
+<span class="sd">            - a local path to the dataset directory containing the data files,</span>
+<span class="sd">                e.g. `&#39;./dataset/squad&#39;`</span>
+<span class="sd">            - a dataset identifier on the Hugging Face Hub (list all available datasets and ids with [`huggingface_hub.list_datasets`]),</span>
+<span class="sd">                e.g. `&#39;rajpurkar/squad&#39;`, `&#39;nyu-mll/glue&#39;` or``&#39;openai/webtext&#39;`</span>
+<span class="sd">        revision (`Union[str, datasets.Version]`, *optional*):</span>
+<span class="sd">            If specified, the dataset module will be loaded from the datasets repository at this version.</span>
+<span class="sd">            By default:</span>
+<span class="sd">            - it is set to the local version of the lib.</span>
+<span class="sd">            - it will also try to load it from the main branch if it&#39;s not available at the local version of the lib.</span>
+<span class="sd">            Specifying a version that is different from your local version of the lib might cause compatibility issues.</span>
+<span class="sd">        download_config ([`DownloadConfig`], *optional*):</span>
+<span class="sd">            Specific download configuration parameters.</span>
+<span class="sd">        download_mode ([`DownloadMode`] or `str`, defaults to `REUSE_DATASET_IF_EXISTS`):</span>
+<span class="sd">            Download/generate mode.</span>
+<span class="sd">        data_files (`Union[Dict, List, str]`, *optional*):</span>
+<span class="sd">            Defining the data_files of the dataset configuration.</span>
+<span class="sd">        **download_kwargs (additional keyword arguments):</span>
+<span class="sd">            Optional attributes for [`DownloadConfig`] which will override the attributes in `download_config` if supplied,</span>
+<span class="sd">            for example `token`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Optional[str]: the default config name if there is one</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```py</span>
+<span class="sd">    &gt;&gt;&gt; from datasets import get_dataset_default_config_name</span>
+<span class="sd">    &gt;&gt;&gt; get_dataset_default_config_name(&quot;openbookqa&quot;)</span>
+<span class="sd">    &#39;main&#39;</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dataset_module</span> <span class="o">=</span> <span class="n">dataset_module_factory</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">,</span>
+        <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+        <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">,</span>
+        <span class="n">download_mode</span><span class="o">=</span><span class="n">download_mode</span><span class="p">,</span>
+        <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">download_kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">builder_cls</span> <span class="o">=</span> <span class="n">get_dataset_builder_class</span><span class="p">(</span><span class="n">dataset_module</span><span class="p">,</span> <span class="n">dataset_name</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="n">builder_configs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">builder_cls</span><span class="o">.</span><span class="n">builder_configs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">builder_configs</span><span class="p">:</span>
+        <span class="n">default_config_name</span> <span class="o">=</span> <span class="n">builder_configs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">builder_configs</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">default_config_name</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+    <span class="k">return</span> <span class="n">builder_cls</span><span class="o">.</span><span class="n">DEFAULT_CONFIG_NAME</span> <span class="ow">or</span> <span class="n">default_config_name</span></div>
+
+
+
+<div class="viewcode-block" id="get_dataset_config_info">
+<a class="viewcode-back" href="../../api/generated/datasets.get_dataset_config_info.html#datasets.get_dataset_config_info">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dataset_config_info</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">config_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DownloadConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">DownloadMode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">revision</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Version</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">config_kwargs</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DatasetInfo</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the meta information (DatasetInfo) about a dataset for a particular config</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (`str`): path to the dataset repository. Can be either:</span>
+
+<span class="sd">            - a local path to the dataset directory containing the data files,</span>
+<span class="sd">                e.g. `&#39;./dataset/squad&#39;`</span>
+<span class="sd">            - a dataset identifier on the Hugging Face Hub (list all available datasets and ids with [`huggingface_hub.list_datasets`]),</span>
+<span class="sd">                e.g. `&#39;rajpurkar/squad&#39;`, `&#39;nyu-mll/glue&#39;` or``&#39;openai/webtext&#39;`</span>
+<span class="sd">        config_name (:obj:`str`, optional): Defining the name of the dataset configuration.</span>
+<span class="sd">        data_files (:obj:`str` or :obj:`Sequence` or :obj:`Mapping`, optional): Path(s) to source data file(s).</span>
+<span class="sd">        download_config (:class:`~download.DownloadConfig`, optional): Specific download configuration parameters.</span>
+<span class="sd">        download_mode (:class:`DownloadMode` or :obj:`str`, default ``REUSE_DATASET_IF_EXISTS``): Download/generate mode.</span>
+<span class="sd">        revision (:class:`~utils.Version` or :obj:`str`, optional): Version of the dataset to load.</span>
+<span class="sd">            As datasets have their own git repository on the Datasets Hub, the default version &quot;main&quot; corresponds to their &quot;main&quot; branch.</span>
+<span class="sd">            You can specify a different version than the default &quot;main&quot; by using a commit SHA or a git tag of the dataset repository.</span>
+<span class="sd">        token (``str`` or :obj:`bool`, optional): Optional string or boolean to use as Bearer token for remote files on the Datasets Hub.</span>
+<span class="sd">            If True, or not specified, will get token from `&quot;~/.huggingface&quot;`.</span>
+<span class="sd">        **config_kwargs (additional keyword arguments): optional attributes for builder class which will override the attributes if supplied.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">builder</span> <span class="o">=</span> <span class="n">load_dataset_builder</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="n">config_name</span><span class="p">,</span>
+        <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span>
+        <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">,</span>
+        <span class="n">download_mode</span><span class="o">=</span><span class="n">download_mode</span><span class="p">,</span>
+        <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+        <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">config_kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">builder</span><span class="o">.</span><span class="n">info</span>
+    <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">splits</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">download_config</span> <span class="o">=</span> <span class="n">download_config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="k">if</span> <span class="n">download_config</span> <span class="k">else</span> <span class="n">DownloadConfig</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">download_config</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">token</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">info</span><span class="o">.</span><span class="n">splits</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">split_generator</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">split_generator</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span> <span class="n">path</span><span class="p">}</span>
+                <span class="k">for</span> <span class="n">split_generator</span> <span class="ow">in</span> <span class="n">builder</span><span class="o">.</span><span class="n">_split_generators</span><span class="p">(</span>
+                    <span class="n">StreamingDownloadManager</span><span class="p">(</span><span class="n">base_path</span><span class="o">=</span><span class="n">builder</span><span class="o">.</span><span class="n">base_path</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SplitsNotFoundError</span><span class="p">(</span><span class="s2">&quot;The split names could not be parsed from the dataset config.&quot;</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">err</span>
+    <span class="k">return</span> <span class="n">info</span></div>
+
+
+
+<div class="viewcode-block" id="get_dataset_split_names">
+<a class="viewcode-back" href="../../api/generated/datasets.get_dataset_split_names.html#datasets.get_dataset_split_names">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_dataset_split_names</span><span class="p">(</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">config_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">data_files</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DownloadConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">download_mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">DownloadMode</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">revision</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Version</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">token</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">config_kwargs</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the list of available splits for a particular config and dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        path (`str`): path to the dataset repository. Can be either:</span>
+
+<span class="sd">            - a local path to the dataset directory containing the data files,</span>
+<span class="sd">                e.g. `&#39;./dataset/squad&#39;`</span>
+<span class="sd">            - a dataset identifier on the Hugging Face Hub (list all available datasets and ids with [`huggingface_hub.list_datasets`]),</span>
+<span class="sd">                e.g. `&#39;rajpurkar/squad&#39;`, `&#39;nyu-mll/glue&#39;` or``&#39;openai/webtext&#39;`</span>
+<span class="sd">        config_name (`str`, *optional*):</span>
+<span class="sd">            Defining the name of the dataset configuration.</span>
+<span class="sd">        data_files (`str` or `Sequence` or `Mapping`, *optional*):</span>
+<span class="sd">            Path(s) to source data file(s).</span>
+<span class="sd">        download_config ([`DownloadConfig`], *optional*):</span>
+<span class="sd">            Specific download configuration parameters.</span>
+<span class="sd">        download_mode ([`DownloadMode`] or `str`, defaults to `REUSE_DATASET_IF_EXISTS`):</span>
+<span class="sd">            Download/generate mode.</span>
+<span class="sd">        revision ([`Version`] or `str`, *optional*):</span>
+<span class="sd">            Version of the dataset to load.</span>
+<span class="sd">            As datasets have their own git repository on the Datasets Hub, the default version &quot;main&quot; corresponds to their &quot;main&quot; branch.</span>
+<span class="sd">            You can specify a different version than the default &quot;main&quot; by using a commit SHA or a git tag of the dataset repository.</span>
+<span class="sd">        token (`str` or `bool`, *optional*):</span>
+<span class="sd">            Optional string or boolean to use as Bearer token for remote files on the Datasets Hub.</span>
+<span class="sd">            If `True`, or not specified, will get token from `&quot;~/.huggingface&quot;`.</span>
+<span class="sd">        **config_kwargs (additional keyword arguments):</span>
+<span class="sd">            Optional attributes for builder class which will override the attributes if supplied.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```py</span>
+<span class="sd">    &gt;&gt;&gt; from datasets import get_dataset_split_names</span>
+<span class="sd">    &gt;&gt;&gt; get_dataset_split_names(&#39;cornell-movie-review-data/rotten_tomatoes&#39;)</span>
+<span class="sd">    [&#39;train&#39;, &#39;validation&#39;, &#39;test&#39;]</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="n">get_dataset_config_info</span><span class="p">(</span>
+        <span class="n">path</span><span class="p">,</span>
+        <span class="n">config_name</span><span class="o">=</span><span class="n">config_name</span><span class="p">,</span>
+        <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span>
+        <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">,</span>
+        <span class="n">download_mode</span><span class="o">=</span><span class="n">download_mode</span><span class="p">,</span>
+        <span class="n">revision</span><span class="o">=</span><span class="n">revision</span><span class="p">,</span>
+        <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">config_kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">info</span><span class="o">.</span><span class="n">splits</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

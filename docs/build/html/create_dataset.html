@@ -1,0 +1,646 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Create a dataset &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'create_dataset';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Share a dataset to the Hub" href="upload_dataset.html" />
+    <link rel="prev" title="Preprocess" href="use_dataset.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="load_hub.html">Load a dataset from the Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="access.html">Know your dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_dataset.html">Preprocess</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Create a dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="upload_dataset.html">Share a dataset to the Hub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="tutorials.html" class="nav-link">Tutorials</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Create a dataset</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="create-a-dataset">
+<h1>Create a dataset<a class="headerlink" href="#create-a-dataset" title="Link to this heading">#</a></h1>
+<p>Sometimes, you may need to create a dataset if you’re working with your own data. Creating a dataset with 🤗 Datasets confers all the advantages of the library to your dataset: fast loading and processing, <a class="reference internal" href="stream.html"><span class="doc std std-doc">stream enormous datasets</span></a>, <a class="reference external" href="https://huggingface.co/course/chapter5/4?fw=pt#the-magic-of-memory-mapping">memory-mapping</a>, and more. You can easily and rapidly create a dataset with 🤗 Datasets low-code approaches, reducing the time it takes to start training a model. In many cases, it is as easy as <a class="reference internal" href="#upload_dataset#upload-with-the-hub-ui"><span class="xref myst">dragging and dropping</span></a> your data files into a dataset repository on the Hub.</p>
+<p>In this tutorial, you’ll learn how to use 🤗 Datasets low-code methods for creating all types of datasets:</p>
+<ul class="simple">
+<li><p>Folder-based builders for quickly creating an image or audio dataset</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_</span></code> methods for creating datasets from local files</p></li>
+</ul>
+<section id="file-based-builders">
+<h2>File-based builders<a class="headerlink" href="#file-based-builders" title="Link to this heading">#</a></h2>
+<p>🤗 Datasets supports many common formats such as <code class="docutils literal notranslate"><span class="pre">csv</span></code>, <code class="docutils literal notranslate"><span class="pre">json/jsonl</span></code>, <code class="docutils literal notranslate"><span class="pre">parquet</span></code>, <code class="docutils literal notranslate"><span class="pre">txt</span></code>.</p>
+<p>For example it can read a dataset made up of one or several CSV files (in this case, pass your CSV files as a list):</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="s2">&quot;my_file.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To get the list of supported formats and code examples, follow this guide <a class="reference external" href="https://huggingface.co/docs/datasets/loading#local-and-remote-files">here</a>.</p>
+</section>
+<section id="folder-based-builders">
+<h2>Folder-based builders<a class="headerlink" href="#folder-based-builders" title="Link to this heading">#</a></h2>
+<p>There are two folder-based builders, [<code class="docutils literal notranslate"><span class="pre">ImageFolder</span></code>] and [<code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code>]. These are low-code methods for quickly creating an image or speech and audio dataset with several thousand examples. They are great for rapidly prototyping computer vision and speech models before scaling to a larger dataset. Folder-based builders takes your data and automatically generates the dataset’s features, splits, and labels. Under the hood:</p>
+<ul class="simple">
+<li><p>[<code class="docutils literal notranslate"><span class="pre">ImageFolder</span></code>] uses the [<code class="docutils literal notranslate"><span class="pre">~datasets.Image</span></code>] feature to decode an image file. Many image extension formats are supported, such as jpg and png, but other formats are also supported. You can check the complete <a class="reference external" href="https://github.com/huggingface/datasets/blob/b5672a956d5de864e6f5550e493527d962d6ae55/src/datasets/packaged_modules/imagefolder/imagefolder.py#L39">list</a> of supported image extensions.</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">AudioFolder</span></code>] uses the [<code class="docutils literal notranslate"><span class="pre">~datasets.Audio</span></code>] feature to decode an audio file. Extensions such as wav, mp3, and even mp4 are supported, and you can check the complete <a class="reference external" href="https://ffmpeg.org/ffmpeg-formats.html">list</a> of supported audio extensions. Decoding is done via ffmpeg.</p></li>
+</ul>
+<p>The dataset splits are generated from the repository structure, and the label names are automatically inferred from the directory name.</p>
+<p>For example, if your image dataset (it is the same for an audio dataset) is stored like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pokemon</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">grass</span><span class="o">/</span><span class="n">bulbasaur</span><span class="o">.</span><span class="n">png</span>
+<span class="n">pokemon</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">fire</span><span class="o">/</span><span class="n">charmander</span><span class="o">.</span><span class="n">png</span>
+<span class="n">pokemon</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">water</span><span class="o">/</span><span class="n">squirtle</span><span class="o">.</span><span class="n">png</span>
+
+<span class="n">pokemon</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">grass</span><span class="o">/</span><span class="n">ivysaur</span><span class="o">.</span><span class="n">png</span>
+<span class="n">pokemon</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">fire</span><span class="o">/</span><span class="n">charmeleon</span><span class="o">.</span><span class="n">png</span>
+<span class="n">pokemon</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">water</span><span class="o">/</span><span class="n">wartortle</span><span class="o">.</span><span class="n">png</span>
+</pre></div>
+</div>
+<p>Then this is how the folder-based builder generates an example:</p>
+<div class="flex justify-center">
+  <img src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/datasets/folder-based-builder.png" />
+</div>
+<p>Create the image dataset by specifying <code class="docutils literal notranslate"><span class="pre">imagefolder</span></code> in [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;imagefolder&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/pokemon&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>An audio dataset is created in the same way, except you specify <code class="docutils literal notranslate"><span class="pre">audiofolder</span></code> in [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] instead:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;audiofolder&quot;</span><span class="p">,</span> <span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;/path/to/folder&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Any additional information about your dataset, such as text captions or transcriptions, can be included with a <code class="docutils literal notranslate"><span class="pre">metadata.csv</span></code> file in the folder containing your dataset. The metadata file needs to have a <code class="docutils literal notranslate"><span class="pre">file_name</span></code> column that links the image or audio file to its corresponding metadata:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">file_name</span><span class="p">,</span> <span class="n">text</span>
+<span class="n">bulbasaur</span><span class="o">.</span><span class="n">png</span><span class="p">,</span> <span class="n">There</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">plant</span> <span class="n">seed</span> <span class="n">on</span> <span class="n">its</span> <span class="n">back</span> <span class="n">right</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">day</span> <span class="n">this</span> <span class="n">Pokémon</span> <span class="ow">is</span> <span class="n">born</span><span class="o">.</span>
+<span class="n">charmander</span><span class="o">.</span><span class="n">png</span><span class="p">,</span> <span class="n">It</span> <span class="n">has</span> <span class="n">a</span> <span class="n">preference</span> <span class="k">for</span> <span class="n">hot</span> <span class="n">things</span><span class="o">.</span>
+<span class="n">squirtle</span><span class="o">.</span><span class="n">png</span><span class="p">,</span> <span class="n">When</span> <span class="n">it</span> <span class="n">retracts</span> <span class="n">its</span> <span class="n">long</span> <span class="n">neck</span> <span class="n">into</span> <span class="n">its</span> <span class="n">shell</span><span class="p">,</span> <span class="n">it</span> <span class="n">squirts</span> <span class="n">out</span> <span class="n">water</span> <span class="k">with</span> <span class="n">vigorous</span> <span class="n">force</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>To learn more about each of these folder-based builders, check out the and <a href="https://huggingface.co/docs/datasets/image_dataset#imagefolder"><span class="underline decoration-yellow-400 decoration-2 font-semibold">ImageFolder</span></a> or <a href="https://huggingface.co/docs/datasets/audio_dataset#audiofolder"><span class="underline decoration-pink-400 decoration-2 font-semibold">AudioFolder</span></a> guides.</p>
+</section>
+<section id="from-python-dictionaries">
+<h2>From Python dictionaries<a class="headerlink" href="#from-python-dictionaries" title="Link to this heading">#</a></h2>
+<p>You can also create a dataset from data in Python dictionaries. There are two ways you can create a dataset using the <code class="docutils literal notranslate"><span class="pre">from_</span></code> methods:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>* The [`~Dataset.from_generator`] method is the most memory-efficient way to create a dataset from a [generator](https://wiki.python.org/moin/Generators) due to a generators iterative behavior. This is especially useful when you&#39;re working with a really large dataset that may not fit in memory, since the dataset is generated on disk progressively and then memory-mapped.
+
+```py
+&gt;&gt;&gt; from datasets import Dataset
+&gt;&gt;&gt; def gen():
+...     yield {&quot;pokemon&quot;: &quot;bulbasaur&quot;, &quot;type&quot;: &quot;grass&quot;}
+...     yield {&quot;pokemon&quot;: &quot;squirtle&quot;, &quot;type&quot;: &quot;water&quot;}
+&gt;&gt;&gt; ds = Dataset.from_generator(gen)
+&gt;&gt;&gt; ds[0]
+{&quot;pokemon&quot;: &quot;bulbasaur&quot;, &quot;type&quot;: &quot;grass&quot;}
+```
+
+A generator-based [`IterableDataset`] needs to be iterated over with a `for` loop for example:
+
+```py
+&gt;&gt;&gt; from datasets import IterableDataset
+&gt;&gt;&gt; ds = IterableDataset.from_generator(gen)
+&gt;&gt;&gt; for example in ds:
+...     print(example)
+{&quot;pokemon&quot;: &quot;bulbasaur&quot;, &quot;type&quot;: &quot;grass&quot;}
+{&quot;pokemon&quot;: &quot;squirtle&quot;, &quot;type&quot;: &quot;water&quot;}
+```
+
+* The [`~Dataset.from_dict`] method is a straightforward way to create a dataset from a dictionary:
+
+```py
+&gt;&gt;&gt; from datasets import Dataset
+&gt;&gt;&gt; ds = Dataset.from_dict({&quot;pokemon&quot;: [&quot;bulbasaur&quot;, &quot;squirtle&quot;], &quot;type&quot;: [&quot;grass&quot;, &quot;water&quot;]})
+&gt;&gt;&gt; ds[0]
+{&quot;pokemon&quot;: &quot;bulbasaur&quot;, &quot;type&quot;: &quot;grass&quot;}
+```
+
+To create an image or audio dataset, chain the [`~Dataset.cast_column`] method with [`~Dataset.from_dict`] and specify the column and feature type. For example, to create an audio dataset:
+
+```py
+&gt;&gt;&gt; audio_dataset = Dataset.from_dict({&quot;audio&quot;: [&quot;path/to/audio_1&quot;, ..., &quot;path/to/audio_n&quot;]}).cast_column(&quot;audio&quot;, Audio())
+```
+</pre></div>
+</div>
+<p>Now that you know how to create a dataset, consider sharing it on the Hub so the community can also benefit from your work! Go on to the next section to learn how to share your dataset.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="use_dataset.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Preprocess</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="upload_dataset.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Share a dataset to the Hub</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#file-based-builders">File-based builders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-based-builders">Folder-based builders</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-python-dictionaries">From Python dictionaries</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/create_dataset.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
