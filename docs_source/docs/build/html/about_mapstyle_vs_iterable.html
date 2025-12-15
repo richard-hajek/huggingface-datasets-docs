@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Differences between Dataset and IterableDataset &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'about_mapstyle_vs_iterable';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Dataset features" href="about_dataset_features.html" />
+    <link rel="prev" title="The cache" href="about_cache.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about_arrow.html">Datasets 🤝 Arrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_cache.html">The cache</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Differences between Dataset and IterableDataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_dataset_features.html">Dataset features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_dataset_load.html">Build and load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_map_batch.html">Batch mapping</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="concepts.html" class="nav-link">Conceptual Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Differences between Dataset and IterableDataset</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="differences-between-dataset-and-iterabledataset">
+<h1>Differences between Dataset and IterableDataset<a class="headerlink" href="#differences-between-dataset-and-iterabledataset" title="Link to this heading">#</a></h1>
+<p>There are two types of dataset objects, a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] and an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>].
+Whichever type of dataset you choose to use or create depends on the size of the dataset.
+In general, an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] is ideal for big datasets (think hundreds of GBs!) due to its lazy behavior and speed advantages, while a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] is great for everything else.
+This page will compare the differences between a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] and an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] to help you pick the right dataset object for you.</p>
+<section id="downloading-and-streaming">
+<h2>Downloading and streaming<a class="headerlink" href="#downloading-and-streaming" title="Link to this heading">#</a></h2>
+<p>When you have a regular [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>], you can access it using <code class="docutils literal notranslate"><span class="pre">my_dataset[0]</span></code>. This provides random access to the rows.
+Such datasets are also called “map-style” datasets.
+For example you can download ImageNet-1k like this and access any row:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">imagenet</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;timm/imagenet-1k-wds&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>  <span class="c1"># downloads the full dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">imagenet</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>But one caveat is that you must have the entire dataset stored on your disk or in memory, which blocks you from accessing datasets bigger than the disk.
+Because it can become inconvenient for big datasets, there exists another type of dataset, the [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>].
+When you have an <code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>, you can access it using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop to load the data progressively as you iterate over the dataset.
+This way, only a small fraction of examples is loaded in memory, and you don’t write anything on disk.</p>
+<p>For example, you can stream the ImageNet-1k dataset without downloading it on disk:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">imagenet</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;timm/imagenet-1k-wds&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># will start loading the data when iterated over</span>
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">imagenet</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+<p>Streaming can read online data without writing any file to disk.
+For example, you can stream datasets made out of multiple shards, each of which is hundreds of gigabytes like <a class="reference external" href="https://huggingface.co/datasets/c4">C4</a>  or <a class="reference external" href="https://huggingface.co/datasets/laion/laion2B-en">LAION-2B</a>.
+Learn more about how to stream a dataset in the <a class="reference internal" href="stream.html"><span class="doc std std-doc">Dataset Streaming Guide</span></a>.</p>
+<p>This is not the only difference though, because the “lazy” behavior of an <code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code> is also present when it comes to dataset creation and processing.</p>
+</section>
+<section id="creating-map-style-datasets-and-iterable-datasets">
+<h2>Creating map-style datasets and iterable datasets<a class="headerlink" href="#creating-map-style-datasets-and-iterable-datasets" title="Link to this heading">#</a></h2>
+<p>You can create a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] using lists or dictionaries, and the data is entirely converted to Arrow so you can easily access any row:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;col_1&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>To create an <code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code> on the other hand, you must provide a “lazy” way to load the data.
+In Python, we generally use generator functions. These functions <code class="docutils literal notranslate"><span class="pre">yield</span></code> one example at a time, which means you can’t access a row by slicing it like a regular <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_generator</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;col_1&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">}</span>
+
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">IterableDataset</span><span class="o">.</span><span class="n">from_generator</span><span class="p">(</span><span class="n">my_generator</span><span class="p">,</span> <span class="n">gen_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">my_iterable_dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-local-files-entirely-and-progressively">
+<h2>Loading local files entirely and progressively<a class="headerlink" href="#loading-local-files-entirely-and-progressively" title="Link to this heading">#</a></h2>
+<p>It is possible to convert local or remote data files to an Arrow [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] using [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;path/to/data.csv&quot;</span><span class="p">]}</span>
+<span class="n">my_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>However, this requires a conversion step from CSV to Arrow format, which takes time and disk space if your dataset is big.</p>
+<p>To save disk space and skip the conversion step, you can define an <code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code> by streaming from the local files directly.
+This way, the data is read progressively from the local files as you iterate over the dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;path/to/data.csv&quot;</span><span class="p">]}</span>
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">my_iterable_dataset</span><span class="p">:</span>  <span class="c1"># this reads the CSV file progressively as you iterate over the dataset</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+<p>Many file formats are supported, like CSV, JSONL, and Parquet, as well as image and audio files.
+You can find more information in the corresponding guides for loading <a class="reference internal" href="tabular_load.html"><span class="doc std std-doc">tabular</span></a>, <a class="reference internal" href="nlp_load.html"><span class="doc std std-doc">text</span></a>, <a class="reference internal" href="image_load.html"><span class="doc std std-doc">vision</span></a>, and <a class="reference internal" href="#./audio_load%5D"><span class="xref myst">audio</span></a> datasets.</p>
+</section>
+<section id="eager-data-processing-and-lazy-data-processing">
+<h2>Eager data processing and lazy data processing<a class="headerlink" href="#eager-data-processing-and-lazy-data-processing" title="Link to this heading">#</a></h2>
+<p>When you process a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] object using [<code class="docutils literal notranslate"><span class="pre">Dataset.map</span></code>], the entire dataset is processed immediately and returned.
+This is similar to how <code class="docutils literal notranslate"><span class="pre">pandas</span></code> works for example.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_fn</span><span class="p">)</span>  <span class="c1"># process_fn is applied on all the examples of the dataset</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>On the other hand, due to the “lazy” nature of an <code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>, calling [<code class="docutils literal notranslate"><span class="pre">IterableDataset.map</span></code>] does not apply your <code class="docutils literal notranslate"><span class="pre">map</span></code> function over the full dataset.
+Instead, your <code class="docutils literal notranslate"><span class="pre">map</span></code> function is applied on-the-fly.</p>
+<p>Because of that, you can chain multiple processing steps and they will all run at once when you start iterating over the dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_fn_1</span><span class="p">)</span>
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">filter_fn</span><span class="p">)</span>
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">process_fn_2</span><span class="p">)</span>
+
+<span class="c1"># process_fn_1, filter_fn and process_fn_2 are applied on-the-fly when iterating over the dataset</span>
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">my_iterable_dataset</span><span class="p">:</span>  
+    <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+</section>
+<section id="exact-and-fast-approximate-shuffling">
+<h2>Exact and fast approximate shuffling<a class="headerlink" href="#exact-and-fast-approximate-shuffling" title="Link to this heading">#</a></h2>
+<p>When you shuffle a [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] using [<code class="docutils literal notranslate"><span class="pre">Dataset.shuffle</span></code>], you apply an exact shuffling of the dataset.
+It works by taking a list of indices <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...</span> <span class="pre">len(my_dataset)</span> <span class="pre">-</span> <span class="pre">1]</span></code> and shuffling this list.
+Then, accessing <code class="docutils literal notranslate"><span class="pre">my_dataset[0]</span></code> returns the row and index defined by the first element of the indices mapping that has been shuffled:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>Since we don’t have random access to the rows in the case of an <code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>, we can’t use a shuffled list of indices and access a row at an arbitrary position.
+This prevents the use of exact shuffling.
+Instead, a fast approximate shuffling is used in [<code class="docutils literal notranslate"><span class="pre">IterableDataset.shuffle</span></code>].
+It uses a shuffle buffer to sample random examples iteratively from the dataset.
+Since the dataset is still read iteratively, it provides excellent speed performance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">buffer_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">my_iterable_dataset</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">example</span><span class="p">)</span>
+    <span class="k">break</span>
+</pre></div>
+</div>
+<p>But using a shuffle buffer is not enough to provide a satisfactory shuffling for machine learning model training. So [<code class="docutils literal notranslate"><span class="pre">IterableDataset.shuffle</span></code>] also shuffles the dataset shards if your dataset is made of multiple files or sources:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stream from the internet</span>
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;deepmind/code_contests&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">num_shards</span>  <span class="c1"># 39</span>
+
+<span class="c1"># Stream from local files</span>
+<span class="n">data_files</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;train&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;path/to/data_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">.csv&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1024</span><span class="p">)]}</span>
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;csv&quot;</span><span class="p">,</span> <span class="n">data_files</span><span class="o">=</span><span class="n">data_files</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">num_shards</span>  <span class="c1"># 1024</span>
+
+<span class="c1"># From a generator function</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">my_generator</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">sources</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">source</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">example_id_for_current_source</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="p">{</span><span class="s2">&quot;example_id&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">example_id_for_current_source</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">}</span>
+
+<span class="n">gen_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;path/to/data_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1024</span><span class="p">)]}</span>
+<span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">IterableDataset</span><span class="o">.</span><span class="n">from_generator</span><span class="p">(</span><span class="n">my_generator</span><span class="p">,</span> <span class="n">gen_kwargs</span><span class="o">=</span><span class="n">gen_kwargs</span><span class="p">)</span>
+<span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">num_shards</span>  <span class="c1"># 1024</span>
+</pre></div>
+</div>
+</section>
+<section id="speed-differences">
+<h2>Speed differences<a class="headerlink" href="#speed-differences" title="Link to this heading">#</a></h2>
+<p>Regular [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] objects are based on Arrow which provides fast random access to the rows.
+Thanks to memory mapping and the fact that Arrow is an in-memory format, reading data from disk doesn’t do expensive system calls and deserialization.
+It provides even faster data loading when iterating using a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop by iterating on contiguous Arrow record batches.</p>
+<p>However as soon as your [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] has an indices mapping (via [<code class="docutils literal notranslate"><span class="pre">Dataset.shuffle</span></code>] for example), the speed can become 10x slower.
+This is because there is an extra step to get the row index to read using the indices mapping, and most importantly, you aren’t reading contiguous chunks of data anymore.
+To restore the speed, you’d need to rewrite the entire dataset on your disk again using [<code class="docutils literal notranslate"><span class="pre">Dataset.flatten_indices</span></code>], which removes the indices mapping.
+This may take a lot of time depending on the size of your dataset though:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># fast</span>
+<span class="n">my_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># up to 10x slower</span>
+<span class="n">my_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">flatten_indices</span><span class="p">()</span>  <span class="c1"># rewrite the shuffled dataset on disk as contiguous chunks of data</span>
+<span class="n">my_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># fast again</span>
+</pre></div>
+</div>
+<p>In this case, we recommend switching to an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] and leveraging its fast approximate shuffling method [<code class="docutils literal notranslate"><span class="pre">IterableDataset.shuffle</span></code>].
+It only shuffles the shards order and adds a shuffle buffer to your dataset, which keeps the speed of your dataset optimal.
+You can also reshuffle the dataset easily:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">my_iterable_dataset</span><span class="p">):</span>  <span class="c1"># fast</span>
+    <span class="k">pass</span>
+
+<span class="n">shuffled_iterable_dataset</span> <span class="o">=</span> <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">buffer_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shuffled_iterable_dataset</span><span class="p">):</span>  <span class="c1"># as fast as before</span>
+    <span class="k">pass</span>
+
+<span class="n">shuffled_iterable_dataset</span> <span class="o">=</span> <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1337</span><span class="p">,</span> <span class="n">buffer_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>  <span class="c1"># reshuffling using another seed is instantaneous</span>
+
+<span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">shuffled_iterable_dataset</span><span class="p">):</span>  <span class="c1"># still as fast as before</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>If you’re using your dataset on multiple epochs, the effective seed to shuffle the shards order in the shuffle buffer is <code class="docutils literal notranslate"><span class="pre">seed</span> <span class="pre">+</span> <span class="pre">epoch</span></code>.
+It makes it easy to reshuffle a dataset between epochs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_epochs</span><span class="p">):</span>
+    <span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">set_epoch</span><span class="p">(</span><span class="n">epoch</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">example</span> <span class="ow">in</span> <span class="n">my_iterable_dataset</span><span class="p">:</span>  <span class="c1"># fast + reshuffled at each epoch using `effective_seed = seed + epoch`</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>To restart the iteration of a map-style dataset, you can simply skip the first examples:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">start_index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)))</span>
+</pre></div>
+</div>
+<p>But if you use a <code class="docutils literal notranslate"><span class="pre">DataLoader</span></code> with a <code class="docutils literal notranslate"><span class="pre">Sampler</span></code>, you should instead save the state of your sampler (you might have written a custom sampler that allows resuming).</p>
+<p>On the other hand, iterable datasets don’t provide random access to a specific example index to resume from. But you can use [<code class="docutils literal notranslate"><span class="pre">IterableDataset.state_dict</span></code>] and [<code class="docutils literal notranslate"><span class="pre">IterableDataset.load_state_dict</span></code>] to resume from a checkpoint instead, similarly to what you can do for models and optimizers:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iterable_dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">6</span><span class="p">)})</span><span class="o">.</span><span class="n">to_iterable_dataset</span><span class="p">(</span><span class="n">num_shards</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># save in the middle of training</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">state_dict</span> <span class="o">=</span> <span class="n">iterable_dataset</span><span class="o">.</span><span class="n">state_dict</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># and resume later</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iterable_dataset</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">state_dict</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Under the hood, the iterable dataset keeps track of the current shard being read and the example index in the current shard and it stores this info in the <code class="docutils literal notranslate"><span class="pre">state_dict</span></code>.</p>
+<p>To resume from a checkpoint, the dataset skips all the shards that were previously read to restart from the current shard.
+Then it reads the shard and skips examples until it reaches the exact example from the checkpoint.</p>
+<p>Therefore restarting a dataset is quite fast, since it will not re-read the shards that have already been iterated on. Still, resuming a dataset is generally not instantaneous since it has to restart reading from the beginning of the current shard and skip examples until it reaches the checkpoint location.</p>
+<p>This can be used with the <code class="docutils literal notranslate"><span class="pre">StatefulDataLoader</span></code> from <code class="docutils literal notranslate"><span class="pre">torchdata</span></code>, see <a class="reference internal" href="#./use_with_pytorch#stream-data"><span class="xref myst">streaming with a PyTorch DataLoader</span></a>.</p>
+</section>
+<section id="switch-from-map-style-to-iterable">
+<h2>Switch from map-style to iterable<a class="headerlink" href="#switch-from-map-style-to-iterable" title="Link to this heading">#</a></h2>
+<p>If you want to benefit from the “lazy” behavior of an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] or their speed advantages, you can switch your map-style [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] to an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">to_iterable_dataset</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If you want to shuffle your dataset or <a class="reference internal" href="#./use_with_pytorch#stream-data"><span class="xref myst">use it with a PyTorch DataLoader</span></a>, we recommend generating a sharded [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_iterable_dataset</span> <span class="o">=</span> <span class="n">my_dataset</span><span class="o">.</span><span class="n">to_iterable_dataset</span><span class="p">(</span><span class="n">num_shards</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">my_iterable_dataset</span><span class="o">.</span><span class="n">num_shards</span>  <span class="c1"># 1024</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="about_cache.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">The cache</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="about_dataset_features.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Dataset features</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#downloading-and-streaming">Downloading and streaming</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-map-style-datasets-and-iterable-datasets">Creating map-style datasets and iterable datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-local-files-entirely-and-progressively">Loading local files entirely and progressively</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eager-data-processing-and-lazy-data-processing">Eager data processing and lazy data processing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exact-and-fast-approximate-shuffling">Exact and fast approximate shuffling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#speed-differences">Speed differences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#switch-from-map-style-to-iterable">Switch from map-style to iterable</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/about_mapstyle_vs_iterable.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

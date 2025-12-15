@@ -1,0 +1,827 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>datasets.download.download_manager &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=62d5458c"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/datasets/download/download_manager';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">datasets.download.download_manager</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for datasets.download.download_manager</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2020 The TensorFlow Datasets Authors.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="c1"># Lint as: python3</span>
+<span class="sd">&quot;&quot;&quot;Download manager interface.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">enum</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">io</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">multiprocessing</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">fsspec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fsspec.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">url_to_fs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.contrib.concurrent</span><span class="w"> </span><span class="kn">import</span> <span class="n">thread_map</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span> <span class="k">as</span> <span class="n">hf_tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.file_utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ArchiveIterable</span><span class="p">,</span>
+    <span class="n">FilesIterable</span><span class="p">,</span>
+    <span class="n">cached_path</span><span class="p">,</span>
+    <span class="n">is_relative_path</span><span class="p">,</span>
+    <span class="n">stack_multiprocessing_download_progress_bars</span><span class="p">,</span>
+    <span class="n">url_or_path_join</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.info_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_size_checksum_dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.logging</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_logger</span><span class="p">,</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.py_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">NestedDataStructure</span><span class="p">,</span> <span class="n">map_nested</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.track</span><span class="w"> </span><span class="kn">import</span> <span class="n">tracked_str</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.download_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DownloadConfig</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="DownloadMode">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadMode.html#datasets.DownloadMode">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DownloadMode</span><span class="p">(</span><span class="n">enum</span><span class="o">.</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;`Enum` for how to treat pre-existing downloads and data.</span>
+
+<span class="sd">    The default mode is `REUSE_DATASET_IF_EXISTS`, which will reuse both</span>
+<span class="sd">    raw downloads and the prepared dataset if they exist.</span>
+
+<span class="sd">    The generations modes:</span>
+
+<span class="sd">    |                                     | Downloads | Dataset |</span>
+<span class="sd">    |-------------------------------------|-----------|---------|</span>
+<span class="sd">    | `REUSE_DATASET_IF_EXISTS` (default) | Reuse     | Reuse   |</span>
+<span class="sd">    | `REUSE_CACHE_IF_EXISTS`             | Reuse     | Fresh   |</span>
+<span class="sd">    | `FORCE_REDOWNLOAD`                  | Fresh     | Fresh   |</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">REUSE_DATASET_IF_EXISTS</span> <span class="o">=</span> <span class="s2">&quot;reuse_dataset_if_exists&quot;</span>
+    <span class="n">REUSE_CACHE_IF_EXISTS</span> <span class="o">=</span> <span class="s2">&quot;reuse_cache_if_exists&quot;</span>
+    <span class="n">FORCE_REDOWNLOAD</span> <span class="o">=</span> <span class="s2">&quot;force_redownload&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="DownloadManager">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DownloadManager</span><span class="p">:</span>
+    <span class="n">is_streaming</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="DownloadManager.__init__">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager.__init__">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">dataset_name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">download_config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DownloadConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">base_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">record_checksums</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download manager constructor.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data_dir:</span>
+<span class="sd">                can be used to specify a manual directory to get the files from.</span>
+<span class="sd">            dataset_name (`str`):</span>
+<span class="sd">                name of dataset this instance will be used for. If</span>
+<span class="sd">                provided, downloads will contain which datasets they were used for.</span>
+<span class="sd">            download_config (`DownloadConfig`):</span>
+<span class="sd">                to specify the cache directory and other</span>
+<span class="sd">                download options</span>
+<span class="sd">            base_path (`str`):</span>
+<span class="sd">                base path that is used when relative paths are used to</span>
+<span class="sd">                download files. This can be a remote url.</span>
+<span class="sd">            record_checksums (`bool`, defaults to `True`):</span>
+<span class="sd">                Whether to record the checksums of the downloaded files. If None, the value is inferred from the builder.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataset_name</span> <span class="o">=</span> <span class="n">dataset_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span> <span class="o">=</span> <span class="n">base_path</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+        <span class="c1"># To record what is being used: {url: {num_bytes: int, checksum: str}}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_sizes_checksums</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">record_checksums</span> <span class="o">=</span> <span class="n">record_checksums</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span> <span class="o">=</span> <span class="n">download_config</span> <span class="ow">or</span> <span class="n">DownloadConfig</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downloaded_paths</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extracted_paths</span> <span class="o">=</span> <span class="p">{}</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">manual_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_dir</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">downloaded_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the total size of downloaded files.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">checksums_dict</span><span class="p">[</span><span class="s2">&quot;num_bytes&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">checksums_dict</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_sizes_checksums</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_record_sizes_checksums</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url_or_urls</span><span class="p">:</span> <span class="n">NestedDataStructure</span><span class="p">,</span> <span class="n">downloaded_path_or_paths</span><span class="p">:</span> <span class="n">NestedDataStructure</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Record size/checksum of downloaded files.&quot;&quot;&quot;</span>
+        <span class="n">delay</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="k">for</span> <span class="n">url</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">hf_tqdm</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">url_or_urls</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">downloaded_path_or_paths</span><span class="o">.</span><span class="n">flatten</span><span class="p">())),</span>
+            <span class="n">delay</span><span class="o">=</span><span class="n">delay</span><span class="p">,</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Computing checksums&quot;</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="c1"># call str to support PathLike objects</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_sizes_checksums</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">url</span><span class="p">)]</span> <span class="o">=</span> <span class="n">get_size_checksum_dict</span><span class="p">(</span>
+                <span class="n">path</span><span class="p">,</span> <span class="n">record_checksum</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">record_checksums</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="DownloadManager.download">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager.download">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url_or_urls</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download given URL(s).</span>
+
+<span class="sd">        By default, only one process is used for download. Pass customized `download_config.num_proc` to change this behavior.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url_or_urls (`str` or `list` or `dict`):</span>
+<span class="sd">                URL or `list` or `dict` of URLs to download. Each URL is a `str`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `str` or `list` or `dict`:</span>
+<span class="sd">                The downloaded paths matching the given input `url_or_urls`.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        ```py</span>
+<span class="sd">        &gt;&gt;&gt; downloaded_files = dl_manager.download(&#39;https://storage.googleapis.com/seldon-datasets/sentence_polarity_v1/rt-polaritydata.tar.gz&#39;)</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">download_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">download_config</span><span class="o">.</span><span class="n">extract_compressed_file</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">download_config</span><span class="o">.</span><span class="n">download_desc</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">download_config</span><span class="o">.</span><span class="n">download_desc</span> <span class="o">=</span> <span class="s2">&quot;Downloading data&quot;</span>
+
+        <span class="n">download_func</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_download_batched</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">stack_multiprocessing_download_progress_bars</span><span class="p">():</span>
+            <span class="n">downloaded_path_or_paths</span> <span class="o">=</span> <span class="n">map_nested</span><span class="p">(</span>
+                <span class="n">download_func</span><span class="p">,</span>
+                <span class="n">url_or_urls</span><span class="p">,</span>
+                <span class="n">map_tuple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">num_proc</span><span class="o">=</span><span class="n">download_config</span><span class="o">.</span><span class="n">num_proc</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Downloading data files&quot;</span><span class="p">,</span>
+                <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">batch_size</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downloading took </span><span class="si">{</span><span class="n">duration</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">60</span><span class="si">}</span><span class="s2"> min&quot;</span><span class="p">)</span>
+        <span class="n">url_or_urls</span> <span class="o">=</span> <span class="n">NestedDataStructure</span><span class="p">(</span><span class="n">url_or_urls</span><span class="p">)</span>
+        <span class="n">downloaded_path_or_paths</span> <span class="o">=</span> <span class="n">NestedDataStructure</span><span class="p">(</span><span class="n">downloaded_path_or_paths</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downloaded_paths</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">url_or_urls</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">downloaded_path_or_paths</span><span class="o">.</span><span class="n">flatten</span><span class="p">())))</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_record_sizes_checksums</span><span class="p">(</span><span class="n">url_or_urls</span><span class="p">,</span> <span class="n">downloaded_path_or_paths</span><span class="p">)</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Checksum Computation took </span><span class="si">{</span><span class="n">duration</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="mi">60</span><span class="si">}</span><span class="s2"> min&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">downloaded_path_or_paths</span><span class="o">.</span><span class="n">data</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_download_batched</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">url_or_filenames</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+        <span class="n">download_config</span><span class="p">:</span> <span class="n">DownloadConfig</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">url_or_filenames</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">:</span>
+            <span class="n">download_config</span> <span class="o">=</span> <span class="n">download_config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">download_config</span><span class="o">.</span><span class="n">disable_tqdm</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">download_func</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_download_single</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+
+            <span class="n">fs</span><span class="p">:</span> <span class="n">fsspec</span><span class="o">.</span><span class="n">AbstractFileSystem</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">url_or_filenames</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">is_relative_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="c1"># append the relative path to the base_path</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">url_or_path_join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">fs</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="n">url_to_fs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">download_config</span><span class="o">.</span><span class="n">storage_options</span><span class="p">)</span>
+            <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="n">fs</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;size&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="n">max_workers</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">HF_DATASETS_MULTITHREADING_MAX_WORKERS</span> <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="p">(</span><span class="mi">20</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="p">)</span>  <span class="c1"># enable multithreading if files are small</span>
+
+            <span class="k">return</span> <span class="n">thread_map</span><span class="p">(</span>
+                <span class="n">download_func</span><span class="p">,</span>
+                <span class="n">url_or_filenames</span><span class="p">,</span>
+                <span class="n">desc</span><span class="o">=</span><span class="n">download_config</span><span class="o">.</span><span class="n">download_desc</span> <span class="ow">or</span> <span class="s2">&quot;Downloading&quot;</span><span class="p">,</span>
+                <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;files&quot;</span><span class="p">,</span>
+                <span class="n">position</span><span class="o">=</span><span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">_identity</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># contains the ranks of subprocesses</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;HF_DATASETS_STACK_MULTIPROCESSING_DOWNLOAD_PROGRESS_BARS&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span>
+                <span class="ow">and</span> <span class="n">multiprocessing</span><span class="o">.</span><span class="n">current_process</span><span class="p">()</span><span class="o">.</span><span class="n">_identity</span>
+                <span class="k">else</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="n">max_workers</span><span class="o">=</span><span class="n">max_workers</span><span class="p">,</span>
+                <span class="n">tqdm_class</span><span class="o">=</span><span class="n">tqdm</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_download_single</span><span class="p">(</span><span class="n">url_or_filename</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">url_or_filename</span> <span class="ow">in</span> <span class="n">url_or_filenames</span>
+            <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_download_single</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url_or_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">download_config</span><span class="p">:</span> <span class="n">DownloadConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">url_or_filename</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">url_or_filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">is_relative_path</span><span class="p">(</span><span class="n">url_or_filename</span><span class="p">):</span>
+            <span class="c1"># append the relative path to the base_path</span>
+            <span class="n">url_or_filename</span> <span class="o">=</span> <span class="n">url_or_path_join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_base_path</span><span class="p">,</span> <span class="n">url_or_filename</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">cached_path</span><span class="p">(</span><span class="n">url_or_filename</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">tracked_str</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+        <span class="n">out</span><span class="o">.</span><span class="n">set_origin</span><span class="p">(</span><span class="n">url_or_filename</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">out</span>
+
+<div class="viewcode-block" id="DownloadManager.iter_archive">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager.iter_archive">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iter_archive</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_or_buf</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Iterate over files within an archive.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path_or_buf (`str` or `io.BufferedReader`):</span>
+<span class="sd">                Archive path or archive binary file object.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            `tuple[str, io.BufferedReader]`:</span>
+<span class="sd">                2-tuple (path_within_archive, file_object).</span>
+<span class="sd">                File object is opened in binary mode.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        ```py</span>
+<span class="sd">        &gt;&gt;&gt; archive = dl_manager.download(&#39;https://storage.googleapis.com/seldon-datasets/sentence_polarity_v1/rt-polaritydata.tar.gz&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; files = dl_manager.iter_archive(archive)</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">,</span> <span class="s2">&quot;read&quot;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">ArchiveIterable</span><span class="o">.</span><span class="n">from_buf</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ArchiveIterable</span><span class="o">.</span><span class="n">from_urlpath</span><span class="p">(</span><span class="n">path_or_buf</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DownloadManager.iter_files">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager.iter_files">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">iter_files</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paths</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Iterate over file paths.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            paths (`str` or `list` of `str`):</span>
+<span class="sd">                Root paths.</span>
+
+<span class="sd">        Yields:</span>
+<span class="sd">            `str`: File path.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        ```py</span>
+<span class="sd">        &gt;&gt;&gt; files = dl_manager.download_and_extract(&#39;https://huggingface.co/datasets/AI-Lab-Makerere/beans/resolve/main/data/train.zip&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; files = dl_manager.iter_files(files)</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">FilesIterable</span><span class="o">.</span><span class="n">from_urlpaths</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="DownloadManager.extract">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager.extract">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_or_paths</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract given path(s).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path_or_paths (path or `list` or `dict`):</span>
+<span class="sd">                Path of file to extract. Each path is a `str`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            extracted_path(s): `str`, The extracted paths matching the given input</span>
+<span class="sd">            path_or_paths.</span>
+
+<span class="sd">        Example:</span>
+
+<span class="sd">        ```py</span>
+<span class="sd">        &gt;&gt;&gt; downloaded_files = dl_manager.download(&#39;https://storage.googleapis.com/seldon-datasets/sentence_polarity_v1/rt-polaritydata.tar.gz&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; extracted_files = dl_manager.extract(downloaded_files)</span>
+<span class="sd">        ```</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">download_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">download_config</span><span class="o">.</span><span class="n">extract_compressed_file</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">extract_func</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_download_single</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span>
+        <span class="n">extracted_paths</span> <span class="o">=</span> <span class="n">map_nested</span><span class="p">(</span>
+            <span class="n">extract_func</span><span class="p">,</span>
+            <span class="n">path_or_paths</span><span class="p">,</span>
+            <span class="n">num_proc</span><span class="o">=</span><span class="n">download_config</span><span class="o">.</span><span class="n">num_proc</span><span class="p">,</span>
+            <span class="n">desc</span><span class="o">=</span><span class="s2">&quot;Extracting data files&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">path_or_paths</span> <span class="o">=</span> <span class="n">NestedDataStructure</span><span class="p">(</span><span class="n">path_or_paths</span><span class="p">)</span>
+        <span class="n">extracted_paths</span> <span class="o">=</span> <span class="n">NestedDataStructure</span><span class="p">(</span><span class="n">extracted_paths</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">extracted_paths</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">path_or_paths</span><span class="o">.</span><span class="n">flatten</span><span class="p">(),</span> <span class="n">extracted_paths</span><span class="o">.</span><span class="n">flatten</span><span class="p">())))</span>
+        <span class="k">return</span> <span class="n">extracted_paths</span><span class="o">.</span><span class="n">data</span></div>
+
+
+<div class="viewcode-block" id="DownloadManager.download_and_extract">
+<a class="viewcode-back" href="../../../api/generated/datasets.DownloadManager.html#datasets.DownloadManager.download_and_extract">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">download_and_extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url_or_urls</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Download and extract given `url_or_urls`.</span>
+
+<span class="sd">        Is roughly equivalent to:</span>
+
+<span class="sd">        ```</span>
+<span class="sd">        extracted_paths = dl_manager.extract(dl_manager.download(url_or_urls))</span>
+<span class="sd">        ```</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            url_or_urls (`str` or `list` or `dict`):</span>
+<span class="sd">                URL or `list` or `dict` of URLs to download and extract. Each URL is a `str`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            extracted_path(s): `str`, extracted paths of given URL(s).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">url_or_urls</span><span class="p">))</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_recorded_sizes_checksums</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recorded_sizes_checksums</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_extracted_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">paths_to_delete</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extracted_paths</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">downloaded_paths</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">extracted_paths</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths_to_delete</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">extracted_paths</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">manage_extracted_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">download_config</span><span class="o">.</span><span class="n">delete_extracted</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">delete_extracted_files</span><span class="p">()</span></div>
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

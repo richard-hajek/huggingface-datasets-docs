@@ -1,0 +1,196 @@
+/* Custom CSS for pandas/numpy-like styling */
+
+/* Logo and branding */
+.navbar-brand {
+    font-weight: 600;
+}
+
+/* Code blocks styling */
+div.highlight {
+    border-radius: 6px;
+    margin: 1em 0;
+}
+
+pre {
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* API documentation styling */
+dl.py.class,
+dl.py.function,
+dl.py.method,
+dl.py.attribute {
+    margin-bottom: 2em;
+    padding: 1em;
+    border-left: 3px solid var(--pst-color-primary);
+    background-color: var(--pst-color-surface);
+}
+
+dt.sig {
+    background-color: var(--pst-color-on-background);
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    font-family: var(--pst-font-family-monospace);
+    font-size: 0.95em;
+}
+
+dd {
+    margin-left: 2em;
+    margin-top: 0.5em;
+}
+
+/* Parameter lists */
+.field-list {
+    margin: 1em 0;
+}
+
+.field-list dt {
+    font-weight: 600;
+    color: var(--pst-color-primary);
+}
+
+.field-list dd {
+    margin-left: 2em;
+    margin-bottom: 0.5em;
+}
+
+/* Examples and admonitions */
+.admonition {
+    margin: 1.5em 0;
+    padding: 1em;
+    border-left: 4px solid;
+    border-radius: 4px;
+}
+
+.admonition.note {
+    border-color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.admonition.warning {
+    border-color: #f39c12;
+    background-color: rgba(243, 156, 18, 0.1);
+}
+
+.admonition.tip {
+    border-color: #2ecc71;
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+/* Tables */
+table.docutils {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1em 0;
+}
+
+table.docutils th {
+    background-color: var(--pst-color-primary);
+    color: white;
+    padding: 0.75em;
+    text-align: left;
+}
+
+table.docutils td {
+    padding: 0.75em;
+    border-bottom: 1px solid var(--pst-color-border);
+}
+
+table.docutils tr:hover {
+    background-color: var(--pst-color-surface);
+}
+
+/* Sidebar and TOC */
+.bd-sidebar {
+    font-size: 0.9em;
+}
+
+.bd-sidebar .nav-link {
+    padding: 0.25rem 0.5rem;
+}
+
+/* Grid items (for landing page cards) */
+.sd-card {
+    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.sd-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Improve readability */
+.bd-article {
+    line-height: 1.7;
+}
+
+/* Inline code */
+code.literal {
+    background-color: var(--pst-color-surface);
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--pst-color-danger);
+}
+
+/* Signature parameters */
+.sig-param {
+    font-style: normal;
+}
+
+.sig-param-name {
+    font-weight: 600;
+}
+
+/* Version badges */
+.versionadded,
+.versionchanged,
+.deprecated {
+    padding: 0.25em 0.5em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    margin: 0.5em 0;
+}
+
+.versionadded {
+    background-color: rgba(46, 204, 113, 0.1);
+    border-left: 3px solid #2ecc71;
+}
+
+.versionchanged {
+    background-color: rgba(52, 152, 219, 0.1);
+    border-left: 3px solid #3498db;
+}
+
+.deprecated {
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left: 3px solid #e74c3c;
+}
+
+/* Search highlighting */
+.highlighted {
+    background-color: #ffeb3b;
+    padding: 0 0.2em;
+}
+
+/* Footer styling */
+.bd-footer {
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid var(--pst-color-border);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    dt.sig {
+        font-size: 0.85em;
+    }
+    
+    .bd-sidebar {
+        font-size: 0.85em;
+    }
+}

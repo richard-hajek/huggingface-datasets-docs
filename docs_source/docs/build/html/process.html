@@ -1,0 +1,1373 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Process &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'process';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Stream" href="stream.html" />
+    <link rel="prev" title="Load" href="loading.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Load</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stream.html">Stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pytorch.html">Use with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_tensorflow.html">Using Datasets with TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_numpy.html">Use with NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_jax.html">Use with JAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pandas.html">Use with Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_polars.html">Use with Polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pyarrow.html">Use with PyArrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_spark.html">Use with Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cache.html">Cache management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystems.html">Cloud storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faiss_es.html">Search index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_load.html">Load audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_process.html">Process audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_dataset.html">Create an audio dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_load.html">Load image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_process.html">Process image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_dataset.html">Create an image dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="depth_estimation.html">Depth estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html">Image classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_segmentation.html">Semantic segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_detection.html">Object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_load.html">Load video data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_dataset.html">Create a video dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_load.html">Load pdf data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_dataset.html">Create a document dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nifti_dataset.html">Create a NIfTI dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_load.html">Load text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_process.html">Process text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_load.html">Load tabular data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="share.html">Share a dataset using the CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset_card.html">Create a dataset card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repository_structure.html">Structure your repository</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="howto.html" class="nav-link">How-to Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Process</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="process">
+<h1>Process<a class="headerlink" href="#process" title="Link to this heading">#</a></h1>
+<p>🤗 Datasets provides many tools for modifying the structure and content of a dataset. These tools are important for tidying up a dataset, creating additional columns, converting between features and formats, and much more.</p>
+<p>This guide will show you how to:</p>
+<ul class="simple">
+<li><p>Reorder rows and split the dataset.</p></li>
+<li><p>Rename and remove columns, and other common column operations.</p></li>
+<li><p>Apply processing functions to each example in a dataset.</p></li>
+<li><p>Concatenate datasets.</p></li>
+<li><p>Apply a custom formatting transform.</p></li>
+<li><p>Save and export processed datasets.</p></li>
+</ul>
+<p>For more details specific to processing other dataset modalities, take a look at the <a class="underline decoration-pink-400 decoration-2 font-semibold" href="./audio_process">process audio dataset guide</a>, the <a class="underline decoration-yellow-400 decoration-2 font-semibold" href="./image_process">process image dataset guide</a>, or the <a class="underline decoration-green-400 decoration-2 font-semibold" href="./nlp_process">process text dataset guide</a>.</p>
+<p>The examples in this guide use the MRPC dataset, but feel free to load any dataset of your choice and follow along!</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;nyu-mll/glue&quot;</span><span class="p">,</span> <span class="s2">&quot;mrpc&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!WARNING]
+All processing methods in this guide return a new [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] object. Modification is not done in-place. Be careful about overriding your previous dataset!</p>
+</div></blockquote>
+<section id="sort-shuffle-select-split-and-shard">
+<h2>Sort, shuffle, select, split, and shard<a class="headerlink" href="#sort-shuffle-select-split-and-shard" title="Link to this heading">#</a></h2>
+<p>There are several functions for rearranging the structure of a dataset.
+These functions are useful for selecting only the rows you want, creating train and test splits, and sharding very large datasets into smaller chunks.</p>
+<section id="sort">
+<h3>Sort<a class="headerlink" href="#sort" title="Link to this heading">#</a></h3>
+<p>Use [<code class="docutils literal notranslate"><span class="pre">~Dataset.sort</span></code>] to sort column values according to their numerical values. The provided column must be NumPy compatible.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[1, 0, 1, 0, 1, 1, 0, 1, 0, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_dataset</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sorted_dataset</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">][</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+<span class="go">[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</span>
+</pre></div>
+</div>
+<p>Under the hood, this creates a list of indices that is sorted according to values of the column.
+This indices mapping is then used to access the right rows in the underlying Arrow table.</p>
+</section>
+<section id="shuffle">
+<h3>Shuffle<a class="headerlink" href="#shuffle" title="Link to this heading">#</a></h3>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.shuffle</span></code>] function randomly rearranges the column values. You can specify the <code class="docutils literal notranslate"><span class="pre">generator</span></code> parameter in this function to use a different <code class="docutils literal notranslate"><span class="pre">numpy.random.Generator</span></code> if you want more control over the algorithm used to shuffle the dataset.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">shuffled_dataset</span> <span class="o">=</span> <span class="n">sorted_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shuffled_dataset</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">][:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">[1, 1, 1, 0, 1, 1, 1, 1, 1, 0]</span>
+</pre></div>
+</div>
+<p>Shuffling takes the list of indices <code class="docutils literal notranslate"><span class="pre">[0:len(my_dataset)]</span></code> and shuffles it to create an indices mapping.
+However as soon as your [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] has an indices mapping, the speed can become 10x slower.
+This is because there is an extra step to get the row index to read using the indices mapping, and most importantly, you aren’t reading contiguous chunks of data anymore.
+To restore the speed, you’d need to rewrite the entire dataset on your disk again using [<code class="docutils literal notranslate"><span class="pre">Dataset.flatten_indices</span></code>], which removes the indices mapping.
+Alternatively, you can switch to an [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] and leverage its fast approximate shuffling [<code class="docutils literal notranslate"><span class="pre">IterableDataset.shuffle</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iterable_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">to_iterable_dataset</span><span class="p">(</span><span class="n">num_shards</span><span class="o">=</span><span class="mi">128</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shuffled_iterable_dataset</span> <span class="o">=</span> <span class="n">iterable_dataset</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">buffer_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="select-and-filter">
+<h3>Select and Filter<a class="headerlink" href="#select-and-filter" title="Link to this heading">#</a></h3>
+<p>There are two options for filtering rows in a dataset: [<code class="docutils literal notranslate"><span class="pre">~Dataset.select</span></code>] and [<code class="docutils literal notranslate"><span class="pre">~Dataset.filter</span></code>].</p>
+<ul class="simple">
+<li><p>[<code class="docutils literal notranslate"><span class="pre">~Dataset.select</span></code>] returns rows according to a list of indices:</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">small_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">small_dataset</span><span class="p">)</span>
+<span class="go">6</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>[<code class="docutils literal notranslate"><span class="pre">~Dataset.filter</span></code>] returns rows that match a specified condition:</p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">start_with_ar</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">example</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Ar&quot;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">start_with_ar</span><span class="p">)</span>
+<span class="go">6</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">start_with_ar</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]</span>
+<span class="go">[&#39;Around 0335 GMT , Tab shares were up 19 cents , or 4.4 % , at A $ 4.56 , having earlier set a record high of A $ 4.57 .&#39;,</span>
+<span class="go">&#39;Arison said Mann may have been one of the pioneers of the world music movement and he had a deep love of Brazilian music .&#39;,</span>
+<span class="go">&#39;Arts helped coach the youth on an eighth-grade football team at Lombardi Middle School in Green Bay .&#39;,</span>
+<span class="go">&#39;Around 9 : 00 a.m. EDT ( 1300 GMT ) , the euro was at $ 1.1566 against the dollar , up 0.07 percent on the day .&#39;,</span>
+<span class="go">&quot;Arguing that the case was an isolated example , Canada has threatened a trade backlash if Tokyo &#39;s ban is not justified on scientific grounds .&quot;,</span>
+<span class="go">&#39;Artists are worried the plan would harm those who need help most - performers who have a difficult time lining up shows .&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>[<code class="docutils literal notranslate"><span class="pre">~Dataset.filter</span></code>] can also filter by indices if you set <code class="docutils literal notranslate"><span class="pre">with_indices=True</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">even_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">example</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="n">idx</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">with_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">even_dataset</span><span class="p">)</span>
+<span class="go">1834</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+<span class="go">1834.0</span>
+</pre></div>
+</div>
+<p>Unless the list of indices to keep is contiguous, those methods also create an indices mapping under the hood.</p>
+</section>
+<section id="split">
+<h3>Split<a class="headerlink" href="#split" title="Link to this heading">#</a></h3>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.train_test_split</span></code>] function creates train and test splits if your dataset doesn’t already have them. This allows you to adjust the relative proportions or an absolute number of samples in each split. In the example below, use the <code class="docutils literal notranslate"><span class="pre">test_size</span></code> parameter to create a test split that is 10% of the original dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="go">{&#39;train&#39;: Dataset(schema: {&#39;sentence1&#39;: &#39;string&#39;, &#39;sentence2&#39;: &#39;string&#39;, &#39;label&#39;: &#39;int64&#39;, &#39;idx&#39;: &#39;int32&#39;}, num_rows: 3301),</span>
+<span class="go">&#39;test&#39;: Dataset(schema: {&#39;sentence1&#39;: &#39;string&#39;, &#39;sentence2&#39;: &#39;string&#39;, &#39;label&#39;: &#39;int64&#39;, &#39;idx&#39;: &#39;int32&#39;}, num_rows: 367)}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mf">0.1</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">366.8</span>
+</pre></div>
+</div>
+<p>The splits are shuffled by default, but you can set <code class="docutils literal notranslate"><span class="pre">shuffle=False</span></code> to prevent shuffling.</p>
+</section>
+<section id="shard">
+<h3>Shard<a class="headerlink" href="#shard" title="Link to this heading">#</a></h3>
+<p>🤗 Datasets supports sharding to divide a very large dataset into a predefined number of chunks. Specify the <code class="docutils literal notranslate"><span class="pre">num_shards</span></code> parameter in [<code class="docutils literal notranslate"><span class="pre">~Dataset.shard</span></code>] to determine the number of shards to split the dataset into. You’ll also need to provide the shard you want to return with the <code class="docutils literal notranslate"><span class="pre">index</span></code> parameter.</p>
+<p>For example, the <a class="reference external" href="https://huggingface.co/datasets/stanfordnlp/imdb">stanfordnlp/imdb</a> dataset has 25000 examples:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;stanfordnlp/imdb&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;text&#39;, &#39;label&#39;],</span>
+<span class="go">    num_rows: 25000</span>
+<span class="go">})</span>
+</pre></div>
+</div>
+<p>After sharding the dataset into four chunks, the first shard will only have 6250 examples:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">shard</span><span class="p">(</span><span class="n">num_shards</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;text&#39;, &#39;label&#39;],</span>
+<span class="go">    num_rows: 6250</span>
+<span class="go">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="mi">25000</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">6250.0</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rename-remove-cast-and-flatten">
+<h2>Rename, remove, cast, and flatten<a class="headerlink" href="#rename-remove-cast-and-flatten" title="Link to this heading">#</a></h2>
+<p>The following functions allow you to modify the columns of a dataset. These functions are useful for renaming or removing columns, changing columns to a new set of features, and flattening nested column structures.</p>
+<section id="rename">
+<h3>Rename<a class="headerlink" href="#rename" title="Link to this heading">#</a></h3>
+<p>Use [<code class="docutils literal notranslate"><span class="pre">~Dataset.rename_column</span></code>] when you need to rename a column in your dataset. Features associated with the original column are actually moved under the new column name, instead of just replacing the original column in-place.</p>
+<p>Provide [<code class="docutils literal notranslate"><span class="pre">~Dataset.rename_column</span></code>] with the name of the original column, and the new column name:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;sentence1&#39;, &#39;sentence2&#39;, &#39;label&#39;, &#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s2">&quot;sentence1&quot;</span><span class="p">,</span> <span class="s2">&quot;sentenceA&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">rename_column</span><span class="p">(</span><span class="s2">&quot;sentence2&quot;</span><span class="p">,</span> <span class="s2">&quot;sentenceB&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;sentenceA&#39;, &#39;sentenceB&#39;, &#39;label&#39;, &#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+</pre></div>
+</div>
+</section>
+<section id="remove">
+<h3>Remove<a class="headerlink" href="#remove" title="Link to this heading">#</a></h3>
+<p>When you need to remove one or more columns, provide the column name to remove to the [<code class="docutils literal notranslate"><span class="pre">~Dataset.remove_columns</span></code>] function. Remove more than one column by providing a list of column names:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;sentence1&#39;, &#39;sentence2&#39;, &#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="s2">&quot;sentence1&quot;</span><span class="p">,</span> <span class="s2">&quot;sentence2&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+</pre></div>
+</div>
+<p>Conversely, [<code class="docutils literal notranslate"><span class="pre">~Dataset.select_columns</span></code>] selects one or more columns to keep and removes the rest. This function takes either one or a list of column names:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;sentence1&#39;, &#39;sentence2&#39;, &#39;label&#39;, &#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">select_columns</span><span class="p">([</span><span class="s1">&#39;sentence1&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence2&#39;</span><span class="p">,</span> <span class="s1">&#39;idx&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;sentence1&#39;, &#39;sentence2&#39;, &#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">select_columns</span><span class="p">(</span><span class="s1">&#39;idx&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;idx&#39;],</span>
+<span class="go">    num_rows: 3668</span>
+<span class="go">})</span>
+</pre></div>
+</div>
+</section>
+<section id="cast">
+<h3>Cast<a class="headerlink" href="#cast" title="Link to this heading">#</a></h3>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.cast</span></code>] function transforms the feature type of one or more columns. This function accepts your new [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] as its argument. The example below demonstrates how to change the [<code class="docutils literal notranslate"><span class="pre">ClassLabel</span></code>] and [<code class="docutils literal notranslate"><span class="pre">Value</span></code>] features:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;sentence1&#39;: Value(&#39;string&#39;),</span>
+<span class="go">&#39;sentence2&#39;: Value(&#39;string&#39;),</span>
+<span class="go">&#39;label&#39;: ClassLabel(names=[&#39;not_equivalent&#39;, &#39;equivalent&#39;]),</span>
+<span class="go">&#39;idx&#39;: Value(&#39;int32&#39;)}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">ClassLabel</span><span class="p">,</span> <span class="n">Value</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_features</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_features</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ClassLabel</span><span class="p">(</span><span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;positive&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_features</span><span class="p">[</span><span class="s2">&quot;idx&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Value</span><span class="p">(</span><span class="s2">&quot;int64&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">new_features</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;sentence1&#39;: Value(&#39;string&#39;),</span>
+<span class="go">&#39;sentence2&#39;: Value(&#39;string&#39;),</span>
+<span class="go">&#39;label&#39;: ClassLabel(names=[&#39;negative&#39;, &#39;positive&#39;]),</span>
+<span class="go">&#39;idx&#39;: Value(&#39;int64&#39;)}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+Casting only works if the original feature type and new feature type are compatible. For example, you can cast a column with the feature type <code class="docutils literal notranslate"><span class="pre">Value(&quot;int32&quot;)</span></code> to <code class="docutils literal notranslate"><span class="pre">Value(&quot;bool&quot;)</span></code> if the original column only contains ones and zeros.</p>
+</div></blockquote>
+<p>Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.cast_column</span></code>] function to change the feature type of a single column. Pass the column name and its new feature type as arguments:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;audio&#39;: Audio(sampling_rate=44100, mono=True)}</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="n">Audio</span><span class="p">(</span><span class="n">sampling_rate</span><span class="o">=</span><span class="mi">16000</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;audio&#39;: Audio(sampling_rate=16000, mono=True)}</span>
+</pre></div>
+</div>
+</section>
+<section id="flatten">
+<h3>Flatten<a class="headerlink" href="#flatten" title="Link to this heading">#</a></h3>
+<p>Sometimes a column can be a nested structure of several types. Take a look at the nested structure below from the SQuAD dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;rajpurkar/squad&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;id&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;title&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;context&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;question&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;answers&#39;: {&#39;text&#39;: List(Value(&#39;string&#39;)),</span>
+<span class="go">  &#39;answer_start&#39;: List(Value(&#39;int32&#39;))}}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">answers</span></code> field contains two subfields: <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">answer_start</span></code>. Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.flatten</span></code>] function to extract the subfields into their own separate columns:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flat_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">flat_dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;id&#39;, &#39;title&#39;, &#39;context&#39;, &#39;question&#39;, &#39;answers.text&#39;, &#39;answers.answer_start&#39;],</span>
+<span class="go"> num_rows: 87599</span>
+<span class="go">})</span>
+</pre></div>
+</div>
+<p>Notice how the subfields are now their own independent columns: <code class="docutils literal notranslate"><span class="pre">answers.text</span></code> and <code class="docutils literal notranslate"><span class="pre">answers.answer_start</span></code>.</p>
+</section>
+</section>
+<section id="map">
+<h2>Map<a class="headerlink" href="#map" title="Link to this heading">#</a></h2>
+<p>Some of the more powerful applications of 🤗 Datasets come from using the [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] function. The primary purpose of [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] is to speed up processing functions. It allows you to apply a processing function to each example in a dataset, independently or in batches. This function can even create new rows and columns.</p>
+<p>In the following example, prefix each <code class="docutils literal notranslate"><span class="pre">sentence1</span></code> value in the dataset with <code class="docutils literal notranslate"><span class="pre">'My</span> <span class="pre">sentence:</span> <span class="pre">'</span></code>.</p>
+<p>Start by creating a function that adds <code class="docutils literal notranslate"><span class="pre">'My</span> <span class="pre">sentence:</span> <span class="pre">'</span></code> to the beginning of each sentence. The function needs to accept and output a <code class="docutils literal notranslate"><span class="pre">dict</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">add_prefix</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;My sentence: &#39;</span> <span class="o">+</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">example</span>
+</pre></div>
+</div>
+<p>Now use [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] to apply the <code class="docutils literal notranslate"><span class="pre">add_prefix</span></code> function to the entire dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span> <span class="o">=</span> <span class="n">small_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">add_prefix</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">[&#39;My sentence: Amrozi accused his brother , whom he called &quot; the witness &quot; , of deliberately distorting his evidence .&#39;,</span>
+<span class="go">&quot;My sentence: Yucaipa owned Dominick &#39;s before selling the chain to Safeway in 1998 for $ 2.5 billion .&quot;,</span>
+<span class="go">&#39;My sentence: They had published an advertisement on the Internet on June 10 , offering the cargo for sale , he added .&#39;,</span>
+<span class="go">&#39;My sentence: Around 0335 GMT , Tab shares were up 19 cents , or 4.4 % , at A $ 4.56 , having earlier set a record high of A $ 4.57 .&#39;,</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>Let’s take a look at another example, except this time, you’ll remove a column with [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>]. When you remove a column, it is only removed after the example has been provided to the mapped function. This allows the mapped function to use the content of the columns before they are removed.</p>
+<p>Specify the column to remove with the <code class="docutils literal notranslate"><span class="pre">remove_columns</span></code> parameter in [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">example</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;new_sentence&quot;</span><span class="p">:</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]},</span> <span class="n">remove_columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span><span class="o">.</span><span class="n">column_names</span>
+<span class="go">[&#39;sentence2&#39;, &#39;label&#39;, &#39;idx&#39;, &#39;new_sentence&#39;]</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!TIP]
+🤗 Datasets also has a [<code class="docutils literal notranslate"><span class="pre">~Dataset.remove_columns</span></code>] function which is faster because it doesn’t copy the data of the remaining columns.</p>
+</div></blockquote>
+<p>You can also use [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] with indices if you set <code class="docutils literal notranslate"><span class="pre">with_indices=True</span></code>. The example below adds the index to the beginning of each sentence:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">example</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;sentence2&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sentence2&quot;</span><span class="p">]},</span> <span class="n">with_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span><span class="p">[</span><span class="s2">&quot;sentence2&quot;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]</span>
+<span class="go">[&#39;0: Referring to him as only &quot; the witness &quot; , Amrozi accused his brother of deliberately distorting his evidence .&#39;,</span>
+<span class="go"> &quot;1: Yucaipa bought Dominick &#39;s in 1995 for $ 693 million and sold it to Safeway for $ 1.8 billion in 1998 .&quot;,</span>
+<span class="go"> &quot;2: On June 10 , the ship &#39;s owners had published an advertisement on the Internet , offering the explosives for sale .&quot;,</span>
+<span class="go"> &#39;3: Tab shares jumped 20 cents , or 4.6 % , to set a record closing high at A $ 4.57 .&#39;,</span>
+<span class="go"> &#39;4: PG &amp; E Corp. shares jumped $ 1.63 or 8 percent to $ 21.03 on the New York Stock Exchange on Friday .&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<section id="multiprocessing">
+<h3>Multiprocessing<a class="headerlink" href="#multiprocessing" title="Link to this heading">#</a></h3>
+<p>Multiprocessing significantly speeds up processing by parallelizing processes on the CPU. Set the <code class="docutils literal notranslate"><span class="pre">num_proc</span></code> parameter in [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] to set the number of processes to use:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">updated_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">example</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;sentence2&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">: &quot;</span> <span class="o">+</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;sentence2&quot;</span><span class="p">]},</span> <span class="n">with_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">num_proc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] also works with the rank of the process if you set <code class="docutils literal notranslate"><span class="pre">with_rank=True</span></code>. This is analogous to the <code class="docutils literal notranslate"><span class="pre">with_indices</span></code> parameter. The <code class="docutils literal notranslate"><span class="pre">with_rank</span></code> parameter in the mapped function goes after the <code class="docutils literal notranslate"><span class="pre">index</span></code> one if it is already present.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">multiprocess</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_start_method</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get an example dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;fka/awesome-chatgpt-prompts&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get an example model and its tokenizer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;Qwen/Qwen1.5-0.5B-Chat&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;Qwen/Qwen1.5-0.5B-Chat&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">gpu_computation</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">rank</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c1"># Move the model on the right GPU if it&#39;s not there already</span>
+<span class="gp">... </span>    <span class="n">device</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;cuda:</span><span class="si">{</span><span class="p">(</span><span class="n">rank</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="gp">... </span>    <span class="n">model</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="c1"># Your big GPU call goes here, for example:</span>
+<span class="gp">... </span>    <span class="n">chats</span> <span class="o">=</span> <span class="p">[[</span>
+<span class="gp">... </span>        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;system&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;You are a helpful assistant.&quot;</span><span class="p">},</span>
+<span class="gp">... </span>        <span class="p">{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+<span class="gp">... </span>    <span class="p">]</span> <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">]]</span>
+<span class="gp">... </span>    <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">apply_chat_template</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">chat</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">tokenize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">add_generation_prompt</span><span class="o">=</span><span class="kc">True</span>
+<span class="gp">... </span>    <span class="p">)</span> <span class="k">for</span> <span class="n">chat</span> <span class="ow">in</span> <span class="n">chats</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">model_inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+<span class="gp">... </span>        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">model_inputs</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;output&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">batch_decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">batch</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">set_start_method</span><span class="p">(</span><span class="s2">&quot;spawn&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">updated_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span>
+<span class="gp">... </span>        <span class="n">gpu_computation</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">batch_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">with_rank</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>        <span class="n">num_proc</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">device_count</span><span class="p">(),</span>  <span class="c1"># one process per GPU</span>
+<span class="gp">... </span>    <span class="p">)</span>
+</pre></div>
+</div>
+<p>The main use-case for rank is to parallelize computation across several GPUs. This requires setting <code class="docutils literal notranslate"><span class="pre">multiprocess.set_start_method(&quot;spawn&quot;)</span></code>. If you don’t you’ll receive the following CUDA error:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>RuntimeError:<span class="w"> </span>Cannot<span class="w"> </span>re-initialize<span class="w"> </span>CUDA<span class="w"> </span><span class="k">in</span><span class="w"> </span>forked<span class="w"> </span>subprocess.<span class="w"> </span>To<span class="w"> </span>use<span class="w"> </span>CUDA<span class="w"> </span>with<span class="w"> </span>multiprocessing,<span class="w"> </span>you<span class="w"> </span>must<span class="w"> </span>use<span class="w"> </span>the<span class="w"> </span><span class="s1">&#39;spawn&#39;</span><span class="w"> </span>start<span class="w"> </span>method.
+</pre></div>
+</div>
+</section>
+<section id="batch-processing">
+<h3>Batch processing<a class="headerlink" href="#batch-processing" title="Link to this heading">#</a></h3>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] function supports working with batches of examples. Operate on batches by setting <code class="docutils literal notranslate"><span class="pre">batched=True</span></code>. The default batch size is 1000, but you can adjust it with the <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> parameter. Batch processing enables interesting applications such as splitting long sentences into shorter chunks and data augmentation.</p>
+<section id="split-long-examples">
+<h4>Split long examples<a class="headerlink" href="#split-long-examples" title="Link to this heading">#</a></h4>
+<p>When examples are too long, you may want to split them into several smaller chunks. Begin by creating a function that:</p>
+<ol class="arabic simple">
+<li><p>Splits the <code class="docutils literal notranslate"><span class="pre">sentence1</span></code> field into chunks of 50 characters.</p></li>
+<li><p>Stacks all the chunks together to create the new dataset.</p></li>
+</ol>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">chunk_examples</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]:</span>
+<span class="gp">... </span>        <span class="n">chunks</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sentence</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="mi">50</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sentence</span><span class="p">),</span> <span class="mi">50</span><span class="p">)]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;chunks&quot;</span><span class="p">:</span> <span class="n">chunks</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Apply the function with [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">chunked_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">chunk_examples</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chunked_dataset</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+<span class="go">{&#39;chunks&#39;: [&#39;Amrozi accused his brother , whom he called &quot; the &#39;,</span>
+<span class="go">            &#39;witness &quot; , of deliberately distorting his evidenc&#39;,</span>
+<span class="go">            &#39;e .&#39;,</span>
+<span class="go">            &quot;Yucaipa owned Dominick &#39;s before selling the chain&quot;,</span>
+<span class="go">            &#39; to Safeway in 1998 for $ 2.5 billion .&#39;,</span>
+<span class="go">            &#39;They had published an advertisement on the Interne&#39;,</span>
+<span class="go">            &#39;t on June 10 , offering the cargo for sale , he ad&#39;,</span>
+<span class="go">            &#39;ded .&#39;,</span>
+<span class="go">            &#39;Around 0335 GMT , Tab shares were up 19 cents , or&#39;,</span>
+<span class="go">            &#39; 4.4 % , at A $ 4.56 , having earlier set a record&#39;]}</span>
+</pre></div>
+</div>
+<p>Notice how the sentences are split into shorter chunks now, and there are more rows in the dataset.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span>
+<span class="go">Dataset({</span>
+<span class="go"> features: [&#39;sentence1&#39;, &#39;sentence2&#39;, &#39;label&#39;, &#39;idx&#39;],</span>
+<span class="go"> num_rows: 3668</span>
+<span class="go">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">chunked_dataset</span>
+<span class="go">Dataset({</span>
+<span class="go">    features: [&#39;chunks&#39;],</span>
+<span class="go">    num_rows: 10470</span>
+<span class="go">})</span>
+</pre></div>
+</div>
+</section>
+<section id="data-augmentation">
+<h4>Data augmentation<a class="headerlink" href="#data-augmentation" title="Link to this heading">#</a></h4>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] function could also be used for data augmentation. The following example generates additional words for a masked token in a sentence.</p>
+<p>Load and use the <a class="reference external" href="https://huggingface.co/roberta-base">RoBERTA</a> model in 🤗 Transformers’ <a class="reference external" href="https://huggingface.co/transformers/main_classes/pipelines#transformers.FillMaskPipeline">FillMaskPipeline</a>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randint</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fillmask</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;fill-mask&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;roberta-base&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mask_token</span> <span class="o">=</span> <span class="n">fillmask</span><span class="o">.</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">mask_token</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">smaller_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">e</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">100</span><span class="p">,</span> <span class="n">with_indices</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Create a function to randomly select a word to mask in the sentence. The function should also return the original sentence and the top two replacements generated by RoBERTA.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">augment_data</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]:</span>
+<span class="gp">... </span>        <span class="n">words</span> <span class="o">=</span> <span class="n">sentence</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">K</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">masked_sentence</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="n">K</span><span class="p">]</span>  <span class="o">+</span> <span class="p">[</span><span class="n">mask_token</span><span class="p">]</span> <span class="o">+</span> <span class="n">words</span><span class="p">[</span><span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+<span class="gp">... </span>        <span class="n">predictions</span> <span class="o">=</span> <span class="n">fillmask</span><span class="p">(</span><span class="n">masked_sentence</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">augmented_sequences</span> <span class="o">=</span> <span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;sequence&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="gp">... </span>        <span class="n">outputs</span> <span class="o">+=</span> <span class="p">[</span><span class="n">sentence</span><span class="p">]</span> <span class="o">+</span> <span class="n">augmented_sequences</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;data&quot;</span><span class="p">:</span> <span class="n">outputs</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Use [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] to apply the function over the whole dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">augmented_dataset</span> <span class="o">=</span> <span class="n">smaller_dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">augment_data</span><span class="p">,</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">column_names</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">augmented_dataset</span><span class="p">[:</span><span class="mi">9</span><span class="p">][</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
+<span class="go">[&#39;Amrozi accused his brother , whom he called &quot; the witness &quot; , of deliberately distorting his evidence .&#39;,</span>
+<span class="go"> &#39;Amrozi accused his brother, whom he called &quot; the witness &quot;, of deliberately withholding his evidence.&#39;,</span>
+<span class="go"> &#39;Amrozi accused his brother, whom he called &quot; the witness &quot;, of deliberately suppressing his evidence.&#39;,</span>
+<span class="go"> &#39;Amrozi accused his brother, whom he called &quot; the witness &quot;, of deliberately destroying his evidence.&#39;,</span>
+<span class="go"> &quot;Yucaipa owned Dominick &#39;s before selling the chain to Safeway in 1998 for $ 2.5 billion .&quot;,</span>
+<span class="go"> &#39;Yucaipa owned Dominick Stores before selling the chain to Safeway in 1998 for $ 2.5 billion.&#39;,</span>
+<span class="go"> &quot;Yucaipa owned Dominick&#39;s before selling the chain to Safeway in 1998 for $ 2.5 billion.&quot;,</span>
+<span class="go"> &#39;Yucaipa owned Dominick Pizza before selling the chain to Safeway in 1998 for $ 2.5 billion.&#39;</span>
+<span class="go">]</span>
+</pre></div>
+</div>
+<p>For each original sentence, RoBERTA augmented a random word with three alternatives. The original word <code class="docutils literal notranslate"><span class="pre">distorting</span></code> is supplemented by <code class="docutils literal notranslate"><span class="pre">withholding</span></code>, <code class="docutils literal notranslate"><span class="pre">suppressing</span></code>, and <code class="docutils literal notranslate"><span class="pre">destroying</span></code>.</p>
+</section>
+</section>
+<section id="asynchronous-processing">
+<h3>Asynchronous processing<a class="headerlink" href="#asynchronous-processing" title="Link to this heading">#</a></h3>
+<p>Asynchronous functions are useful to call API endpoints in parallel, for example to download content like images or call a model endpoint.</p>
+<p>You can define an asynchronous function using the <code class="docutils literal notranslate"><span class="pre">async</span></code> and <code class="docutils literal notranslate"><span class="pre">await</span></code> keywords, here is an example function to call a chat model from Hugging Face:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">aiohttp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">huggingface_hub</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_token</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sem</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># max number of simultaneous queries</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">query_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">prompt</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">api_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://api-inference.huggingface.co/models/</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s2">/v1/chat/completions&quot;</span>
+<span class="gp">... </span>    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;Authorization&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Bearer </span><span class="si">{</span><span class="n">get_token</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">}</span>
+<span class="gp">... </span>    <span class="n">json</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;messages&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span> <span class="s2">&quot;max_tokens&quot;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">}</span>
+<span class="gp">... </span>    <span class="k">async</span> <span class="k">with</span> <span class="n">sem</span><span class="p">,</span> <span class="n">aiohttp</span><span class="o">.</span><span class="n">ClientSession</span><span class="p">()</span> <span class="k">as</span> <span class="n">session</span><span class="p">,</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">api_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">json</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">output</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;Output&quot;</span><span class="p">:</span> <span class="n">output</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;message&quot;</span><span class="p">][</span><span class="s2">&quot;content&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+<p>Asynchronous functions run in parallel, which accelerates the process a lot. The same code takes a lot more time if it’s run sequentially, because it does nothing while waiting for the model response. It is generally recommended to use <code class="docutils literal notranslate"><span class="pre">async</span></code> / <code class="docutils literal notranslate"><span class="pre">await</span></code> when you function has to wait for a response from an API for example, or if it downloads data and it can take some time.</p>
+<p>Note the presence of a <code class="docutils literal notranslate"><span class="pre">Semaphore</span></code>: it sets the maximum number of queries that can run in parallel. It is recommended to use a <code class="docutils literal notranslate"><span class="pre">Semaphore</span></code> when calling APIs to avoid rate limit errors.</p>
+<p>Let’s use it to call the <a class="reference external" href="https://huggingface.co/microsoft/Phi-3-mini-4k-instruct">microsoft/Phi-3-mini-4k-instruct</a> model and ask it to return the main topic of each math problem in the <a class="reference external" href="https://huggingface.co/Maxwell-Jia/AIME_2024">Maxwell-Jia/AIME_2024</a> dataset:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;Maxwell-Jia/AIME_2024&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="s2">&quot;microsoft/Phi-3-mini-4k-instruct&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">prompt</span> <span class="o">=</span> <span class="s1">&#39;What is this text mainly about ? Here is the text:</span><span class="se">\n\n</span><span class="s1">```</span><span class="se">\n</span><span class="si">{Problem}</span><span class="se">\n</span><span class="s1">```</span><span class="se">\n\n</span><span class="s1">Reply using one or two words max, e.g. &quot;The main topic is Linear Algebra&quot;.&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_topic</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="k">await</span> <span class="n">query_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">prompt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Problem</span><span class="o">=</span><span class="n">example</span><span class="p">[</span><span class="s1">&#39;Problem&#39;</span><span class="p">]))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">get_topic</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;ID&#39;: &#39;2024-II-4&#39;,</span>
+<span class="go"> &#39;Problem&#39;: &#39;Let $x,y$ and $z$ be positive real numbers that...&#39;,</span>
+<span class="go"> &#39;Solution&#39;: &#39;Denote $\\log_2(x) = a$, $\\log_2(y) = b$, and...,</span>
+<span class="go"> &#39;Answer&#39;: 33,</span>
+<span class="go"> &#39;Output&#39;: &#39;The main topic is Logarithms.&#39;}</span>
+</pre></div>
+</div>
+<p>Here, [<code class="docutils literal notranslate"><span class="pre">Dataset.map</span></code>] runs many <code class="docutils literal notranslate"><span class="pre">get_topic</span></code> function asynchronously so it doesn’t have to wait for every single model response which would take a lot of time to do sequentially.</p>
+<p>By default, [<code class="docutils literal notranslate"><span class="pre">Dataset.map</span></code>] runs up to one thousand map functions in parallel, so don’t forget to set the maximum number of API calls that can run in parallel with a <code class="docutils literal notranslate"><span class="pre">Semaphore</span></code>, otherwise the model could return rate limit errors or overload. For advanced use cases, you can change the maximum number of queries in parallel in <code class="docutils literal notranslate"><span class="pre">datasets.config</span></code>.</p>
+</section>
+<section id="process-multiple-splits">
+<h3>Process multiple splits<a class="headerlink" href="#process-multiple-splits" title="Link to this heading">#</a></h3>
+<p>Many datasets have splits that can be processed simultaneously with [<code class="docutils literal notranslate"><span class="pre">DatasetDict.map</span></code>]. For example, tokenize the <code class="docutils literal notranslate"><span class="pre">sentence1</span></code> field in the train and test split by:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="go"># load all the splits</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;nyu-mll/glue&#39;</span><span class="p">,</span> <span class="s1">&#39;mrpc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">examples</span><span class="p">:</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">examples</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">]),</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_dataset</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;sentence1&#39;: &#39;Amrozi accused his brother , whom he called &quot; the witness &quot; , of deliberately distorting his evidence .&#39;,</span>
+<span class="go">&#39;sentence2&#39;: &#39;Referring to him as only &quot; the witness &quot; , Amrozi accused his brother of deliberately distorting his evidence .&#39;,</span>
+<span class="go">&#39;label&#39;: 1,</span>
+<span class="go">&#39;idx&#39;: 0,</span>
+<span class="go">&#39;input_ids&#39;: [  101,  7277,  2180,  5303,  4806,  1117,  1711,   117,  2292, 1119,  1270,   107,  1103,  7737,   107,   117,  1104,  9938, 4267, 12223, 21811,  1117,  2554,   119,   102],</span>
+<span class="go">&#39;token_type_ids&#39;: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],</span>
+<span class="go">&#39;attention_mask&#39;: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+</section>
+<section id="distributed-usage">
+<h3>Distributed usage<a class="headerlink" href="#distributed-usage" title="Link to this heading">#</a></h3>
+<p>When you use [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] in a distributed setting, you should also use <a class="reference external" href="https://pytorch.org/docs/stable/distributed?highlight=barrier#torch.distributed.barrier">torch.distributed.barrier</a>. This ensures the main process performs the mapping, while the other processes load the results, thereby avoiding duplicate work.</p>
+<p>The following example shows how you can use <code class="docutils literal notranslate"><span class="pre">torch.distributed.barrier</span></code> to synchronize the processes:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">torch.distributed</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset1</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">training_args</span><span class="o">.</span><span class="n">local_rank</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for main process to perform the mapping&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset2</span> <span class="o">=</span> <span class="n">dataset1</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">})</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">training_args</span><span class="o">.</span><span class="n">local_rank</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loading results from main process&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">torch</span><span class="o">.</span><span class="n">distributed</span><span class="o">.</span><span class="n">barrier</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="batch">
+<h2>Batch<a class="headerlink" href="#batch" title="Link to this heading">#</a></h2>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.batch</span></code>] method allows you to group samples from the dataset into batches. This is particularly useful when you want to create batches of data for training or evaluation, especially when working with deep learning models.</p>
+<p>Here’s an example of how to use the <code class="docutils literal notranslate"><span class="pre">batch()</span></code> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;cornell-movie-review-data/rotten_tomatoes&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">batched_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">batch</span><span class="p">(</span><span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">batched_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;text&#39;: [&#39;the rock is destined to be the 21st century\&#39;s new &quot; conan &quot; and that he\&#39;s going to make a splash even greater than arnold schwarzenegger , jean-claud van damme or steven segal .&#39;,</span>
+<span class="go">        &#39;the gorgeously elaborate continuation of &quot; the lord of the rings &quot; trilogy is so huge that a column of words cannot adequately describe co-writer/director peter jackson\&#39;s expanded vision of j . r . r . tolkien\&#39;s middle-earth .&#39;,</span>
+<span class="go">        &#39;effective but too-tepid biopic&#39;,</span>
+<span class="go">        &#39;if you sometimes like to go to the movies to have fun , wasabi is a good place to start .&#39;],</span>
+<span class="go">&#39;label&#39;: [1, 1, 1, 1]}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">batch()</span></code> method accepts the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">batch_size</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>): The number of samples in each batch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">drop_last_batch</span></code> (<code class="docutils literal notranslate"><span class="pre">bool</span></code>, defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>): Whether to drop the last incomplete batch if the dataset size is not divisible by the batch size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_proc</span></code> (<code class="docutils literal notranslate"><span class="pre">int</span></code>, optional, defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>): The number of processes to use for multiprocessing. If None, no multiprocessing is used. This can significantly speed up batching for large datasets.</p></li>
+</ul>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">Dataset.batch()</span></code> returns a new [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] where each item is a batch of multiple samples from the original dataset. If you want to process data in batches, you should use a batched [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] directly, which applies a function to batches but the output dataset is unbatched.</p>
+</section>
+<section id="concatenate">
+<h2>Concatenate<a class="headerlink" href="#concatenate" title="Link to this heading">#</a></h2>
+<p>Separate datasets can be concatenated if they share the same column types. Concatenate datasets with [<code class="docutils literal notranslate"><span class="pre">concatenate_datasets</span></code>]:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">concatenate_datasets</span><span class="p">,</span> <span class="n">load_dataset</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stories</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;ajibawa-2023/General-Stories-Collection&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stories</span> <span class="o">=</span> <span class="n">stories</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">stories</span><span class="o">.</span><span class="n">column_names</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s2">&quot;text&quot;</span><span class="p">])</span>  <span class="c1"># only keep the &#39;text&#39; column</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wiki</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;wikimedia/wikipedia&quot;</span><span class="p">,</span> <span class="s2">&quot;20220301.en&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wiki</span> <span class="o">=</span> <span class="n">wiki</span><span class="o">.</span><span class="n">remove_columns</span><span class="p">([</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">wiki</span><span class="o">.</span><span class="n">column_names</span> <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="s2">&quot;text&quot;</span><span class="p">])</span>  <span class="c1"># only keep the &#39;text&#39; column</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="n">stories</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">wiki</span><span class="o">.</span><span class="n">features</span><span class="o">.</span><span class="n">type</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bert_dataset</span> <span class="o">=</span> <span class="n">concatenate_datasets</span><span class="p">([</span><span class="n">stories</span><span class="p">,</span> <span class="n">wiki</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>You can also concatenate two datasets horizontally by setting <code class="docutils literal notranslate"><span class="pre">axis=1</span></code> as long as the datasets have the same number of rows:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stories_ids</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;ids&quot;</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stories</span><span class="p">)))})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stories_with_ids</span> <span class="o">=</span> <span class="n">concatenate_datasets</span><span class="p">([</span><span class="n">stories</span><span class="p">,</span> <span class="n">stories_ids</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="interleave">
+<h3>Interleave<a class="headerlink" href="#interleave" title="Link to this heading">#</a></h3>
+<p>You can also mix several datasets together by taking alternating examples from each one to create a new dataset. This is known as <em>interleaving</em>, which is enabled by the [<code class="docutils literal notranslate"><span class="pre">interleave_datasets</span></code>] function. Both [<code class="docutils literal notranslate"><span class="pre">interleave_datasets</span></code>] and [<code class="docutils literal notranslate"><span class="pre">concatenate_datasets</span></code>] work with regular [<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>] and [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] objects.
+Refer to the <a class="reference internal" href="#./stream#interleave"><span class="xref myst">Stream</span></a> guide for an example of how to interleave [<code class="docutils literal notranslate"><span class="pre">IterableDataset</span></code>] objects.</p>
+<p>You can define sampling probabilities for each of the original datasets to specify how to interleave the datasets.
+In this case, the new dataset is constructed by getting examples one by one from a random dataset until one of the datasets runs out of samples.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">interleave_datasets</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">seed</span> <span class="o">=</span> <span class="mi">42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">probabilities</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d3</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">interleave_datasets</span><span class="p">([</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">],</span> <span class="n">probabilities</span><span class="o">=</span><span class="n">probabilities</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
+<span class="go">[10, 11, 20, 12, 0, 21, 13]</span>
+</pre></div>
+</div>
+<p>You can also specify the <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code>. The default strategy, <code class="docutils literal notranslate"><span class="pre">first_exhausted</span></code>, is a subsampling strategy, i.e the dataset construction is stopped as soon one of the dataset runs out of samples.
+You can specify <code class="docutils literal notranslate"><span class="pre">stopping_strategy=all_exhausted</span></code> to execute an oversampling strategy. In this case, the dataset construction is stopped as soon as every samples in every dataset has been added at least once. In practice, it means that if a dataset is exhausted, it will return to the beginning of this dataset until the stop criterion has been reached.
+Note that if no sampling probabilities are specified, the new dataset will have <code class="docutils literal notranslate"><span class="pre">max_length_datasets*nb_dataset</span> <span class="pre">samples</span></code>.
+There is also <code class="docutils literal notranslate"><span class="pre">stopping_strategy=all_exhausted_without_replacement</span></code> to ensure that every sample is seen exactly once.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d3</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">interleave_datasets</span><span class="p">([</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">],</span> <span class="n">stopping_strategy</span><span class="o">=</span><span class="s2">&quot;all_exhausted&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
+<span class="go">[0, 10, 20, 1, 11, 21, 2, 12, 22, 0, 13, 20]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="format">
+<h2>Format<a class="headerlink" href="#format" title="Link to this heading">#</a></h2>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.with_format</span></code>] function changes the format of a column to be compatible with some common data formats. Specify the output you’d like in the <code class="docutils literal notranslate"><span class="pre">type</span></code> parameter. You can also choose which the columns you want to format using <code class="docutils literal notranslate"><span class="pre">columns=</span></code>. Formatting is applied on-the-fly.</p>
+<p>For example, create PyTorch tensors by setting <code class="docutils literal notranslate"><span class="pre">type=&quot;torch&quot;</span></code>:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.set_format</span></code>] function also changes the format of a column, except it runs in-place:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">set_format</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you need to reset the dataset to its original format, set the format to <code class="docutils literal notranslate"><span class="pre">None</span></code> (or use [<code class="docutils literal notranslate"><span class="pre">~Dataset.reset_format</span></code>]):</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">format</span>
+<span class="go">{&#39;type&#39;: &#39;torch&#39;, &#39;format_kwargs&#39;: {}, &#39;columns&#39;: [...], &#39;output_all_columns&#39;: False}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">format</span>
+<span class="go">{&#39;type&#39;: None, &#39;format_kwargs&#39;: {}, &#39;columns&#39;: [...], &#39;output_all_columns&#39;: False}</span>
+</pre></div>
+</div>
+<section id="tensors-formats">
+<h3>Tensors formats<a class="headerlink" href="#tensors-formats" title="Link to this heading">#</a></h3>
+<p>Several tensors or arrays formats are supported. It is generally recommended to use these formats instead of converting outputs of a dataset to tensors or arrays manually to avoid unnecessary data copies and accelerate data loading.</p>
+<p>Here is the list of supported tensors or arrays formats:</p>
+<ul class="simple">
+<li><p>NumPy: format name is “numpy”, for more information see <a class="reference internal" href="use_with_numpy.html"><span class="doc std std-doc">Using Datasets with NumPy</span></a></p></li>
+<li><p>PyTorch: format name is “torch”, for more information see <a class="reference internal" href="use_with_pytorch.html"><span class="doc std std-doc">Using Datasets with PyTorch</span></a></p></li>
+<li><p>TensorFlow: format name is “tensorflow”, for more information see <a class="reference internal" href="use_with_tensorflow.html"><span class="doc std std-doc">Using Datasets with TensorFlow</span></a></p></li>
+<li><p>JAX: format name is “jax”, for more information see <a class="reference internal" href="use_with_jax.html"><span class="doc std std-doc">Using Datasets with JAX</span></a></p></li>
+</ul>
+<blockquote>
+<div><p>[!TIP]
+Check out the <a class="reference internal" href="#use_with_tensorflow#using-totfdataset"><span class="xref myst">Using Datasets with TensorFlow</span></a> guide for more details on how to efficiently create a TensorFlow dataset.</p>
+</div></blockquote>
+<p>When a dataset is formatted in a tensor or array format, all the data are formatted as tensors or arrays (except unsupported types like strings for example for PyTorch):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">],</span> <span class="s2">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;torch&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;text&#39;: &#39;foo&#39;, &#39;tokens&#39;: tensor([0, 1, 2])}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">{&#39;text&#39;: [&#39;foo&#39;, &#39;bar&#39;],</span>
+<span class="go"> &#39;tokens&#39;: tensor([[0, 1, 2],</span>
+<span class="go">         [3, 4, 5]])}</span>
+</pre></div>
+</div>
+</section>
+<section id="tabular-formats">
+<h3>Tabular formats<a class="headerlink" href="#tabular-formats" title="Link to this heading">#</a></h3>
+<p>You can use a dataframes or tables format to optimize data loading and data processing, since they generally offer zero-copy operations and transforms written in low-level languages.</p>
+<p>Here is the list of supported dataframes or tables formats:</p>
+<ul class="simple">
+<li><p>Pandas: format name is “pandas”, for more information see <a class="reference internal" href="use_with_pandas.html"><span class="doc std std-doc">Using Datasets with Pandas</span></a></p></li>
+<li><p>Polars: format name is “polars”, for more information see <a class="reference internal" href="use_with_polars.html"><span class="doc std std-doc">Using Datasets with Polars</span></a></p></li>
+<li><p>PyArrow: format name is “arrow”, for more information see <a class="reference internal" href="use_with_tensorflow.html"><span class="doc std std-doc">Using Datasets with PyArrow</span></a></p></li>
+</ul>
+<p>When a dataset is formatted in a dataframe or table format, every dataset row or batches of rows is formatted as a dataframe or table, and dataset colums are formatted as a series or array:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="s2">&quot;bar&quot;</span><span class="p">],</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">with_format</span><span class="p">(</span><span class="s2">&quot;pandas&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">  text  label</span>
+<span class="go">0  foo      0</span>
+<span class="go">1  bar      1</span>
+</pre></div>
+</div>
+<p>Those formats make it possible to iterate on the data faster by avoiding data copies, and also enable faster data processing in [<code class="docutils literal notranslate"><span class="pre">~Dataset.map</span></code>] or [<code class="docutils literal notranslate"><span class="pre">~Dataset.filter</span></code>]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">ds</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">upper_text</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">upper</span><span class="p">()),</span> <span class="n">batched</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">  text  label upper_text</span>
+<span class="go">0  foo      0        FOO</span>
+<span class="go">1  bar      1        BAR</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-format-transform">
+<h3>Custom format transform<a class="headerlink" href="#custom-format-transform" title="Link to this heading">#</a></h3>
+<p>The [<code class="docutils literal notranslate"><span class="pre">~Dataset.with_transform</span></code>] function applies a custom formatting transform on-the-fly. This function replaces any previously specified format. For example, you can use this function to tokenize and pad tokens on-the-fly. Tokenization is only applied when examples are accessed:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;bert-base-uncased&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">encode</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;sentence1&quot;</span><span class="p">],</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;sentence2&quot;</span><span class="p">],</span> <span class="n">padding</span><span class="o">=</span><span class="s2">&quot;longest&quot;</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">with_transform</span><span class="p">(</span><span class="n">encode</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">format</span>
+<span class="go">{&#39;type&#39;: &#39;custom&#39;, &#39;format_kwargs&#39;: {&#39;transform&#39;: &lt;function __main__.encode(batch)&gt;}, &#39;columns&#39;: [&#39;idx&#39;, &#39;label&#39;, &#39;sentence1&#39;, &#39;sentence2&#39;], &#39;output_all_columns&#39;: False}</span>
+</pre></div>
+</div>
+<p>There is also [<code class="docutils literal notranslate"><span class="pre">~Dataset.set_transform</span></code>] which does the same but runs in-place.</p>
+<p>You can also use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.with_transform</span></code>] function for custom decoding on [<code class="docutils literal notranslate"><span class="pre">Features</span></code>].</p>
+<p>The example below uses the <a class="reference external" href="http://pydub.com/"><code class="docutils literal notranslate"><span class="pre">pydub</span></code></a> package as an alternative to <code class="docutils literal notranslate"><span class="pre">torchcodec</span></code> decoding:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">pydub</span><span class="w"> </span><span class="kn">import</span> <span class="n">AudioSegment</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio_dataset_amr</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;audio&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;audio_samples/audio.amr&quot;</span><span class="p">]})</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">decode_audio_with_pydub</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="n">sampling_rate</span><span class="o">=</span><span class="mi">16_000</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">pydub_decode_file</span><span class="p">(</span><span class="n">audio_path</span><span class="p">):</span>
+<span class="gp">... </span>        <span class="n">sound</span> <span class="o">=</span> <span class="n">AudioSegment</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">sound</span><span class="o">.</span><span class="n">frame_rate</span> <span class="o">!=</span> <span class="n">sampling_rate</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="n">sound</span> <span class="o">=</span> <span class="n">sound</span><span class="o">.</span><span class="n">set_frame_rate</span><span class="p">(</span><span class="n">sampling_rate</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">channel_sounds</span> <span class="o">=</span> <span class="n">sound</span><span class="o">.</span><span class="n">split_to_mono</span><span class="p">()</span>
+<span class="gp">... </span>        <span class="n">samples</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">get_array_of_samples</span><span class="p">()</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">channel_sounds</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">fp_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">fp_arr</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">iinfo</span><span class="p">(</span><span class="n">samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">typecode</span><span class="p">)</span><span class="o">.</span><span class="n">max</span>
+<span class="gp">... </span>        <span class="k">return</span> <span class="n">fp_arr</span>
+<span class="gp">...</span>
+<span class="gp">... </span>    <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;audio&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">pydub_decode_file</span><span class="p">(</span><span class="n">audio_path</span><span class="p">)</span> <span class="k">for</span> <span class="n">audio_path</span> <span class="ow">in</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;audio&quot;</span><span class="p">]]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">batch</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">audio_dataset_amr</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">decode_audio_with_pydub</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="save">
+<h2>Save<a class="headerlink" href="#save" title="Link to this heading">#</a></h2>
+<p>Once your dataset is ready, you can save it as a Hugging Face Dataset in Parquet format and reuse it later with [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>].</p>
+<p>Save your dataset by providing the name of the dataset repository on Hugging Face you wish to save it to to [<code class="docutils literal notranslate"><span class="pre">~Dataset.push_to_hub</span></code>]:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">encoded_dataset</span><span class="o">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s2">&quot;username/my_dataset&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can use multiple processes to upload it in parallel. This is especially useful if you want to speed up the process:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s2">&quot;username/my_dataset&quot;</span><span class="p">,</span> <span class="n">num_proc</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use the [<code class="docutils literal notranslate"><span class="pre">load_dataset</span></code>] function to reload the dataset (in streaming mode or not):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="n">reloaded_dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;username/my_dataset&quot;</span><span class="p">,</span> <span class="n">streaming</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Alternatively, you can save it locally in Arrow format on disk. Compared to Parquet, Arrow is uncompressed which makes it much faster to reload which is great for local use on disk and ephemeral caching. But since it’s larger and with less metadata, it is slower to upload/download/query than Parquet and less suited for long term storage.</p>
+<p>Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.save_to_disk</span></code>] and [<code class="docutils literal notranslate"><span class="pre">load_from_disk</span></code>] function to reload the dataset from your disk:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_dataset</span><span class="o">.</span><span class="n">save_to_disk</span><span class="p">(</span><span class="s2">&quot;path/of/my/dataset/directory&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># later</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_from_disk</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reloaded_dataset</span> <span class="o">=</span> <span class="n">load_from_disk</span><span class="p">(</span><span class="s2">&quot;path/of/my/dataset/directory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="export">
+<h2>Export<a class="headerlink" href="#export" title="Link to this heading">#</a></h2>
+<p>🤗 Datasets supports exporting as well so you can work with your dataset in other applications. The following table shows currently supported file formats you can export to:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>File type</p></th>
+<th class="head"><p>Export method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CSV</p></td>
+<td><p>[<code class="docutils literal notranslate"><span class="pre">Dataset.to_csv</span></code>]</p></td>
+</tr>
+<tr class="row-odd"><td><p>JSON</p></td>
+<td><p>[<code class="docutils literal notranslate"><span class="pre">Dataset.to_json</span></code>]</p></td>
+</tr>
+<tr class="row-even"><td><p>Parquet</p></td>
+<td><p>[<code class="docutils literal notranslate"><span class="pre">Dataset.to_parquet</span></code>]</p></td>
+</tr>
+<tr class="row-odd"><td><p>SQL</p></td>
+<td><p>[<code class="docutils literal notranslate"><span class="pre">Dataset.to_sql</span></code>]</p></td>
+</tr>
+<tr class="row-even"><td><p>In-memory Python object</p></td>
+<td><p>[<code class="docutils literal notranslate"><span class="pre">Dataset.to_pandas</span></code>], [<code class="docutils literal notranslate"><span class="pre">Dataset.to_polars</span></code>] or [<code class="docutils literal notranslate"><span class="pre">Dataset.to_dict</span></code>]</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For example, export your dataset to a CSV file like this:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_dataset</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s2">&quot;path/of/my/dataset.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="loading.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Load</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="stream.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stream</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sort-shuffle-select-split-and-shard">Sort, shuffle, select, split, and shard</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sort">Sort</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shuffle">Shuffle</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#select-and-filter">Select and Filter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#split">Split</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#shard">Shard</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rename-remove-cast-and-flatten">Rename, remove, cast, and flatten</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rename">Rename</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#remove">Remove</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cast">Cast</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flatten">Flatten</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#map">Map</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multiprocessing">Multiprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-processing">Batch processing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#split-long-examples">Split long examples</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#data-augmentation">Data augmentation</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#asynchronous-processing">Asynchronous processing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#process-multiple-splits">Process multiple splits</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-usage">Distributed usage</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batch">Batch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concatenate">Concatenate</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interleave">Interleave</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#format">Format</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tensors-formats">Tensors formats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tabular-formats">Tabular formats</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-format-transform">Custom format transform</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#save">Save</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#export">Export</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/process.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

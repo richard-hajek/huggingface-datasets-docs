@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Dataset features &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'about_dataset_features';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Build and load" href="about_dataset_load.html" />
+    <link rel="prev" title="Differences between Dataset and IterableDataset" href="about_mapstyle_vs_iterable.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="about_arrow.html">Datasets 🤝 Arrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_cache.html">The cache</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_mapstyle_vs_iterable.html">Differences between Dataset and IterableDataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Dataset features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_dataset_load.html">Build and load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about_map_batch.html">Batch mapping</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="concepts.html" class="nav-link">Conceptual Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Dataset features</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="dataset-features">
+<h1>Dataset features<a class="headerlink" href="#dataset-features" title="Link to this heading">#</a></h1>
+<p>[<code class="docutils literal notranslate"><span class="pre">Features</span></code>] defines the internal structure of a dataset. It is used to specify the underlying serialization format. What’s more interesting to you though is that [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] contains high-level information about everything from the column names and types, to the [<code class="docutils literal notranslate"><span class="pre">ClassLabel</span></code>]. You can think of [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] as the backbone of a dataset.</p>
+<p>The [<code class="docutils literal notranslate"><span class="pre">Features</span></code>] format is simple: <code class="docutils literal notranslate"><span class="pre">dict[column_name,</span> <span class="pre">column_type]</span></code>. It is a dictionary of column name and column type pairs. The column type provides a wide range of options for describing the type of data you have.</p>
+<p>Let’s have a look at the features of the MRPC dataset from the GLUE benchmark:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;nyu-mll/glue&#39;</span><span class="p">,</span> <span class="s1">&#39;mrpc&#39;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;idx&#39;: Value(&#39;int32&#39;),</span>
+<span class="go"> &#39;label&#39;: ClassLabel(names=[&#39;not_equivalent&#39;, &#39;equivalent&#39;]),</span>
+<span class="go"> &#39;sentence1&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;sentence2&#39;: Value(&#39;string&#39;),</span>
+<span class="go">}</span>
+</pre></div>
+</div>
+<p>The [<code class="docutils literal notranslate"><span class="pre">Value</span></code>] feature tells 🤗 Datasets:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">idx</span></code> data type is <code class="docutils literal notranslate"><span class="pre">int32</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">sentence1</span></code> and <code class="docutils literal notranslate"><span class="pre">sentence2</span></code> data types are <code class="docutils literal notranslate"><span class="pre">string</span></code>.</p></li>
+</ul>
+<p>🤗 Datasets supports many other data types such as <code class="docutils literal notranslate"><span class="pre">bool</span></code>, <code class="docutils literal notranslate"><span class="pre">float32</span></code> and <code class="docutils literal notranslate"><span class="pre">binary</span></code> to name just a few.</p>
+<blockquote>
+<div><p>[!TIP]
+Refer to [<code class="docutils literal notranslate"><span class="pre">Value</span></code>] for a full list of supported data types.</p>
+</div></blockquote>
+<p>The [<code class="docutils literal notranslate"><span class="pre">ClassLabel</span></code>] feature informs 🤗 Datasets the <code class="docutils literal notranslate"><span class="pre">label</span></code> column contains two classes. The classes are labeled <code class="docutils literal notranslate"><span class="pre">not_equivalent</span></code> and <code class="docutils literal notranslate"><span class="pre">equivalent</span></code>. Labels are stored as integers in the dataset. When you retrieve the labels, [<code class="docutils literal notranslate"><span class="pre">ClassLabel.int2str</span></code>] and [<code class="docutils literal notranslate"><span class="pre">ClassLabel.str2int</span></code>] carries out the conversion from integer value to label name, and vice versa.</p>
+<p>If your data type contains a list of objects, then you want to use the [<code class="docutils literal notranslate"><span class="pre">List</span></code>] feature. Remember the SQuAD dataset?</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;rajpurkar/squad&#39;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s1">&#39;train&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="o">.</span><span class="n">features</span>
+<span class="go">{&#39;id&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;title&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;context&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;question&#39;: Value(&#39;string&#39;),</span>
+<span class="go"> &#39;answers&#39;: {&#39;text&#39;: List(Value(&#39;string&#39;)),</span>
+<span class="go">  &#39;answer_start&#39;: List(Value(&#39;int32&#39;))}}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">answers</span></code> field is constructed using the dict of features because and contains two subfields, <code class="docutils literal notranslate"><span class="pre">text</span></code> and <code class="docutils literal notranslate"><span class="pre">answer_start</span></code>, which are lists of <code class="docutils literal notranslate"><span class="pre">string</span></code> and <code class="docutils literal notranslate"><span class="pre">int32</span></code>, respectively.</p>
+<blockquote>
+<div><p>[!TIP]
+See the <a class="reference internal" href="#./process#flatten"><span class="xref myst">flatten</span></a> section to learn how you can extract the nested subfields as their own independent columns.</p>
+</div></blockquote>
+<p>The array feature type is useful for creating arrays of various sizes. You can create arrays with two dimensions using [<code class="docutils literal notranslate"><span class="pre">Array2D</span></code>], and even arrays with five dimensions using [<code class="docutils literal notranslate"><span class="pre">Array5D</span></code>].</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">Array2D</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)})</span>
+</pre></div>
+</div>
+<p>The array type also allows the first dimension of the array to be dynamic. This is useful for handling sequences with variable lengths such as sentences, without having to pad or truncate the input to a uniform shape.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">features</span> <span class="o">=</span> <span class="n">Features</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="n">Array3D</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int32&#39;</span><span class="p">)})</span>
+</pre></div>
+</div>
+<section id="audio-feature">
+<h2>Audio feature<a class="headerlink" href="#audio-feature" title="Link to this heading">#</a></h2>
+<p>Audio datasets have a column with type [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>], which contains three important fields:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code>: the decoded audio data represented as a 1-dimensional array.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: the path to the downloaded audio file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sampling_rate</span></code>: the sampling rate of the audio data.</p></li>
+</ul>
+<p>When you load an audio dataset and call the audio column, the [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] feature automatically decodes and resamples the audio file:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Audio</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PolyAI/minds14&quot;</span><span class="p">,</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;audio&quot;</span><span class="p">]</span>
+<span class="go">&lt;datasets.features._torchcodec.AudioDecoder object at 0x11642b6a0&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!WARNING]
+Index into an audio dataset using the row index first and then the <code class="docutils literal notranslate"><span class="pre">audio</span></code> column - <code class="docutils literal notranslate"><span class="pre">dataset[0][&quot;audio&quot;]</span></code> - to avoid decoding and resampling all the audio files in the dataset. Otherwise, this can be a slow and time-consuming process if you have a large dataset.</p>
+</div></blockquote>
+<p>With <code class="docutils literal notranslate"><span class="pre">decode=False</span></code>, the [<code class="docutils literal notranslate"><span class="pre">Audio</span></code>] type simply gives you the path or the bytes of the audio file, without decoding it into an torchcodec <code class="docutils literal notranslate"><span class="pre">AudioDecoder</span></code> object,</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;PolyAI/minds14&quot;</span><span class="p">,</span> <span class="s2">&quot;en-US&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;audio&quot;</span><span class="p">,</span> <span class="n">Audio</span><span class="p">(</span><span class="n">decode</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">{&#39;audio&#39;: {&#39;bytes&#39;: None,</span>
+<span class="go">  &#39;path&#39;: &#39;/root/.cache/huggingface/datasets/downloads/extracted/f14948e0e84be638dd7943ac36518a4cf3324e8b7aa331c5ab11541518e9368c/en-US~JOINT_ACCOUNT/602ba55abb1e6d0fbce92065.wav&#39;},</span>
+<span class="go"> &#39;english_transcription&#39;: &#39;I would like to set up a joint account with my partner&#39;,</span>
+<span class="go"> &#39;intent_class&#39;: 11,</span>
+<span class="go"> &#39;lang_id&#39;: 4,</span>
+<span class="go"> &#39;path&#39;: &#39;/root/.cache/huggingface/datasets/downloads/extracted/f14948e0e84be638dd7943ac36518a4cf3324e8b7aa331c5ab11541518e9368c/en-US~JOINT_ACCOUNT/602ba55abb1e6d0fbce92065.wav&#39;,</span>
+<span class="go"> &#39;transcription&#39;: &#39;I would like to set up a joint account with my partner&#39;}</span>
+</pre></div>
+</div>
+</section>
+<section id="image-feature">
+<h2>Image feature<a class="headerlink" href="#image-feature" title="Link to this heading">#</a></h2>
+<p>Image datasets have a column with type [<code class="docutils literal notranslate"><span class="pre">Image</span></code>], which loads <code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code> objects from images stored as bytes:</p>
+<p>When you load an image dataset and call the image column, the [<code class="docutils literal notranslate"><span class="pre">Image</span></code>] feature automatically decodes the image file:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span><span class="p">,</span> <span class="n">Image</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;AI-Lab-Makerere/beans&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+<span class="go">&lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=500x500 at 0x125506CF8&gt;</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!WARNING]
+Index into an image dataset using the row index first and then the <code class="docutils literal notranslate"><span class="pre">image</span></code> column - <code class="docutils literal notranslate"><span class="pre">dataset[0][&quot;image&quot;]</span></code> - to avoid decoding all the image files in the dataset. Otherwise, this can be a slow and time-consuming process if you have a large dataset.</p>
+</div></blockquote>
+<p>With <code class="docutils literal notranslate"><span class="pre">decode=False</span></code>, the [<code class="docutils literal notranslate"><span class="pre">Image</span></code>] type simply gives you the path or the bytes of the image file, without decoding it into an <code class="docutils literal notranslate"><span class="pre">PIL.Image</span></code>,</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;AI-Lab-Makerere/beans&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">,</span> <span class="n">Image</span><span class="p">(</span><span class="n">decode</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;image&quot;</span><span class="p">]</span>
+<span class="go">{&#39;bytes&#39;: None,</span>
+<span class="go"> &#39;path&#39;: &#39;/Users/username/.cache/huggingface/datasets/downloads/extracted/772e7c1fba622cff102b85dd74bcce46e8168634df4eaade7bedd3b8d91d3cd7/train/healthy/healthy_train.265.jpg&#39;}</span>
+</pre></div>
+</div>
+<p>Depending on the dataset, you may get the path to the local downloaded image, or the content of the image as bytes if the dataset is not made of individual files.</p>
+<p>You can also define a dataset of images from numpy arrays:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)]},</span> <span class="n">features</span><span class="o">=</span><span class="n">Features</span><span class="p">({</span><span class="s2">&quot;i&quot;</span><span class="p">:</span> <span class="n">Image</span><span class="p">()}))</span>
+</pre></div>
+</div>
+<p>And in this case the numpy arrays are encoded into PNG (or TIFF if the pixels values precision is important).</p>
+<p>For multi-channels arrays like RGB or RGBA, only uint8 is supported. If you use a larger precision, you get a warning and the array is downcasted to uint8.
+For gray-scale images you can use the integer or float precision you want as long as it is compatible with <code class="docutils literal notranslate"><span class="pre">Pillow</span></code>. A warning is shown if your image integer or float precision is too high, and in this case the array is downcated: an int64 array is downcasted to int32, and a float64 array is downcasted to float32.</p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="about_mapstyle_vs_iterable.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Differences between Dataset and IterableDataset</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="about_dataset_load.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Build and load</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-feature">Audio feature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-feature">Image feature</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/about_dataset_features.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

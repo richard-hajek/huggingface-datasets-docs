@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>datasets.features.image &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=62d5458c"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/datasets/features/image';</script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">datasets.features.image</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for datasets.features.image</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pyarrow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pa</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">..</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..download.download_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DownloadConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..table</span><span class="w"> </span><span class="kn">import</span> <span class="n">array_cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.file_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_local_path</span><span class="p">,</span> <span class="n">xopen</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.py_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">first_non_null_value</span><span class="p">,</span> <span class="n">no_op_if_value_is_null</span><span class="p">,</span> <span class="n">string_to_dict</span>
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.Image</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeatureType</span>
+
+
+<span class="n">_IMAGE_COMPRESSION_FORMATS</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">_NATIVE_BYTEORDER</span> <span class="o">=</span> <span class="s2">&quot;&lt;&quot;</span> <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span> <span class="o">==</span> <span class="s2">&quot;little&quot;</span> <span class="k">else</span> <span class="s2">&quot;&gt;&quot;</span>
+<span class="c1"># Origin: https://github.com/python-pillow/Pillow/blob/698951e19e19972aeed56df686868f1329981c12/src/PIL/Image.py#L3126 minus &quot;|i1&quot; which values are not preserved correctly when saving and loading an image</span>
+<span class="n">_VALID_IMAGE_ARRAY_DTPYES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;|b1&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;|u1&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;u2&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&gt;u2&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;i2&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&gt;i2&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;u4&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&gt;u4&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;i4&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&gt;i4&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;f4&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&gt;f4&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&lt;f8&quot;</span><span class="p">),</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;&gt;f8&quot;</span><span class="p">),</span>
+<span class="p">]</span>
+
+
+<div class="viewcode-block" id="Image">
+<a class="viewcode-back" href="../../../api/generated/datasets.Image.html#datasets.Image">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Image</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Image [`Feature`] to read image data from an image file.</span>
+
+<span class="sd">    Input: The Image feature accepts as input:</span>
+<span class="sd">    - A `str`: Absolute path to the image file (i.e. random access is allowed).</span>
+<span class="sd">    - A `pathlib.Path`: path to the image file (i.e. random access is allowed).</span>
+<span class="sd">    - A `dict` with the keys:</span>
+
+<span class="sd">        - `path`: String with relative path of the image file to the archive file.</span>
+<span class="sd">        - `bytes`: Bytes of the image file.</span>
+
+<span class="sd">      This is useful for parquet or webdataset files which embed image files.</span>
+
+<span class="sd">    - An `np.ndarray`: NumPy array representing an image.</span>
+<span class="sd">    - A `PIL.Image.Image`: PIL image object.</span>
+
+<span class="sd">    Output: The Image features output data as `PIL.Image.Image` objects.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        mode (`str`, *optional*):</span>
+<span class="sd">            The mode to convert the image to. If `None`, the native mode of the image is used.</span>
+<span class="sd">        decode (`bool`, defaults to `True`):</span>
+<span class="sd">            Whether to decode the image data. If `False`,</span>
+<span class="sd">            returns the underlying dictionary in the format `{&quot;path&quot;: image_path, &quot;bytes&quot;: image_bytes}`.</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    ```py</span>
+<span class="sd">    &gt;&gt;&gt; from datasets import load_dataset, Image</span>
+<span class="sd">    &gt;&gt;&gt; ds = load_dataset(&quot;AI-Lab-Makerere/beans&quot;, split=&quot;train&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; ds.features[&quot;image&quot;]</span>
+<span class="sd">    Image(decode=True, id=None)</span>
+<span class="sd">    &gt;&gt;&gt; ds[0][&quot;image&quot;]</span>
+<span class="sd">    &lt;PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=500x500 at 0x15E52E7F0&gt;</span>
+<span class="sd">    &gt;&gt;&gt; ds = ds.cast_column(&#39;image&#39;, Image(decode=False))</span>
+<span class="sd">    {&#39;bytes&#39;: None,</span>
+<span class="sd">     &#39;path&#39;: &#39;/root/.cache/huggingface/datasets/downloads/extracted/b0a21163f78769a2cf11f58dfc767fb458fc7cea5c05dccc0144a2c0f0bc1292/train/healthy/healthy_train.85.jpg&#39;}</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">mode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">decode</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="c1"># Automatically constructed</span>
+    <span class="n">dtype</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;PIL.Image.Image&quot;</span>
+    <span class="n">pa_type</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">struct</span><span class="p">({</span><span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">binary</span><span class="p">(),</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">()})</span>
+    <span class="n">_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">&quot;Image&quot;</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="nb">repr</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pa_type</span>
+
+<div class="viewcode-block" id="Image.encode_example">
+<a class="viewcode-back" href="../../../api/generated/datasets.Image.html#datasets.Image.encode_example">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">encode_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytearray</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="s2">&quot;PIL.Image.Image&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Encode example into a format for Arrow.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (`str`, `np.ndarray`, `PIL.Image.Image` or `dict`):</span>
+<span class="sd">                Data passed as input to Image feature.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `dict` with &quot;path&quot; and &quot;bytes&quot; fields</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">PIL_AVAILABLE</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.Image</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;To support encoding images, please install &#39;Pillow&#39;.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">,</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">absolute</span><span class="p">()),</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">bytes</span><span class="p">,</span> <span class="nb">bytearray</span><span class="p">)):</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="n">value</span><span class="p">}</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="c1"># convert the image array to PNG/TIFF bytes</span>
+            <span class="k">return</span> <span class="n">encode_np_array</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+            <span class="c1"># convert the PIL image to bytes (default format is PNG/TIFF)</span>
+            <span class="k">return</span> <span class="n">encode_pil_image</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]):</span>
+            <span class="c1"># we set &quot;bytes&quot;: None to not duplicate the data if they&#39;re already available locally</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)}</span>
+        <span class="k">elif</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bytes&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># store the image bytes, and path is used to infer the image format using the file extension</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;bytes&quot;</span><span class="p">),</span> <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">value</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;An image sample should have one of &#39;path&#39; or &#39;bytes&#39; but they are missing or None in </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Image.decode_example">
+<a class="viewcode-back" href="../../../api/generated/datasets.Image.html#datasets.Image.decode_example">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_example</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">token_per_repo_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;PIL.Image.Image&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode example image file into image data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (`str` or `dict`):</span>
+<span class="sd">                A string with the absolute image file path, a dictionary with</span>
+<span class="sd">                keys:</span>
+
+<span class="sd">                - `path`: String with absolute or relative image file path.</span>
+<span class="sd">                - `bytes`: The bytes of the image file.</span>
+<span class="sd">            token_per_repo_id (`dict`, *optional*):</span>
+<span class="sd">                To access and decode</span>
+<span class="sd">                image files from private repositories on the Hub, you can pass</span>
+<span class="sd">                a dictionary repo_id (`str`) -&gt; token (`bool` or `str`).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `PIL.Image.Image`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Decoding is disabled for this feature. Please use Image(decode=True) instead.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">PIL_AVAILABLE</span><span class="p">:</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.Image</span>
+            <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.ImageOps</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;To support decoding images, please install &#39;Pillow&#39;.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">token_per_repo_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">token_per_repo_id</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">path</span><span class="p">,</span> <span class="n">bytes_</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">bytes_</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An image should have one of &#39;path&#39; or &#39;bytes&#39; but both are None in </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">is_local_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                    <span class="n">image</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">source_url</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">config</span><span class="o">.</span><span class="n">HUB_DATASETS_URL</span>
+                        <span class="k">if</span> <span class="n">source_url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">HF_ENDPOINT</span><span class="p">)</span>
+                        <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">HUB_DATASETS_HFFS_URL</span>
+                    <span class="p">)</span>
+                    <span class="n">source_url_fields</span> <span class="o">=</span> <span class="n">string_to_dict</span><span class="p">(</span><span class="n">source_url</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+                    <span class="n">token</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">token_per_repo_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">source_url_fields</span><span class="p">[</span><span class="s2">&quot;repo_id&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">source_url_fields</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+                    <span class="p">)</span>
+                    <span class="n">download_config</span> <span class="o">=</span> <span class="n">DownloadConfig</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+                    <span class="k">with</span> <span class="n">xopen</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">bytes_</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+                    <span class="n">image</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">bytes_</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">bytes_</span><span class="p">))</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>  <span class="c1"># to avoid &quot;Too many open files&quot; errors</span>
+        <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">getexif</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">ExifTags</span><span class="o">.</span><span class="n">Base</span><span class="o">.</span><span class="n">Orientation</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">ImageOps</span><span class="o">.</span><span class="n">exif_transpose</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">image</span></div>
+
+
+<div class="viewcode-block" id="Image.flatten">
+<a class="viewcode-back" href="../../../api/generated/datasets.Image.html#datasets.Image.flatten">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flatten</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="s2">&quot;FeatureType&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;FeatureType&quot;</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;If in the decodable state, return the feature itself, otherwise flatten the feature into a dictionary.&quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">.features</span><span class="w"> </span><span class="kn">import</span> <span class="n">Value</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">decode</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s2">&quot;binary&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">Value</span><span class="p">(</span><span class="s2">&quot;string&quot;</span><span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Image.cast_storage">
+<a class="viewcode-back" href="../../../api/generated/datasets.Image.html#datasets.Image.cast_storage">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">cast_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">storage</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pa</span><span class="o">.</span><span class="n">StringArray</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="p">,</span> <span class="n">pa</span><span class="o">.</span><span class="n">ListArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cast an Arrow array to the Image arrow storage type.</span>
+<span class="sd">        The Arrow types that can be converted to the Image pyarrow storage type are:</span>
+
+<span class="sd">        - `pa.string()` - it must contain the &quot;path&quot; data</span>
+<span class="sd">        - `pa.large_string()` - it must contain the &quot;path&quot; data (will be cast to string if possible)</span>
+<span class="sd">        - `pa.binary()` - it must contain the image bytes</span>
+<span class="sd">        - `pa.struct({&quot;bytes&quot;: pa.binary()})`</span>
+<span class="sd">        - `pa.struct({&quot;path&quot;: pa.string()})`</span>
+<span class="sd">        - `pa.struct({&quot;bytes&quot;: pa.binary(), &quot;path&quot;: pa.string()})`  - order doesn&#39;t matter</span>
+<span class="sd">        - `pa.list(*)` - it must contain the image array data</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            storage (`Union[pa.StringArray, pa.StructArray, pa.ListArray]`):</span>
+<span class="sd">                PyArrow array to cast.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `pa.StructArray`: Array in the Image arrow storage type, that is</span>
+<span class="sd">                `pa.struct({&quot;bytes&quot;: pa.binary(), &quot;path&quot;: pa.string()})`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">pa</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_large_string</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">storage</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">())</span>
+            <span class="k">except</span> <span class="n">pa</span><span class="o">.</span><span class="n">ArrowInvalid</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Failed to cast large_string to string for Image feature. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;This can happen if string values exceed 2GB. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Original error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
+        <span class="k">if</span> <span class="n">pa</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_string</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="p">):</span>
+            <span class="n">bytes_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">storage</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">binary</span><span class="p">())</span>
+            <span class="n">storage</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([</span><span class="n">bytes_array</span><span class="p">,</span> <span class="n">storage</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">storage</span><span class="o">.</span><span class="n">is_null</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">pa</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_binary</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="p">):</span>
+            <span class="n">path_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">storage</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">())</span>
+            <span class="n">storage</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([</span><span class="n">storage</span><span class="p">,</span> <span class="n">path_array</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">storage</span><span class="o">.</span><span class="n">is_null</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">pa</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_struct</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">get_field_index</span><span class="p">(</span><span class="s2">&quot;bytes&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">bytes_array</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;bytes&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">bytes_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">storage</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">binary</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">get_field_index</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">path_array</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">path_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">storage</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">())</span>
+            <span class="n">storage</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([</span><span class="n">bytes_array</span><span class="p">,</span> <span class="n">path_array</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">storage</span><span class="o">.</span><span class="n">is_null</span><span class="p">())</span>
+        <span class="k">elif</span> <span class="n">pa</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">is_list</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">type</span><span class="p">):</span>
+            <span class="n">bytes_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">encode_np_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">arr</span><span class="p">))[</span><span class="s2">&quot;bytes&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="n">arr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">arr</span> <span class="ow">in</span> <span class="n">storage</span><span class="o">.</span><span class="n">to_pylist</span><span class="p">()],</span>
+                <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">binary</span><span class="p">(),</span>
+            <span class="p">)</span>
+            <span class="n">path_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">storage</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">())</span>
+            <span class="n">storage</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">bytes_array</span><span class="p">,</span> <span class="n">path_array</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">bytes_array</span><span class="o">.</span><span class="n">is_null</span><span class="p">()</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">array_cast</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pa_type</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Image.embed_storage">
+<a class="viewcode-back" href="../../../api/generated/datasets.Image.html#datasets.Image.embed_storage">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed_storage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">storage</span><span class="p">:</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="p">,</span> <span class="n">token_per_repo_id</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Embed image files into the Arrow array.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            storage (`pa.StructArray`):</span>
+<span class="sd">                PyArrow array to embed.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            `pa.StructArray`: Array in the Image arrow storage type, that is</span>
+<span class="sd">                `pa.struct({&quot;bytes&quot;: pa.binary(), &quot;path&quot;: pa.string()})`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">token_per_repo_id</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">token_per_repo_id</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="nd">@no_op_if_value_is_null</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">path_to_bytes</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">source_url</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;::&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">config</span><span class="o">.</span><span class="n">HUB_DATASETS_URL</span> <span class="k">if</span> <span class="n">source_url</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">HF_ENDPOINT</span><span class="p">)</span> <span class="k">else</span> <span class="n">config</span><span class="o">.</span><span class="n">HUB_DATASETS_HFFS_URL</span>
+            <span class="p">)</span>
+            <span class="n">source_url_fields</span> <span class="o">=</span> <span class="n">string_to_dict</span><span class="p">(</span><span class="n">source_url</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+            <span class="n">token</span> <span class="o">=</span> <span class="n">token_per_repo_id</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">source_url_fields</span><span class="p">[</span><span class="s2">&quot;repo_id&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">source_url_fields</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="n">download_config</span> <span class="o">=</span> <span class="n">DownloadConfig</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">xopen</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">,</span> <span class="n">download_config</span><span class="o">=</span><span class="n">download_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="n">bytes_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="p">(</span><span class="n">path_to_bytes</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">])</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">storage</span><span class="o">.</span><span class="n">to_pylist</span><span class="p">()</span>
+            <span class="p">],</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">binary</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">path_array</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">storage</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">to_pylist</span><span class="p">()],</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">pa</span><span class="o">.</span><span class="n">string</span><span class="p">(),</span>
+        <span class="p">)</span>
+        <span class="n">storage</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">StructArray</span><span class="o">.</span><span class="n">from_arrays</span><span class="p">([</span><span class="n">bytes_array</span><span class="p">,</span> <span class="n">path_array</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;bytes&quot;</span><span class="p">,</span> <span class="s2">&quot;path&quot;</span><span class="p">],</span> <span class="n">mask</span><span class="o">=</span><span class="n">bytes_array</span><span class="o">.</span><span class="n">is_null</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">array_cast</span><span class="p">(</span><span class="n">storage</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pa_type</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">list_image_compression_formats</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">PIL_AVAILABLE</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.Image</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;To support encoding images, please install &#39;Pillow&#39;.&quot;</span><span class="p">)</span>
+
+    <span class="k">global</span> <span class="n">_IMAGE_COMPRESSION_FORMATS</span>
+    <span class="k">if</span> <span class="n">_IMAGE_COMPRESSION_FORMATS</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+        <span class="n">_IMAGE_COMPRESSION_FORMATS</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">OPEN</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">SAVE</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+    <span class="k">return</span> <span class="n">_IMAGE_COMPRESSION_FORMATS</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">image_to_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="s2">&quot;PIL.Image.Image&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a PIL Image object to bytes using native compression if possible, otherwise use PNG/TIFF compression.&quot;&quot;&quot;</span>
+    <span class="n">buffer</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">format</span> <span class="ow">in</span> <span class="n">list_image_compression_formats</span><span class="p">():</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">image</span><span class="o">.</span><span class="n">format</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="s2">&quot;PNG&quot;</span> <span class="k">if</span> <span class="n">image</span><span class="o">.</span><span class="n">mode</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">,</span> <span class="s2">&quot;LA&quot;</span><span class="p">,</span> <span class="s2">&quot;RGB&quot;</span><span class="p">,</span> <span class="s2">&quot;RGBA&quot;</span><span class="p">]</span> <span class="k">else</span> <span class="s2">&quot;TIFF&quot;</span>
+    <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">encode_pil_image</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="s2">&quot;PIL.Image.Image&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s2">&quot;filename&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">image</span><span class="o">.</span><span class="n">filename</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">image</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="n">image_to_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">)}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">encode_np_array</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">PIL_AVAILABLE</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.Image</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;To support encoding images, please install &#39;Pillow&#39;.&quot;</span><span class="p">)</span>
+
+    <span class="n">dtype</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">dtype</span>
+    <span class="n">dtype_byteorder</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">byteorder</span> <span class="k">if</span> <span class="n">dtype</span><span class="o">.</span><span class="n">byteorder</span> <span class="o">!=</span> <span class="s2">&quot;=&quot;</span> <span class="k">else</span> <span class="n">_NATIVE_BYTEORDER</span>
+    <span class="n">dtype_kind</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">kind</span>
+    <span class="n">dtype_itemsize</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">itemsize</span>
+
+    <span class="n">dest_dtype</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># Multi-channel array case (only np.dtype(&quot;|u1&quot;) is allowed)</span>
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">dtype_kind</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="s2">&quot;i&quot;</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Unsupported array dtype </span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> for image encoding. Only </span><span class="si">{</span><span class="n">dest_dtype</span><span class="si">}</span><span class="s2"> is supported for multi-channel arrays.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">dest_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s2">&quot;|u1&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="o">!=</span> <span class="n">dest_dtype</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downcasting array dtype </span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dest_dtype</span><span class="si">}</span><span class="s2"> to be compatible with &#39;Pillow&#39;&quot;</span><span class="p">)</span>
+    <span class="c1"># Exact match</span>
+    <span class="k">elif</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="n">_VALID_IMAGE_ARRAY_DTPYES</span><span class="p">:</span>
+        <span class="n">dest_dtype</span> <span class="o">=</span> <span class="n">dtype</span>
+    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Downcast the type within the kind (np.can_cast(from_type, to_type, casting=&quot;same_kind&quot;) doesn&#39;t behave as expected, so do it manually)</span>
+        <span class="k">while</span> <span class="n">dtype_itemsize</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">dtype_str</span> <span class="o">=</span> <span class="n">dtype_byteorder</span> <span class="o">+</span> <span class="n">dtype_kind</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dtype_itemsize</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype_str</span><span class="p">)</span> <span class="ow">in</span> <span class="n">_VALID_IMAGE_ARRAY_DTPYES</span><span class="p">:</span>
+                <span class="n">dest_dtype</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="n">dtype_str</span><span class="p">)</span>
+                <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Downcasting array dtype </span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">dest_dtype</span><span class="si">}</span><span class="s2"> to be compatible with &#39;Pillow&#39;&quot;</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">dtype_itemsize</span> <span class="o">//=</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="n">dest_dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Cannot downcast dtype </span><span class="si">{</span><span class="n">dtype</span><span class="si">}</span><span class="s2"> to a valid image dtype. Valid image dtypes: </span><span class="si">{</span><span class="n">_VALID_IMAGE_ARRAY_DTPYES</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+    <span class="n">image</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dest_dtype</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="n">image_to_bytes</span><span class="p">(</span><span class="n">image</span><span class="p">)}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">objects_to_list_of_image_dicts</span><span class="p">(</span>
+    <span class="n">objs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="s2">&quot;PIL.Image.Image&quot;</span><span class="p">]],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Encode a list of objects into a format suitable for creating an extension array of type `ImageExtensionType`.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">PIL_AVAILABLE</span><span class="p">:</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">PIL.Image</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">&quot;To support encoding images, please install &#39;Pillow&#39;.&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">objs</span><span class="p">:</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">first_non_null_value</span><span class="p">(</span><span class="n">objs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[{</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="n">obj</span><span class="p">,</span> <span class="s2">&quot;bytes&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span> <span class="k">if</span> <span class="n">obj</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="kc">None</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">obj_to_image_dict_func</span> <span class="o">=</span> <span class="n">no_op_if_value_is_null</span><span class="p">(</span><span class="n">encode_np_array</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">obj_to_image_dict_func</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">):</span>
+            <span class="n">obj_to_image_dict_func</span> <span class="o">=</span> <span class="n">no_op_if_value_is_null</span><span class="p">(</span><span class="n">encode_pil_image</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">obj_to_image_dict_func</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">objs</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">objs</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

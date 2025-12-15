@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Create a NIfTI dataset &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=62d5458c"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=fd10adb8"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'nifti_dataset';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Load text data" href="nlp_load.html" />
+    <link rel="prev" title="Create a document dataset" href="document_dataset.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="api/index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="loading.html">Load</a></li>
+<li class="toctree-l1"><a class="reference internal" href="process.html">Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stream.html">Stream</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pytorch.html">Use with PyTorch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_tensorflow.html">Using Datasets with TensorFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_numpy.html">Use with NumPy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_jax.html">Use with JAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pandas.html">Use with Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_polars.html">Use with Polars</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_pyarrow.html">Use with PyArrow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="use_with_spark.html">Use with Spark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cache.html">Cache management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="filesystems.html">Cloud storage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="faiss_es.html">Search index</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_load.html">Load audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_process.html">Process audio data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="audio_dataset.html">Create an audio dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_load.html">Load image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_process.html">Process image data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_dataset.html">Create an image dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="depth_estimation.html">Depth estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="image_classification.html">Image classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="semantic_segmentation.html">Semantic segmentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="object_detection.html">Object detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_load.html">Load video data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="video_dataset.html">Create a video dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_load.html">Load pdf data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="document_dataset.html">Create a document dataset</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Create a NIfTI dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_load.html">Load text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nlp_process.html">Process text data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabular_load.html">Load tabular data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="share.html">Share a dataset using the CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dataset_card.html">Create a dataset card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repository_structure.html">Structure your repository</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="howto.html" class="nav-link">How-to Guides</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Create a NIfTI dataset</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="create-a-nifti-dataset">
+<h1>Create a NIfTI dataset<a class="headerlink" href="#create-a-nifti-dataset" title="Link to this heading">#</a></h1>
+<p>This page shows how to create and share a dataset of medical images in NIfTI format (.nii / .nii.gz) using the <code class="docutils literal notranslate"><span class="pre">datasets</span></code> library.</p>
+<p>You can share a dataset with your team or with anyone in the community by creating a dataset repository on the Hugging Face Hub:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;&lt;username&gt;/my_nifti_dataset&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>There are two common ways to create a NIfTI dataset:</p>
+<ul class="simple">
+<li><p>Create a dataset from local NIfTI files in Python and upload it with <code class="docutils literal notranslate"><span class="pre">Dataset.push_to_hub</span></code>.</p></li>
+<li><p>Use a folder-based convention (one file per example) and a small helper to convert it into a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>.</p></li>
+</ul>
+<blockquote>
+<div><p>[!TIP]
+You can control access to your dataset by requiring users to share their contact information first. Check out the <a class="reference external" href="https://huggingface.co/docs/hub/datasets-gated">Gated datasets</a> guide for more information.</p>
+</div></blockquote>
+<section id="local-files">
+<h2>Local files<a class="headerlink" href="#local-files" title="Link to this heading">#</a></h2>
+<p>If you already have a list of file paths to NIfTI files, the easiest workflow is to create a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> from that list and cast the column to the <code class="docutils literal notranslate"><span class="pre">Nifti</span></code> feature.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Nifti</span>
+
+<span class="c1"># simple example: create a dataset from file paths</span>
+<span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/path/to/scan_001.nii.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;/path/to/scan_002.nii.gz&quot;</span><span class="p">]</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;nifti&quot;</span><span class="p">:</span> <span class="n">files</span><span class="p">})</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;nifti&quot;</span><span class="p">,</span> <span class="n">Nifti</span><span class="p">())</span>
+
+<span class="c1"># access a decoded nibabel image (if decode=True)</span>
+<span class="c1"># ds[0][&quot;nifti&quot;] will be a nibabel.Nifti1Image object when decode=True</span>
+<span class="c1"># or a dict {&#39;bytes&#39;: None, &#39;path&#39;: &#39;...&#39;} when decode=False</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Nifti</span></code> feature supports a <code class="docutils literal notranslate"><span class="pre">decode</span></code> parameter. When <code class="docutils literal notranslate"><span class="pre">decode=True</span></code> (the default), it loads the NIfTI file into a <code class="docutils literal notranslate"><span class="pre">nibabel.nifti1.Nifti1Image</span></code> object. You can access the image data as a numpy array with <code class="docutils literal notranslate"><span class="pre">img.get_fdata()</span></code>. When <code class="docutils literal notranslate"><span class="pre">decode=False</span></code>, it returns a dict with the file path and bytes.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">Nifti</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;nifti&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;/path/to/scan.nii.gz&quot;</span><span class="p">]})</span><span class="o">.</span><span class="n">cast_column</span><span class="p">(</span><span class="s2">&quot;nifti&quot;</span><span class="p">,</span> <span class="n">Nifti</span><span class="p">(</span><span class="n">decode</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;nifti&quot;</span><span class="p">]</span>  <span class="c1"># instance of: nibabel.nifti1.Nifti1Image</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After preparing the dataset you can push it to the Hub:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">ds</span><span class="o">.</span><span class="n">push_to_hub</span><span class="p">(</span><span class="s2">&quot;&lt;username&gt;/my_nifti_dataset&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This will create a dataset repository containing your NIfTI dataset with a <code class="docutils literal notranslate"><span class="pre">data/</span></code> folder of parquet shards.</p>
+</section>
+<section id="folder-conventions-and-metadata">
+<h2>Folder conventions and metadata<a class="headerlink" href="#folder-conventions-and-metadata" title="Link to this heading">#</a></h2>
+<p>If you organize your dataset in folders you can create splits automatically (train/test/validation) by following a structure like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">scan_0001</span><span class="o">.</span><span class="n">nii</span>
+<span class="n">dataset</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">scan_0002</span><span class="o">.</span><span class="n">nii</span>
+<span class="n">dataset</span><span class="o">/</span><span class="n">validation</span><span class="o">/</span><span class="n">scan_1001</span><span class="o">.</span><span class="n">nii</span>
+<span class="n">dataset</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">scan_2001</span><span class="o">.</span><span class="n">nii</span>
+</pre></div>
+</div>
+<p>If you have labels or other metadata, provide a <code class="docutils literal notranslate"><span class="pre">metadata.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">metadata.jsonl</span></code>, or <code class="docutils literal notranslate"><span class="pre">metadata.parquet</span></code> in the folder so files can be linked to metadata rows. The metadata must contain a <code class="docutils literal notranslate"><span class="pre">file_name</span></code> (or <code class="docutils literal notranslate"><span class="pre">*_file_name</span></code>) field with the relative path to the NIfTI file next to the metadata file.</p>
+<p>Example <code class="docutils literal notranslate"><span class="pre">metadata.csv</span></code>:</p>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>file_name,patient_id,age,diagnosis
+scan_0001.nii.gz,P001,45,healthy
+scan_0002.nii.gz,P002,59,disease_x
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Nifti</span></code> feature works with zipped datasets too — each zip can contain NIfTI files and a metadata file. This is useful when uploading large datasets as archives.
+This means your dataset structure could look like this (mixed compressed and uncompressed files):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dataset</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">scan_0001</span><span class="o">.</span><span class="n">nii</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">dataset</span><span class="o">/</span><span class="n">train</span><span class="o">/</span><span class="n">scan_0002</span><span class="o">.</span><span class="n">nii</span>
+<span class="n">dataset</span><span class="o">/</span><span class="n">validation</span><span class="o">/</span><span class="n">scan_1001</span><span class="o">.</span><span class="n">nii</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">dataset</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">scan_2001</span><span class="o">.</span><span class="n">nii</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-to-pytorch-tensors">
+<h2>Converting to PyTorch tensors<a class="headerlink" href="#converting-to-pytorch-tensors" title="Link to this heading">#</a></h2>
+<p>Use the [<code class="docutils literal notranslate"><span class="pre">~Dataset.set_transform</span></code>] function to apply the transformation on-the-fly to batches of the dataset:</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span> 
+<span class="kn">import</span><span class="w"> </span><span class="nn">nibabel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">transform_to_pytorch</span><span class="p">(</span><span class="n">example</span><span class="p">):</span>
+    <span class="n">example</span><span class="p">[</span><span class="s2">&quot;nifti_torch&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">ex</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">())</span> <span class="k">for</span> <span class="n">ex</span> <span class="ow">in</span> <span class="n">example</span><span class="p">[</span><span class="s2">&quot;nifti&quot;</span><span class="p">]]</span>
+    <span class="k">return</span> <span class="n">example</span>
+
+<span class="n">ds</span><span class="o">.</span><span class="n">set_transform</span><span class="p">(</span><span class="n">transform_to_pytorch</span><span class="p">)</span>
+
+</pre></div>
+</div>
+<p>Accessing elements now (e.g. <code class="docutils literal notranslate"><span class="pre">ds[0]</span></code>) will yield torch tensors in the <code class="docutils literal notranslate"><span class="pre">&quot;nifti_torch&quot;</span></code> key.</p>
+</section>
+<section id="usage-of-nifti1image">
+<h2>Usage of NifTI1Image<a class="headerlink" href="#usage-of-nifti1image" title="Link to this heading">#</a></h2>
+<p>NifTI is a format to store the result of 3 (or even 4) dimensional brain scans. This includes 3 spatial dimensions (x,y,z)
+and optionally a time dimension (t). Furthermore, the given positions here are only relative to the scanner, therefore
+the dimensions (4, 5, 6) are used to lift this to real world coordinates.</p>
+<p>You can visualize nifti files for instance leveraging <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">show_slices</span><span class="p">(</span><span class="n">slices</span><span class="p">):</span>
+<span class="w">   </span><span class="sd">&quot;&quot;&quot; Function to display row of image slices &quot;&quot;&quot;</span>
+   <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">slices</span><span class="p">))</span>
+   <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="nb">slice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">slices</span><span class="p">):</span>
+       <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="nb">slice</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+
+<span class="n">nifti_ds</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;&lt;username&gt;/my_nifti_dataset&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">epi_img</span> <span class="ow">in</span> <span class="n">nifti_ds</span><span class="p">:</span>
+    <span class="n">nifti_img</span> <span class="o">=</span> <span class="n">epi_img</span><span class="p">[</span><span class="s2">&quot;nifti&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">get_fdata</span><span class="p">()</span>
+    <span class="n">show_slices</span><span class="p">([</span><span class="n">nifti_img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">16</span><span class="p">],</span> <span class="n">nifti_img</span><span class="p">[</span><span class="mi">26</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">nifti_img</span><span class="p">[:,</span> <span class="mi">30</span><span class="p">,</span> <span class="p">:]])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="for-further-reading-we-refer-to-the-nibabel-documentation-and-especially-this-nibabel-tutorial">
+<h2>For further reading we refer to the <a class="reference external" href="https://nipy.org/nibabel/index.html">nibabel documentation</a> and especially <a class="reference external" href="https://nipy.org/nibabel/coordinate_systems.html">this nibabel tutorial</a><a class="headerlink" href="#for-further-reading-we-refer-to-the-nibabel-documentation-and-especially-this-nibabel-tutorial" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="document_dataset.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Create a document dataset</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="nlp_load.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Load text data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-files">Local files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#folder-conventions-and-metadata">Folder conventions and metadata</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#converting-to-pytorch-tensors">Converting to PyTorch tensors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#usage-of-nifti1image">Usage of NifTI1Image</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-further-reading-we-refer-to-the-nibabel-documentation-and-especially-this-nibabel-tutorial">For further reading we refer to the nibabel documentation and especially this nibabel tutorial</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/nifti_dataset.mdx">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

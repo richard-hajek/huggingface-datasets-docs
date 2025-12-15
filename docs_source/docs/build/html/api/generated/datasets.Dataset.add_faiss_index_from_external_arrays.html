@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>datasets.Dataset.add_faiss_index_from_external_arrays &#8212; Datasets 4.4.2.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=564b2b0d" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=62d5458c"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=fd10adb8"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/datasets.Dataset.add_faiss_index_from_external_arrays';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="datasets.Dataset.save_faiss_index" href="datasets.Dataset.save_faiss_index.html" />
+    <link rel="prev" title="datasets.Dataset.add_faiss_index" href="datasets.Dataset.add_faiss_index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="4.4.2.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">🤗 Datasets</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../tutorials.html">
+    Tutorials
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../howto.html">
+    How-to Guides
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../concepts.html">
+    Conceptual Guides
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API Reference
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/huggingface/datasets" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://huggingface.co/datasets" title="Hugging Face" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-solid fa-house fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Hugging Face</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../dataset.html">Dataset</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.html">datasets.Dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.from_file.html">datasets.Dataset.from_file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.from_buffer.html">datasets.Dataset.from_buffer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.from_pandas.html">datasets.Dataset.from_pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.from_dict.html">datasets.Dataset.from_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.from_generator.html">datasets.Dataset.from_generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.data.html">datasets.Dataset.data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.cache_files.html">datasets.Dataset.cache_files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.num_columns.html">datasets.Dataset.num_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.num_rows.html">datasets.Dataset.num_rows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.column_names.html">datasets.Dataset.column_names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.shape.html">datasets.Dataset.shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.info.html">datasets.Dataset.info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.split.html">datasets.Dataset.split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.builder_name.html">datasets.Dataset.builder_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.citation.html">datasets.Dataset.citation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.config_name.html">datasets.Dataset.config_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.description.html">datasets.Dataset.description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.download_checksums.html">datasets.Dataset.download_checksums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.download_size.html">datasets.Dataset.download_size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.features.html">datasets.Dataset.features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.homepage.html">datasets.Dataset.homepage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.license.html">datasets.Dataset.license</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.size_in_bytes.html">datasets.Dataset.size_in_bytes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.supervised_keys.html">datasets.Dataset.supervised_keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.version.html">datasets.Dataset.version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.flatten.html">datasets.Dataset.flatten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.cast.html">datasets.Dataset.cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.cast_column.html">datasets.Dataset.cast_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.add_column.html">datasets.Dataset.add_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.remove_columns.html">datasets.Dataset.remove_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.rename_column.html">datasets.Dataset.rename_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.rename_columns.html">datasets.Dataset.rename_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.select_columns.html">datasets.Dataset.select_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.class_encode_column.html">datasets.Dataset.class_encode_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.sort.html">datasets.Dataset.sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.shuffle.html">datasets.Dataset.shuffle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.select.html">datasets.Dataset.select</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.filter.html">datasets.Dataset.filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.unique.html">datasets.Dataset.unique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.train_test_split.html">datasets.Dataset.train_test_split</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.shard.html">datasets.Dataset.shard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.map.html">datasets.Dataset.map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.batch.html">datasets.Dataset.batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.with_format.html">datasets.Dataset.with_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.with_transform.html">datasets.Dataset.with_transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.set_format.html">datasets.Dataset.set_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.set_transform.html">datasets.Dataset.set_transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.reset_format.html">datasets.Dataset.reset_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.formatted_as.html">datasets.Dataset.formatted_as</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.__len__.html">datasets.Dataset.__len__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.__iter__.html">datasets.Dataset.__iter__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.iter.html">datasets.Dataset.iter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.__getitem__.html">datasets.Dataset.__getitem__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.save_to_disk.html">datasets.Dataset.save_to_disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.load_from_disk.html">datasets.Dataset.load_from_disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_csv.html">datasets.Dataset.to_csv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_pandas.html">datasets.Dataset.to_pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_dict.html">datasets.Dataset.to_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_json.html">datasets.Dataset.to_json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_parquet.html">datasets.Dataset.to_parquet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_sql.html">datasets.Dataset.to_sql</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.to_iterable_dataset.html">datasets.Dataset.to_iterable_dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.push_to_hub.html">datasets.Dataset.push_to_hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.cleanup_cache_files.html">datasets.Dataset.cleanup_cache_files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.add_faiss_index.html">datasets.Dataset.add_faiss_index</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">datasets.Dataset.add_faiss_index_from_external_arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.save_faiss_index.html">datasets.Dataset.save_faiss_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.load_faiss_index.html">datasets.Dataset.load_faiss_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.add_elasticsearch_index.html">datasets.Dataset.add_elasticsearch_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.load_elasticsearch_index.html">datasets.Dataset.load_elasticsearch_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.list_indexes.html">datasets.Dataset.list_indexes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.get_index.html">datasets.Dataset.get_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.drop_index.html">datasets.Dataset.drop_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.search.html">datasets.Dataset.search</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.search_batch.html">datasets.Dataset.search_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.get_nearest_examples.html">datasets.Dataset.get_nearest_examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.get_nearest_examples_batch.html">datasets.Dataset.get_nearest_examples_batch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Dataset.align_labels_with_mapping.html">datasets.Dataset.align_labels_with_mapping</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../dataset_dict.html">DatasetDict</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.html">datasets.DatasetDict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.from_csv.html">datasets.DatasetDict.from_csv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.from_json.html">datasets.DatasetDict.from_json</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.from_parquet.html">datasets.DatasetDict.from_parquet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.from_text.html">datasets.DatasetDict.from_text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.data.html">datasets.DatasetDict.data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.cache_files.html">datasets.DatasetDict.cache_files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.num_columns.html">datasets.DatasetDict.num_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.num_rows.html">datasets.DatasetDict.num_rows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.column_names.html">datasets.DatasetDict.column_names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.shape.html">datasets.DatasetDict.shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.map.html">datasets.DatasetDict.map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.filter.html">datasets.DatasetDict.filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.sort.html">datasets.DatasetDict.sort</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.shuffle.html">datasets.DatasetDict.shuffle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.set_format.html">datasets.DatasetDict.set_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.reset_format.html">datasets.DatasetDict.reset_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.set_transform.html">datasets.DatasetDict.set_transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.with_format.html">datasets.DatasetDict.with_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.with_transform.html">datasets.DatasetDict.with_transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.flatten.html">datasets.DatasetDict.flatten</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.cast.html">datasets.DatasetDict.cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.cast_column.html">datasets.DatasetDict.cast_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.remove_columns.html">datasets.DatasetDict.remove_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.rename_column.html">datasets.DatasetDict.rename_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.rename_columns.html">datasets.DatasetDict.rename_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.select_columns.html">datasets.DatasetDict.select_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.class_encode_column.html">datasets.DatasetDict.class_encode_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.save_to_disk.html">datasets.DatasetDict.save_to_disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.load_from_disk.html">datasets.DatasetDict.load_from_disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.push_to_hub.html">datasets.DatasetDict.push_to_hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.cleanup_cache_files.html">datasets.DatasetDict.cleanup_cache_files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetDict.align_labels_with_mapping.html">datasets.DatasetDict.align_labels_with_mapping</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../iterable_dataset.html">IterableDataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.html">datasets.IterableDataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.from_generator.html">datasets.IterableDataset.from_generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.n_shards.html">datasets.IterableDataset.n_shards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.map.html">datasets.IterableDataset.map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.filter.html">datasets.IterableDataset.filter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.shuffle.html">datasets.IterableDataset.shuffle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.skip.html">datasets.IterableDataset.skip</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.take.html">datasets.IterableDataset.take</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.with_format.html">datasets.IterableDataset.with_format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.__iter__.html">datasets.IterableDataset.__iter__</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.iter.html">datasets.IterableDataset.iter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.add_column.html">datasets.IterableDataset.add_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.remove_columns.html">datasets.IterableDataset.remove_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.rename_column.html">datasets.IterableDataset.rename_column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.rename_columns.html">datasets.IterableDataset.rename_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.select_columns.html">datasets.IterableDataset.select_columns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.cast.html">datasets.IterableDataset.cast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.IterableDataset.cast_column.html">datasets.IterableDataset.cast_column</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../features.html">Features</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Features.html">datasets.Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Value.html">datasets.Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.ClassLabel.html">datasets.ClassLabel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Sequence.html">datasets.Sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Array2D.html">datasets.Array2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Array3D.html">datasets.Array3D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Array4D.html">datasets.Array4D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Array5D.html">datasets.Array5D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Audio.html">datasets.Audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Image.html">datasets.Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.Translation.html">datasets.Translation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.TranslationVariableLanguages.html">datasets.TranslationVariableLanguages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.ClassLabel.int2str.html">datasets.ClassLabel.int2str</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.ClassLabel.str2int.html">datasets.ClassLabel.str2int</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../builders.html">Dataset builders</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetBuilder.html">datasets.DatasetBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.GeneratorBasedBuilder.html">datasets.GeneratorBasedBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.ArrowBasedBuilder.html">datasets.ArrowBasedBuilder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetBuilder.download_and_prepare.html">datasets.DatasetBuilder.download_and_prepare</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DatasetBuilder.as_dataset.html">datasets.DatasetBuilder.as_dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.BuilderConfig.html">datasets.BuilderConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DownloadConfig.html">datasets.DownloadConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DownloadManager.html">datasets.DownloadManager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.DownloadMode.html">datasets.DownloadMode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.VerificationMode.html">datasets.VerificationMode</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../loading.html">Loading methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.load_dataset.html">datasets.load_dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.load_dataset_builder.html">datasets.load_dataset_builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.load_from_disk.html">datasets.load_from_disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.load_from_disk.html">datasets.load_from_disk</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.get_dataset_config_names.html">datasets.get_dataset_config_names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.get_dataset_config_info.html">datasets.get_dataset_config_info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.get_dataset_infos.html">datasets.get_dataset_infos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.get_dataset_split_names.html">datasets.get_dataset_split_names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.get_dataset_default_config_name.html">datasets.get_dataset_default_config_name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.enable_progress_bar.html">datasets.enable_progress_bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.disable_progress_bar.html">datasets.disable_progress_bar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.is_progress_bar_enabled.html">datasets.is_progress_bar_enabled</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../utilities.html">Utilities</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="datasets.disable_caching.html">datasets.disable_caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.enable_caching.html">datasets.enable_caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.is_caching_enabled.html">datasets.is_caching_enabled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.fingerprint.Hasher.html">datasets.fingerprint.Hasher</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.get_logger.html">datasets.logging.get_logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.set_verbosity.html">datasets.logging.set_verbosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.get_verbosity.html">datasets.logging.get_verbosity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.set_verbosity_info.html">datasets.logging.set_verbosity_info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.set_verbosity_warning.html">datasets.logging.set_verbosity_warning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.set_verbosity_debug.html">datasets.logging.set_verbosity_debug</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.logging.set_verbosity_error.html">datasets.logging.set_verbosity_error</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.__version__.html">datasets.__version__</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API Reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../dataset.html" class="nav-link">Dataset</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">datasets.Dataset.add_faiss_index_from_external_arrays</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="datasets-dataset-add-faiss-index-from-external-arrays">
+<h1>datasets.Dataset.add_faiss_index_from_external_arrays<a class="headerlink" href="#datasets-dataset-add-faiss-index-from-external-arrays" title="Link to this heading">#</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="datasets.Dataset.add_faiss_index_from_external_arrays">
+<span class="sig-prename descclassname"><span class="pre">Dataset.</span></span><span class="sig-name descname"><span class="pre">add_faiss_index_from_external_arrays</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">external_arrays:</span> <span class="pre">~numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">device:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">string_factory:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric_type:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_index:</span> <span class="pre">faiss.Index</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_size:</span> <span class="pre">int</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">faiss_verbose:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/datasets/arrow_dataset.html#Dataset.add_faiss_index_from_external_arrays"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#datasets.Dataset.add_faiss_index_from_external_arrays" title="Link to this definition">#</a></dt>
+<dd><p>Add a dense index using Faiss for fast retrieval.
+The index is created using the vectors of <cite>external_arrays</cite>.
+You can specify <cite>device</cite> if you want to run it on GPU (<cite>device</cite> must be the GPU index).
+You can find more information about Faiss here:</p>
+<ul class="simple">
+<li><p>For [string factory](<a class="github reference external" href="https://github.com/facebookresearch/faiss/wiki/The-index-factory">facebookresearch/faiss</a>)</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>external_arrays</strong> (<cite>np.array</cite>) – If you want to use arrays from outside the lib for the index, you can set <cite>external_arrays</cite>.
+It will use <cite>external_arrays</cite> to create the Faiss index instead of the arrays in the given <cite>column</cite>.</p></li>
+<li><p><strong>index_name</strong> (<cite>str</cite>) – The <cite>index_name</cite>/identifier of the index.
+This is the <cite>index_name</cite> that is used to call [<cite>~datasets.Dataset.get_nearest_examples</cite>] or [<cite>~datasets.Dataset.search</cite>].</p></li>
+<li><p><strong>device</strong> (Optional <cite>Union[int, List[int]]</cite>, <em>optional</em>) – If positive integer, this is the index of the GPU to use. If negative integer, use all GPUs.
+If a list of positive integers is passed in, run only on those GPUs. By default it uses the CPU.</p></li>
+<li><p><strong>string_factory</strong> (<cite>str</cite>, <em>optional</em>) – This is passed to the index factory of Faiss to create the index.
+Default index class is <cite>IndexFlat</cite>.</p></li>
+<li><p><strong>metric_type</strong> (<cite>int</cite>, <em>optional</em>) – Type of metric. Ex: <cite>faiss.faiss.METRIC_INNER_PRODUCT</cite> or <cite>faiss.METRIC_L2</cite>.</p></li>
+<li><p><strong>custom_index</strong> (<cite>faiss.Index</cite>, <em>optional</em>) – Custom Faiss index that you already have instantiated and configured for your needs.</p></li>
+<li><p><strong>batch_size</strong> (<cite>int</cite>, <em>optional</em>) – Size of the batch to use while adding vectors to the FaissIndex. Default value is 1000.
+&lt;Added version=”2.4.0”/&gt;</p></li>
+<li><p><strong>train_size</strong> (<cite>int</cite>, <em>optional</em>) – If the index needs a training step, specifies how many vectors will be used to train the index.</p></li>
+<li><p><strong>faiss_verbose</strong> (<cite>bool</cite>, defaults to False) – Enable the verbosity of the Faiss index.</p></li>
+<li><p><strong>dtype</strong> (<cite>numpy.dtype</cite>) – The dtype of the numpy arrays that are indexed. Default is np.float32.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="datasets.Dataset.add_faiss_index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">datasets.Dataset.add_faiss_index</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="datasets.Dataset.save_faiss_index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">datasets.Dataset.save_faiss_index</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets.Dataset.add_faiss_index_from_external_arrays"><code class="docutils literal notranslate"><span class="pre">Dataset.add_faiss_index_from_external_arrays()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  
+  <div class="tocsection editthispage">
+    <a href="https://github.com/huggingface/datasets/edit/main/docs/source/api/generated/datasets.Dataset.add_faiss_index_from_external_arrays.rst">
+      <i class="fa-solid fa-pencil"></i>
+      
+      
+        
+          Edit on GitHub
+        
+      
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, HuggingFace Inc..
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
